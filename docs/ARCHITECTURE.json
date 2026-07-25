@@ -3639,14 +3639,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Custom hook to handle the payment flow with the payment gateway.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "usePayment",
+      "parameters" : [ ],
+      "return_type" : "{ initiatePayment: (orderId: string, amount: number) => Promise<void>; verifyPayment: (paymentId: string, orderId: string, signature: string, status: string) => Promise<boolean>; isLoading: boolean; error: Error | null; }",
+      "description" : "Provides functions to initiate and verify payments, along with loading and error states."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/paymentService.ts", "frontend/src/types/payment.ts" ],
     "depends_on" : [ ],
     "feature_name" : "payment-ui",
-    "file_role" : null,
+    "file_role" : "Custom React hook that orchestrates the payment flow by interacting with the `paymentService` and handling redirects to and from the payment gateway. It exposes `initiatePayment` and `verifyPayment` functions.",
     "change_required" : null
   }, {
     "file_name" : "paymentService.ts",
@@ -3657,14 +3662,38 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Provides functions for making API calls to the payment endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "initiatePayment",
+      "parameters" : [ "PaymentRequest request" ],
+      "return_type" : "Promise<PaymentResponse>",
+      "description" : "Initiates a payment with the backend payment gateway."
+    }, {
+      "name" : "verifyPayment",
+      "parameters" : [ "PaymentVerificationRequest request" ],
+      "return_type" : "Promise<string>",
+      "description" : "Verifies the status of a payment with the backend payment gateway."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/payments/initiate",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Initiates a payment with the payment gateway.",
+      "access" : null
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/payments/verify",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Verifies the payment status after redirection from the gateway.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/payment.ts" ],
     "depends_on" : [ ],
     "feature_name" : "payment-ui",
-    "file_role" : null,
+    "file_role" : "Frontend service layer for making API calls to the backend payment-gateway feature. It exposes `initiatePayment` and `verifyPayment` functions.",
     "change_required" : null
   }, {
     "file_name" : "payment.ts",
@@ -3676,13 +3705,25 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for payment data.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "PaymentRequest",
+      "type" : "{ orderId: string; amount: number; }",
+      "description" : "Request body for initiating a payment, containing the order ID and amount."
+    }, {
+      "name" : "PaymentResponse",
+      "type" : "{ paymentId: string; redirectUrl: string; }",
+      "description" : "Response from initiating a payment, containing the payment ID and the URL to redirect to the payment gateway."
+    }, {
+      "name" : "PaymentVerificationRequest",
+      "type" : "{ paymentId: string; orderId: string; signature: string; status: string; }",
+      "description" : "Request body for verifying a payment, containing payment details from the gateway callback."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "payment-ui",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — TypeScript types and interfaces for payment data structures.",
     "change_required" : null
   }, {
     "file_name" : "useEvents.ts",
@@ -4010,8 +4051,8 @@
     "feature_display_name" : "Payment UI",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/hooks/usePayment.ts", "frontend/src/services/paymentService.ts", "frontend/src/types/payment.ts" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The payment-ui feature provides the frontend logic for integrating with a payment gateway to process orders. It consists of a custom React hook (`usePayment.ts`), a service layer for API calls (`paymentService.ts`), and TypeScript type definitions (`payment.ts`).\n\n`payment.ts` defines the data structures for payment requests, responses, and verification, ensuring type safety across the payment flow.\n\n`paymentService.ts` acts as the intermediary between the frontend and the backend payment-gateway feature. It exports two asynchronous functions: `initiatePayment` and `verifyPayment`. `initiatePayment` sends a `PaymentRequest` (containing `orderId` and `amount`) to the `/api/v1/payments/initiate` endpoint and expects a `PaymentResponse` in return, which includes a `paymentId` and `redirectUrl` for the payment gateway. `verifyPayment` sends a `PaymentVerificationRequest` (containing `paymentId`, `orderId`, `signature`, and `status`) to the `/api/v1/payments/verify` endpoint to confirm the payment status.\n\n`usePayment.ts` is a custom React hook that encapsulates the payment processing logic. It provides functions to initiate a payment and handle the redirection to and from the payment gateway. The `initiatePayment` function in this hook will call `paymentService.initiatePayment` with the `orderId` and `amount`. Upon receiving a `PaymentResponse`, it will redirect the user to the `redirectUrl` provided by the payment gateway. After the user completes the payment on the gateway, they will be redirected back to the application, where `usePayment` will handle the verification process by calling `paymentService.verifyPayment` with the necessary details from the URL parameters or callback. This hook will also manage loading states and error handling during the payment process.\n\n**Inter-file Wiring:**\n- `usePayment.ts` imports and calls functions from `paymentService.ts`.\n- `paymentService.ts` imports types from `payment.ts` and uses the shared `api/client.ts` for making HTTP requests.\n\n**Cross-feature Contracts:**\n- `paymentService.ts` calls the `payment-gateway` feature's API endpoints:\n    - `POST /api/v1/payments/initiate` with `PaymentRequest` (orderId: UUID, amount: BigDecimal) expecting `PaymentResponse` (paymentId: String, redirectUrl: String).\n    - `POST /api/v1/payments/verify` with `PaymentVerificationRequest` (paymentId: String, orderId: String, signature: String, status: String) expecting `String` (verification status/message).\n\n**Error Handling:**\n- `paymentService.ts` functions should throw errors if the API calls fail. These errors should be caught and handled by `usePayment.ts`, which can then expose them to components for display to the user.",
+    "depends_on_features" : [ "payment-gateway" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
