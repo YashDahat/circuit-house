@@ -3389,7 +3389,7 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : null,
-    "updated_date" : null,
+    "updated_date" : "2026-07-25",
     "status" : "VALIDATED",
     "description" : "Derived route registry — regenerated every attempt, never LLM-written",
     "public_functions" : null,

@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getAllReservations, updateReservationStatus } from '@/services/reservationService';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { getAllReservations } from '@/services/reservationService';
 import type { ReservationResponse, ReservationStatus } from '@/types/reservation';
 import AdminLayout from '@/components/layout/AdminLayout';
 import ReservationsTable from '@/components/admin/reservations/ReservationsTable';
-import { toast } from 'sonner';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import UpdateReservationStatusForm from '@/components/admin/reservations/UpdateReservationStatusForm';
 

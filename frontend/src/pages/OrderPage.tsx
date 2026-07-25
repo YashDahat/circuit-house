@@ -5,7 +5,6 @@ import { CartView } from '@/components/order/CartView';
 import CheckoutForm from '@/components/order/CheckoutForm';
 import PaymentComponent from '@/components/order/PaymentComponent';
 import { CreateOrderRequest, OrderItemRequest } from '@/types/order';
-import { useCreateOrder } from '@/hooks/useOrders';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/routes';
