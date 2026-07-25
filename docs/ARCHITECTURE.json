@@ -1968,14 +1968,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Landing page featuring a full-bleed hero image, featured dishes, customer testimonials, and a reservation CTA.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HomePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main landing page of the application."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/Layout.tsx", "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/FeaturedDishes.tsx", "frontend/src/components/home/TestimonialsSection.tsx", "frontend/src/components/home/AmbianceGallery.tsx", "frontend/src/components/home/CtaSection.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Landing page for the Circuit House website, integrating various sections like hero, featured dishes, testimonials, gallery, and CTA.",
     "change_required" : null
   }, {
     "file_name" : "HeroSection.tsx",
@@ -1986,14 +1991,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Displays the main hero section with a background image, headline, and primary action buttons.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HeroSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the hero section with a background image, headline, and CTAs."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Component displaying the main hero section with a background image, headline, and primary action buttons for the homepage.",
     "change_required" : null
   }, {
     "file_name" : "FeaturedDishes.tsx",
@@ -2004,14 +2014,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A section to showcase a curated list of popular or special menu items.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "FeaturedDishes",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays a selection of featured dishes from the menu."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Component showcasing a curated list of popular or special menu items, fetching data via the useMenu hook.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialsSection.tsx",
@@ -2022,14 +2037,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Displays a rotating carousel or grid of curated customer testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialsSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a section with customer testimonials."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Component displaying a rotating carousel or grid of curated customer testimonials.",
     "change_required" : null
   }, {
     "file_name" : "AmbianceGallery.tsx",
@@ -2040,14 +2060,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A small, curated image gallery on the homepage showcasing the restaurant's interior.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AmbianceGallery",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays a gallery of restaurant ambiance images."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Component presenting a small, curated image gallery on the homepage showcasing the restaurant's interior.",
     "change_required" : null
   }, {
     "file_name" : "CtaSection.tsx",
@@ -2058,14 +2083,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A prominent call-to-action section encouraging users to book a table or order online.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "CtaSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a call-to-action section with reservation and menu links."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Component providing a prominent call-to-action section encouraging users to book a table or order online.",
     "change_required" : null
   }, {
     "file_name" : "AboutPage.tsx",
@@ -2076,14 +2106,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Static page detailing the restaurant's story, mission, and team.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AboutPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the About Us page with information about the restaurant."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/Layout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Static page detailing the restaurant's story, mission, and team.",
     "change_required" : null
   }, {
     "file_name" : "ContactPage.tsx",
@@ -2094,14 +2129,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Contact page with address, phone, email, an embedded Google Map, and a contact form.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the Contact Us page with contact information, map, and form."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/Layout.tsx", "frontend/src/components/contact/ContactForm.tsx", "frontend/src/components/contact/LocationMap.tsx", "frontend/src/components/contact/ContactInfo.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Contact page with address, phone, email, an embedded Google Map, and a contact form.",
     "change_required" : null
   }, {
     "file_name" : "ContactForm.tsx",
@@ -2112,14 +2152,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A form for users to send inquiries to the restaurant.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactForm",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a contact form for user inquiries."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Component rendering a form for users to send inquiries to the restaurant.",
     "change_required" : null
   }, {
     "file_name" : "LocationMap.tsx",
@@ -2130,14 +2175,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Component to embed Google Maps showing the restaurant's location.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "LocationMap",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Embeds a Google Map displaying the restaurant's location."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Component to embed Google Maps showing the restaurant's location.",
     "change_required" : null
   }, {
     "file_name" : "ContactInfo.tsx",
@@ -2148,14 +2198,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Displays the restaurant's address, phone number, and opening hours.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactInfo",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the restaurant's contact details and opening hours."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Component displaying the restaurant's address, phone number, and opening hours.",
     "change_required" : null
   }, {
     "file_name" : "GalleryPage.tsx",
@@ -2166,14 +2221,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A page showcasing high-quality photos of the food and restaurant ambiance in a grid layout.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "GalleryPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the gallery page with food and ambiance photos."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/Layout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "Page showcasing high-quality photos of the food and restaurant ambiance in a grid layout.",
     "change_required" : null
   }, {
     "file_name" : "NotFoundPage.tsx",
@@ -2184,14 +2244,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A user-friendly 404 page for handling invalid routes.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "NotFoundPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the 404 Not Found page."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/Layout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "A user-friendly 404 page for handling invalid routes.",
     "change_required" : null
   }, {
     "file_name" : "menuService.ts",
@@ -3081,8 +3146,8 @@
     "feature_display_name" : "Static Pages (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/FeaturedDishes.tsx", "frontend/src/components/home/TestimonialsSection.tsx", "frontend/src/components/home/AmbianceGallery.tsx", "frontend/src/components/home/CtaSection.tsx", "frontend/src/pages/AboutPage.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/components/contact/ContactForm.tsx", "frontend/src/components/contact/LocationMap.tsx", "frontend/src/components/contact/ContactInfo.tsx", "frontend/src/pages/GalleryPage.tsx", "frontend/src/pages/NotFoundPage.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#c28b29] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides all the static, publicly accessible pages for Circuit House, including the homepage, about us, contact, gallery, and a 404 not found page. These pages are built using React components and leverage the `Layout` component from the `core-frontend` feature for consistent navigation and footer. The design adheres strictly to the provided design tokens for colors, typography, and spacing, ensuring an elegant and modern aesthetic.\n\n### `HomePage.tsx`\nThis page serves as the main landing page for Circuit House. It integrates several components to present a comprehensive overview of the restaurant:\n1.  **`HeroSection`**: Displays a full-bleed hero image with the restaurant's name and a compelling call to action for reservations. The image URL should be `https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&q=80` with a `bg-black bg-opacity-50` overlay.\n2.  **`FeaturedDishes`**: Showcases a curated selection of popular menu items. This component will fetch menu items using the `useMenu` hook from `menu-display-frontend` and display them.\n3.  **`TestimonialsSection`**: Presents customer testimonials, reinforcing the restaurant's reputation for quality.\n4.  **`AmbianceGallery`**: A small gallery of high-quality images showcasing the restaurant's interior and overall ambiance.\n5.  **`CtaSection`**: A prominent call-to-action encouraging users to make a reservation or view the full menu.\n\nAll sections should use the `Section container` design token for consistent padding and max-width. The `HomePage` wraps its content with the `Layout` component from `core-frontend`.\n\n### `HeroSection.tsx`\nThis component is responsible for rendering the hero banner on the `HomePage`. It takes `headline` and `subheadline` as props. The background image is a full-bleed image with a dark overlay to ensure text readability. It includes two primary CTA buttons: \"Make a Reservation\" which navigates to `/reservations` and \"View Our Menu\" which navigates to `/menu`.\n\n### `FeaturedDishes.tsx`\nThis component displays a selection of featured dishes. It uses the `useMenu` hook from `menu-display-frontend` to fetch a list of `MenuItemDto` objects. It should display a maximum of 3-4 dishes, each with its `name`, `description`, `price`, and `imageUrl`. The component should have a heading \"Our Signature Dishes\" and a CTA button \"View Full Menu\" that navigates to `/menu`.\n\n### `TestimonialsSection.tsx`\nThis component displays a series of customer testimonials. It should include a heading \"What Our Guests Say\" and present 2-3 compelling testimonials. Each testimonial should include the customer's name and their feedback, reflecting a confident and welcoming tone.\n\n### `AmbianceGallery.tsx`\nThis component presents a small, curated image gallery showcasing the restaurant's interior and ambiance. It should include a heading \"Our Ambiance\" and display 3-4 high-quality images that reflect the elegant and spacious visual style. Use Unsplash images relevant to restaurant interiors.\n\n### `CtaSection.tsx`\nThis component provides a prominent call-to-action. It should have a headline like \"Experience Culinary Excellence\" and a subheadline \"Book your table today or explore our exquisite menu.\" It includes two primary CTA buttons: \"Reserve Your Table\" (navigates to `/reservations`) and \"Explore Our Menu\" (navigates to `/menu`).\n\n### `AboutPage.tsx`\nThis page details the story, mission, and team of Circuit House. It should include sections for:\n1.  **Our Story**: A narrative about the restaurant's origins and philosophy.\n2.  **Our Mission**: A statement on the restaurant's commitment to quality and customer experience.\n3.  **Our Team**: Briefly introduce key team members (e.g., Head Chef, Founder) with placeholder names and roles.\n\nThe content should reflect a confident and quality-focused tone. The `AboutPage` wraps its content with the `Layout` component from `core-frontend`.\n\n### `ContactPage.tsx`\nThis page provides all necessary contact information and a contact form. It integrates the following components:\n1.  **`ContactInfo`**: Displays the restaurant's address, phone number, and opening hours.\n2.  **`LocationMap`**: Embeds a Google Map showing the restaurant's exact location using the provided coordinates.\n3.  **`ContactForm`**: A form for users to send inquiries. This form should include fields for `name`, `email`, `subject`, and `message`.\n\nThe `ContactPage` wraps its content with the `Layout` component from `core-frontend`.\n\n### `ContactForm.tsx`\nThis component renders a contact form. It should have input fields for `name` (text), `email` (email), `subject` (text), and `message` (textarea). The form should include a submit button with the text \"Send Message\". Upon submission, it should display a success or error message to the user. This form does not call a backend API in this feature; it's a placeholder for future integration.\n\n### `LocationMap.tsx`\nThis component embeds a Google Map centered on the restaurant's coordinates (18.570737, 73.776369). It should display a marker at this location. The map should be responsive and occupy a significant portion of the page.\n\n### `ContactInfo.tsx`\nThis component displays the restaurant's contact details:\n-   **Address**: Laxman Nagar, Baner, Pune, Maharashtra 411045\n-   **Phone**: 070587 56269\n-   **Opening Hours**: Monday - Sunday: 11:00 AM - 11:00 PM\n\n### `GalleryPage.tsx`\nThis page showcases high-quality photos of the food and restaurant ambiance in a grid layout. It should include a heading \"Our Gallery\" and display a diverse set of images, emphasizing the visual style. Use Unsplash images relevant to restaurant food and interiors. The `GalleryPage` wraps its content with the `Layout` component from `core-frontend`.\n\n### `NotFoundPage.tsx`\nThis page is displayed for invalid routes (404 errors). It should have a prominent heading \"404 - Page Not Found\" and a friendly message like \"Oops! The page you're looking for doesn't exist.\" It should include a button \"Go to Homepage\" that navigates to `/`. The `NotFoundPage` wraps its content with the `Layout` component from `core-frontend`.",
+    "depends_on_features" : [ "core-frontend", "menu-display-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
