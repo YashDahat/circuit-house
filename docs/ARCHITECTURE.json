@@ -1563,14 +1563,24 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Service for sending notifications, such as email confirmations for orders and reservations.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "sendOrderConfirmation",
+      "parameters" : [ "Order order" ],
+      "return_type" : "void",
+      "description" : "Sends an email confirmation for a newly created or updated order. The email content will include details from the provided Order object, such as customer name, order items, total amount, and order status. This method will simulate sending an email to the customer's email address associated with the order."
+    }, {
+      "name" : "sendReservationConfirmation",
+      "parameters" : [ "Reservation reservation" ],
+      "return_type" : "void",
+      "description" : "Sends an email confirmation for a newly created or updated reservation. The email content will include details from the provided Reservation object, such as customer name, reservation time, number of guests, and reservation status. This method will simulate sending an email to the customer's email address associated with the reservation."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/model/Reservation.java" ],
     "depends_on" : [ ],
     "feature_name" : "notification-service-backend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements sendOrderConfirmation(Order order): void and sendReservationConfirmation(Reservation reservation): void; responsible for constructing and dispatching email notifications.",
     "change_required" : null
   }, {
     "file_name" : "DataSeeder.java",
@@ -2946,8 +2956,8 @@
     "feature_display_name" : "Notification Service (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/service/NotificationService.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Notification Service (Backend) is responsible for sending various types of notifications, such as email confirmations for orders and reservations. It integrates with external email services to deliver these notifications. The `NotificationService.java` file contains the core business logic for constructing and sending notification messages. This service is designed to be called by other backend features (like order-management-backend and reservation-system-backend) when a notification needs to be dispatched. It will not expose any direct API endpoints but will offer public methods for internal service-to-service communication. The service will handle the formatting of notification content based on the type of event (e.g., order confirmation, reservation confirmation) and the relevant data (Order or Reservation objects). It will use a placeholder for an external email sending mechanism, which in a real-world scenario would be replaced by an actual email client (e.g., JavaMailSender, SendGrid client).",
+    "depends_on_features" : [ ],
     "change_required" : true,
     "change_instruction" : null
   }, {
