@@ -2028,14 +2028,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "The root component of the React application that sets up routing and global providers.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "App",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main application, including routing for public and admin pages, and wraps the application with necessary contexts like AuthContextProvider."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "The root component of the React application, responsible for setting up global routing and context providers.",
     "change_required" : null
   }, {
     "file_name" : "Layout.tsx",
@@ -2046,14 +2051,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Main layout component for public-facing pages, including the header and footer.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Layout",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the Header, the children components, and the Footer, providing a consistent layout for public pages."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Main layout component for public-facing pages, providing a consistent header and footer around page content.",
     "change_required" : null
   }, {
     "file_name" : "Header.tsx",
@@ -2064,14 +2074,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Renders the site-wide header with navigation links, logo, and contact CTAs.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Header",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays the restaurant logo, navigation links (Home, Menu, Reservations, Events, About, Gallery, Contact), and a 'Book a Table' call-to-action button."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Renders the site-wide header, including the restaurant logo, navigation links, and a 'Book a Table' CTA.",
     "change_required" : null
   }, {
     "file_name" : "Footer.tsx",
@@ -2082,14 +2097,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Renders the site-wide footer with contact information, social links, and quick navigation.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Footer",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays the restaurant's address, phone number, opening hours, and links to social media platforms."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Renders the site-wide footer, displaying contact information, opening hours, and social media links.",
     "change_required" : null
   }, {
     "file_name" : "AdminLayout.tsx",
@@ -2287,14 +2307,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Landing page featuring a full-bleed hero image, featured dishes, testimonials, and location info.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HomePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main landing page, integrating HeroSection, FeaturedMenuItems, TestimonialsSection, and LocationMap components."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/FeaturedMenuItems.tsx", "frontend/src/components/home/TestimonialsSection.tsx", "frontend/src/components/home/LocationMap.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Landing page of the website, composed of a hero section, featured menu items, testimonials, and location information.",
     "change_required" : null
   }, {
     "file_name" : "HeroSection.tsx",
@@ -2305,14 +2330,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Displays the main hero section with a background image, headline, and primary CTAs.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HeroSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a full-width hero section with a background image, an overlay, a bold headline 'Experience Culinary Excellence at Circuit House', a subheadline 'Savor exquisite flavors in an elegant ambiance.', and a 'Book a Table' CTA."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Displays the main hero section with a background image, a prominent headline, and primary call-to-action buttons.",
     "change_required" : null
   }, {
     "file_name" : "FeaturedMenuItems.tsx",
@@ -2323,14 +2353,26 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "A grid or carousel showcasing a selection of popular or special menu items.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "FeaturedMenuItems",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Fetches a list of menu items using the `useMenu` hook and displays them in a responsive grid, highlighting their name, description, price, and image."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/menu/items",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all active menu items to display as featured dishes.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/hooks/useMenu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Showcases a selection of popular or special menu items fetched from the backend.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialsSection.tsx",
@@ -2341,14 +2383,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Displays curated customer reviews and testimonials to build social proof.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialsSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a section showcasing positive customer testimonials with their names and reviews."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Displays curated customer reviews and testimonials to build social proof and trust.",
     "change_required" : null
   }, {
     "file_name" : "LocationMap.tsx",
@@ -2359,14 +2406,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Shows the restaurant's location, hours, and an embedded Google Map.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "LocationMap",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays the restaurant's address, phone number, opening hours, and an embedded Google Map for easy navigation."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Shows the restaurant's physical location, opening hours, and an embedded Google Map.",
     "change_required" : null
   }, {
     "file_name" : "AboutPage.tsx",
@@ -2377,14 +2429,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "A static page describing the restaurant's story, mission, and ambiance.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AboutPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the About Us page, providing information about Circuit House's story, culinary philosophy, and commitment to quality."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "A static page detailing the restaurant's history, mission, and the philosophy behind its culinary experience.",
     "change_required" : null
   }, {
     "file_name" : "ContactPage.tsx",
@@ -2395,14 +2452,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Displays contact information, a contact form, and an interactive Google Map.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the Contact Us page, integrating ContactInfo and GoogleMapsEmbed components to provide all necessary contact details and location."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/contact/ContactInfo.tsx", "frontend/src/components/contact/GoogleMapsEmbed.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Displays comprehensive contact information, including address, phone, and an interactive map.",
     "change_required" : null
   }, {
     "file_name" : "ContactInfo.tsx",
@@ -2413,14 +2475,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Component displaying address, phone number, and WhatsApp contact buttons.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactInfo",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays the restaurant's physical address, phone number, and a WhatsApp contact button."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Component displaying the restaurant's address, phone number, and WhatsApp contact options.",
     "change_required" : null
   }, {
     "file_name" : "GoogleMapsEmbed.tsx",
@@ -2431,14 +2498,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Embeds an interactive Google Map showing the restaurant's location.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "GoogleMapsEmbed",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders an embedded Google Map iframe displaying the restaurant's location at the specified coordinates."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Embeds an interactive Google Map centered on the restaurant's location.",
     "change_required" : null
   }, {
     "file_name" : "GalleryPage.tsx",
@@ -2449,14 +2521,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Showcases high-quality photos of the restaurant's food and interior ambiance in a grid.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "GalleryPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the Gallery page, displaying a collection of high-quality images of the restaurant and its dishes using the PhotoGrid component."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/gallery/PhotoGrid.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Showcases high-quality photos of the restaurant's food and interior ambiance in a responsive grid.",
     "change_required" : null
   }, {
     "file_name" : "PhotoGrid.tsx",
@@ -2467,14 +2544,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "A responsive grid component for displaying a collection of images.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "PhotoGrid",
+      "parameters" : [ "{ images: string[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays an array of image URLs in a responsive grid layout."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "A responsive grid component for displaying a collection of images.",
     "change_required" : null
   }, {
     "file_name" : "NotFoundPage.tsx",
@@ -2485,14 +2567,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "A 404 page shown when a user navigates to a non-existent route.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "NotFoundPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a 404 error page with a message indicating the requested page was not found and a link back to the homepage."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "A 404 page displayed when a user navigates to a non-existent route.",
     "change_required" : null
   }, {
     "file_name" : "useMenu.ts",
@@ -3277,14 +3364,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Utility functions to generate JSON-LD schema markup for SEO purposes.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getRestaurantSchema",
+      "parameters" : [ ],
+      "return_type" : "object",
+      "description" : "Generates JSON-LD schema markup for the 'Restaurant' entity using the business context details."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null,
+    "file_role" : "Utility functions to generate JSON-LD schema markup for SEO purposes, specifically for the Restaurant entity.",
     "change_required" : null
   }, {
     "file_name" : "ci.yml",
@@ -3391,8 +3483,8 @@
     "feature_display_name" : "Static Pages",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/App.tsx", "frontend/src/components/Layout.tsx", "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx", "frontend/src/pages/HomePage.tsx", "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/FeaturedMenuItems.tsx", "frontend/src/components/home/TestimonialsSection.tsx", "frontend/src/components/home/LocationMap.tsx", "frontend/src/pages/AboutPage.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/components/contact/ContactInfo.tsx", "frontend/src/components/contact/GoogleMapsEmbed.tsx", "frontend/src/pages/GalleryPage.tsx", "frontend/src/components/gallery/PhotoGrid.tsx", "frontend/src/pages/NotFoundPage.tsx", "frontend/src/utils/schemaMarkup.ts" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#c28b29] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides the core static pages and layout components for the Circuit House restaurant's public-facing frontend. It establishes the overall application structure, routing, and consistent visual design across the website. The `App.tsx` file sets up the main routing using `react-router-dom` and wraps the application with necessary providers. The `Layout.tsx` component defines the common header and footer for all public pages, ensuring a consistent brand experience.\n\nThe `Header.tsx` component includes the restaurant's logo, navigation links to `Home`, `Menu`, `Reservations`, `Events`, `About`, `Gallery`, and `Contact` pages, and a prominent 'Book a Table' call-to-action. The `Footer.tsx` displays essential business information such as address, phone number, opening hours, and social media links.\n\nThe `HomePage.tsx` is the landing page, composed of several sub-components:\n- `HeroSection.tsx`: Features a full-bleed hero image of the restaurant's interior with a compelling headline \"Experience Culinary Excellence at Circuit House\" and a \"Book a Table\" CTA. The image used is `https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&q=80` with a `bg-black bg-opacity-50` overlay.\n- `FeaturedMenuItems.tsx`: Showcases a selection of popular menu items, fetching data using the `useMenu` hook from the `menu-display` feature. It displays `MenuItemDto` objects, specifically their `name`, `description`, `price`, and `imageUrl` fields.\n- `TestimonialsSection.tsx`: Presents customer testimonials, reinforcing the restaurant's reputation for quality.\n- `LocationMap.tsx`: Displays the restaurant's address, opening hours, and an embedded Google Map.\n\nThe `AboutPage.tsx` provides information about the restaurant's story and mission, while the `ContactPage.tsx` offers contact details, a contact form (not implemented in this feature, but space is reserved), and an interactive Google Map via `GoogleMapsEmbed.tsx`. The `ContactInfo.tsx` component within the `ContactPage` displays the restaurant's address, phone number, and WhatsApp contact.\n\nThe `GalleryPage.tsx` showcases high-quality photos of the restaurant's food and interior using the `PhotoGrid.tsx` component. The `NotFoundPage.tsx` handles invalid routes, providing a user-friendly 404 message.\n\nFinally, `schemaMarkup.ts` provides utility functions to generate JSON-LD schema markup for SEO, specifically for the `Restaurant` entity, using the business context details provided.\n\nAll components adhere to the defined design tokens for colors, typography, and spacing to maintain a cohesive visual identity. Navigation between pages is handled by `react-router-dom`'s `Link` component, ensuring client-side routing.",
+    "depends_on_features" : [ "menu-display" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
