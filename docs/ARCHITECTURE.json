@@ -443,13 +443,45 @@
     "status" : "PLANNED",
     "description" : "JPA entity representing a customer's table reservation.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the reservation. Not null."
+    }, {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer making the reservation. Not null, max 255 characters."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer. Not null, max 255 characters."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer. Not null, max 20 characters."
+    }, {
+      "name" : "reservationTime",
+      "type" : "LocalDateTime",
+      "description" : "Date and time of the reservation. Not null."
+    }, {
+      "name" : "numberOfGuests",
+      "type" : "int",
+      "description" : "Number of guests for the reservation. Not null, minimum 1."
+    }, {
+      "name" : "status",
+      "type" : "ReservationStatus",
+      "description" : "Current status of the reservation (PENDING, CONFIRMED, CANCELLED, COMPLETED). Not null, defaults to PENDING."
+    }, {
+      "name" : "notes",
+      "type" : "String",
+      "description" : "Additional notes for the reservation. Max 500 characters."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/ReservationStatus.java" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-system-backend",
-    "file_role" : null,
+    "file_role" : "JPA entity representing a customer's table reservation, used by ReservationRepository and ReservationService.",
     "change_required" : null
   }, {
     "file_name" : "ReservationStatus.java",
@@ -467,7 +499,7 @@
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "reservation-system-backend",
-    "file_role" : null,
+    "file_role" : "Enum defining the possible states of a reservation (PENDING, CONFIRMED, CANCELLED, COMPLETED), used by Reservation and ReservationService.",
     "change_required" : null
   }, {
     "file_name" : "ReservationRepository.java",
@@ -478,14 +510,24 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on Reservation entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findByStatus",
+      "parameters" : [ "ReservationStatus status" ],
+      "return_type" : "List<Reservation>",
+      "description" : "Finds all reservations with the given status."
+    }, {
+      "name" : "findByCustomerEmail",
+      "parameters" : [ "String customerEmail" ],
+      "return_type" : "List<Reservation>",
+      "description" : "Finds all reservations for a specific customer email."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Reservation.java" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-system-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — extends JpaRepository for Reservation entities and provides custom query methods for finding reservations by status and customer email.",
     "change_required" : null
   }, {
     "file_name" : "CreateReservationRequest.java",
@@ -497,13 +539,37 @@
     "status" : "PLANNED",
     "description" : "DTO for capturing new reservation requests from the public-facing form.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer. Not blank."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer. Not blank, valid email format."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer. Not blank."
+    }, {
+      "name" : "reservationTime",
+      "type" : "LocalDateTime",
+      "description" : "Desired reservation date and time. Not null, must be in the future or present."
+    }, {
+      "name" : "numberOfGuests",
+      "type" : "int",
+      "description" : "Number of guests. Not null, minimum 1."
+    }, {
+      "name" : "notes",
+      "type" : "String",
+      "description" : "Additional notes. Max 500 characters."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "reservation-system-backend",
-    "file_role" : null,
+    "file_role" : "DTO for capturing new reservation requests from the public-facing form, used by ReservationController and ReservationService.",
     "change_required" : null
   }, {
     "file_name" : "ReservationResponse.java",
@@ -515,13 +581,45 @@
     "status" : "PLANNED",
     "description" : "DTO for returning reservation details via the API.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the reservation."
+    }, {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer."
+    }, {
+      "name" : "reservationTime",
+      "type" : "LocalDateTime",
+      "description" : "Date and time of the reservation."
+    }, {
+      "name" : "numberOfGuests",
+      "type" : "int",
+      "description" : "Number of guests for the reservation."
+    }, {
+      "name" : "status",
+      "type" : "ReservationStatus",
+      "description" : "Current status of the reservation."
+    }, {
+      "name" : "notes",
+      "type" : "String",
+      "description" : "Additional notes for the reservation."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "reservation-system-backend",
-    "file_role" : null,
+    "file_role" : "DTO for returning reservation details via the API, used by ReservationService and ReservationController.",
     "change_required" : null
   }, {
     "file_name" : "ReservationService.java",
@@ -532,14 +630,44 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Handles business logic for creating and managing table reservations.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createReservation",
+      "parameters" : [ "CreateReservationRequest request" ],
+      "return_type" : "ReservationResponse",
+      "description" : "Creates a new reservation and saves it to the database. Throws IllegalArgumentException if reservation time is in the past."
+    }, {
+      "name" : "getReservationById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ReservationResponse",
+      "description" : "Retrieves a reservation by its ID. Throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "getAllReservations",
+      "parameters" : [ ],
+      "return_type" : "List<ReservationResponse>",
+      "description" : "Retrieves all reservations."
+    }, {
+      "name" : "getReservationsByStatus",
+      "parameters" : [ "ReservationStatus status" ],
+      "return_type" : "List<ReservationResponse>",
+      "description" : "Retrieves reservations filtered by their status."
+    }, {
+      "name" : "updateReservationStatus",
+      "parameters" : [ "UUID id", "ReservationStatus newStatus" ],
+      "return_type" : "ReservationResponse",
+      "description" : "Updates the status of an existing reservation. Throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "deleteReservation",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a reservation by its ID. Throws ResourceNotFoundException if not found."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/repository/ReservationRepository.java", "backend/src/main/java/com/circuithouse/dto/CreateReservationRequest.java", "backend/src/main/java/com/circuithouse/dto/ReservationResponse.java", "backend/src/main/java/com/circuithouse/model/Reservation.java" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-system-backend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements createReservation(CreateReservationRequest): ReservationResponse, getReservationById(UUID): ReservationResponse, getAllReservations(): List<ReservationResponse>, getReservationsByStatus(ReservationStatus): List<ReservationResponse>, updateReservationStatus(UUID, ReservationStatus): ReservationResponse, and deleteReservation(UUID): void; delegates persistence to ReservationRepository.",
     "change_required" : null
   }, {
     "file_name" : "ReservationController.java",
@@ -550,14 +678,26 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Public REST controller for submitting new table reservations.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createReservation",
+      "parameters" : [ "CreateReservationRequest request" ],
+      "return_type" : "ResponseEntity<ReservationResponse>",
+      "description" : "Handles POST requests to create a new reservation."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/reservations",
+      "request_body" : "CreateReservationRequest",
+      "response_body" : "ReservationResponse",
+      "description" : "Creates a new table reservation.",
+      "access" : "public"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/ReservationService.java", "backend/src/main/java/com/circuithouse/dto/CreateReservationRequest.java" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-system-backend",
-    "file_role" : null,
+    "file_role" : "Public REST controller for submitting new table reservations, exposing createReservation(CreateReservationRequest): ResponseEntity<ReservationResponse>.",
     "change_required" : null
   }, {
     "file_name" : "AdminReservationController.java",
@@ -568,14 +708,62 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Admin-only REST controller for viewing and managing all reservations.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllReservations",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<ReservationResponse>>",
+      "description" : "Retrieves all reservations."
+    }, {
+      "name" : "getReservationById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<ReservationResponse>",
+      "description" : "Retrieves a reservation by its ID."
+    }, {
+      "name" : "updateReservationStatus",
+      "parameters" : [ "UUID id", "ReservationStatus status" ],
+      "return_type" : "ResponseEntity<ReservationResponse>",
+      "description" : "Updates the status of a reservation."
+    }, {
+      "name" : "deleteReservation",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Deletes a reservation by its ID."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/reservations",
+      "request_body" : null,
+      "response_body" : "List<ReservationResponse>",
+      "description" : "Retrieves all reservations for admin view.",
+      "access" : "admin"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/reservations/{id}",
+      "request_body" : null,
+      "response_body" : "ReservationResponse",
+      "description" : "Retrieves a single reservation by ID for admin view.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/reservations/{id}/status",
+      "request_body" : null,
+      "response_body" : "ReservationResponse",
+      "description" : "Updates the status of a reservation.",
+      "access" : "admin"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/reservations/{id}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Deletes a reservation by ID.",
+      "access" : "admin"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/ReservationService.java", "backend/src/main/java/com/circuithouse/dto/ReservationResponse.java" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-system-backend",
-    "file_role" : null,
+    "file_role" : "Admin-only REST controller for viewing and managing all reservations, exposing getAllReservations(): ResponseEntity<List<ReservationResponse>>, getReservationById(UUID): ResponseEntity<ReservationResponse>, updateReservationStatus(UUID, ReservationStatus): ResponseEntity<ReservationResponse>, and deleteReservation(UUID): ResponseEntity<Void>.",
     "change_required" : null
   }, {
     "file_name" : "Order.java",
@@ -2293,8 +2481,8 @@
     "feature_display_name" : "Reservation System (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/model/Reservation.java", "backend/src/main/java/com/circuithouse/model/ReservationStatus.java", "backend/src/main/java/com/circuithouse/repository/ReservationRepository.java", "backend/src/main/java/com/circuithouse/dto/CreateReservationRequest.java", "backend/src/main/java/com/circuithouse/dto/ReservationResponse.java", "backend/src/main/java/com/circuithouse/service/ReservationService.java", "backend/src/main/java/com/circuithouse/controller/ReservationController.java", "backend/src/main/java/com/circuithouse/controller/admin/AdminReservationController.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Reservation System (Backend) feature provides a robust API for managing table reservations at Circuit House. It includes JPA entities for `Reservation` and `ReservationStatus`, a Spring Data JPA repository for persistence, DTOs for request and response payloads, and service and controller layers for business logic and API exposure.\n\n### Data Models\n\n1.  **Reservation.java**: This JPA entity represents a single table reservation. It includes fields such as `id` (UUID), `customerName` (String), `customerEmail` (String), `customerPhone` (String), `reservationTime` (LocalDateTime), `numberOfGuests` (int), `status` (ReservationStatus enum), and `notes` (String). The `status` field will default to `PENDING` upon creation.\n2.  **ReservationStatus.java**: An enum defining the possible states of a reservation: `PENDING`, `CONFIRMED`, `CANCELLED`, `COMPLETED`.\n\n### Repository Layer\n\n1.  **ReservationRepository.java**: This interface extends `JpaRepository<Reservation, UUID>` and provides standard CRUD operations. It will also include custom query methods to find reservations by `reservationTime` and `status`, and to find all reservations for a specific `customerEmail`.\n\n### DTO Layer\n\n1.  **CreateReservationRequest.java**: This DTO is used for incoming requests to create a new reservation. It contains `customerName` (String, @NotBlank), `customerEmail` (String, @NotBlank, @Email), `customerPhone` (String, @NotBlank), `reservationTime` (LocalDateTime, @NotNull, @FutureOrPresent), `numberOfGuests` (int, @Min(1)), and `notes` (String, @Size(max=500)).\n2.  **ReservationResponse.java**: This DTO is used for outgoing responses, providing full details of a reservation. It includes `id` (UUID), `customerName` (String), `customerEmail` (String), `customerPhone` (String), `reservationTime` (LocalDateTime), `numberOfGuests` (int), `status` (ReservationStatus), and `notes` (String).\n\n### Service Layer\n\n1.  **ReservationService.java**: This service orchestrates the business logic for reservations. It injects `ReservationRepository`.\n    *   `createReservation(CreateReservationRequest request)`: ReservationResponse\n        1.  Validates the `CreateReservationRequest` fields. If `reservationTime` is in the past, throw `IllegalArgumentException`.\n        2.  Creates a new `Reservation` entity from the request, setting the `status` to `PENDING`.\n        3.  Saves the `Reservation` entity using `reservationRepository.save()`.\n        4.  Returns a `ReservationResponse` mapped from the saved `Reservation`.\n    *   `getReservationById(UUID id)`: ReservationResponse\n        1.  Retrieves a `Reservation` by `id` using `reservationRepository.findById()`. If not found, throw `ResourceNotFoundException`.\n        2.  Returns a `ReservationResponse` mapped from the found `Reservation`.\n    *   `getAllReservations()`: List<ReservationResponse>\n        1.  Retrieves all `Reservation` entities using `reservationRepository.findAll()`.\n        2.  Returns a list of `ReservationResponse` mapped from the entities.\n    *   `getReservationsByStatus(ReservationStatus status)`: List<ReservationResponse>\n        1.  Retrieves `Reservation` entities by `status` using a custom query method from `ReservationRepository`.\n        2.  Returns a list of `ReservationResponse` mapped from the entities.\n    *   `updateReservationStatus(UUID id, ReservationStatus newStatus)`: ReservationResponse\n        1.  Retrieves the `Reservation` by `id`. If not found, throw `ResourceNotFoundException`.\n        2.  Updates the `status` of the reservation to `newStatus`.\n        3.  Saves the updated `Reservation` entity using `reservationRepository.save()`.\n        4.  Returns a `ReservationResponse` mapped from the updated `Reservation`.\n    *   `deleteReservation(UUID id)`: void\n        1.  Checks if the `Reservation` exists by `id`. If not found, throw `ResourceNotFoundException`.\n        2.  Deletes the `Reservation` entity using `reservationRepository.deleteById()`.\n\n### Controller Layer\n\n1.  **ReservationController.java**: This REST controller handles public-facing reservation requests. It injects `ReservationService`.\n    *   `POST /api/v1/reservations`: `createReservation(@RequestBody @Valid CreateReservationRequest request)`\n        1.  Calls `reservationService.createReservation(request)`.\n        2.  Returns `201 Created` with the `ReservationResponse`.\n        3.  Handles `IllegalArgumentException` (returns `400 Bad Request`) and other exceptions via `GlobalExceptionHandler`.\n\n2.  **AdminReservationController.java**: This REST controller handles admin-only operations for reservations. It injects `ReservationService`.\n    *   `GET /api/v1/admin/reservations`: `getAllReservations()`\n        1.  Calls `reservationService.getAllReservations()`.\n        2.  Returns `200 OK` with a list of `ReservationResponse`.\n    *   `GET /api/v1/admin/reservations/{id}`: `getReservationById(@PathVariable UUID id)`\n        1.  Calls `reservationService.getReservationById(id)`.\n        2.  Returns `200 OK` with the `ReservationResponse`.\n        3.  Handles `ResourceNotFoundException` (returns `404 Not Found`) via `GlobalExceptionHandler`.\n    *   `PUT /api/v1/admin/reservations/{id}/status`: `updateReservationStatus(@PathVariable UUID id, @RequestParam ReservationStatus status)`\n        1.  Calls `reservationService.updateReservationStatus(id, status)`.\n        2.  Returns `200 OK` with the updated `ReservationResponse`.\n        3.  Handles `ResourceNotFoundException` (returns `404 Not Found`) via `GlobalExceptionHandler`.\n    *   `DELETE /api/v1/admin/reservations/{id}`: `deleteReservation(@PathVariable UUID id)`\n        1.  Calls `reservationService.deleteReservation(id)`.\n        2.  Returns `204 No Content`.\n        3.  Handles `ResourceNotFoundException` (returns `404 Not Found`) via `GlobalExceptionHandler`.\n\n### Error Handling\n\nThis feature leverages the `GlobalExceptionHandler` from the `shared-backend` feature to provide consistent error responses. Specifically, `ResourceNotFoundException` will map to a `404 Not Found` and `IllegalArgumentException` will map to a `400 Bad Request`.",
+    "depends_on_features" : [ "shared-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
