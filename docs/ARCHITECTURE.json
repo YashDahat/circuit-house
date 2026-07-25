@@ -2267,14 +2267,38 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Provides functions for interacting with the menu-related backend endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllMenuItems",
+      "parameters" : [ ],
+      "return_type" : "Promise<MenuItem[]>",
+      "description" : "Fetches all menu items from the backend."
+    }, {
+      "name" : "getMenuItemsByCategory",
+      "parameters" : [ "MenuItemCategory category" ],
+      "return_type" : "Promise<MenuItem[]>",
+      "description" : "Fetches menu items filtered by a specific category from the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/menu",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all menu items.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/menu/category/{category}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches menu items by category.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — provides functions for interacting with the menu-related backend endpoints, specifically `getAllMenuItems(): Promise<MenuItem[]>` and `getMenuItemsByCategory(category: MenuItemCategory): Promise<MenuItem[]>`.",
     "change_required" : null
   }, {
     "file_name" : "useMenu.ts",
@@ -2285,14 +2309,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "React Query hook for fetching and managing menu data.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useMenu",
+      "parameters" : [ "MenuItemCategory category?" ],
+      "return_type" : "{ data: MenuItem[] | undefined, isLoading: boolean, isError: boolean, error: Error | null }",
+      "description" : "Hook to fetch menu items, optionally filtered by category, and manage their loading state."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/menuService.ts", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "React Query hook — provides `useMenu(category?: MenuItemCategory)` for fetching and managing menu data with caching and loading states.",
     "change_required" : null
   }, {
     "file_name" : "menu.ts",
@@ -2304,13 +2333,21 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for menu items and categories.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "MenuItem",
+      "type" : "{ id: string; name: string; description: string; price: number; category: MenuItemCategory; imageUrl: string; }",
+      "description" : "Interface for a single menu item."
+    }, {
+      "name" : "MenuItemCategory",
+      "type" : "string",
+      "description" : "Type for menu item categories (e.g., 'APPETIZER', 'MAIN_COURSE')."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines TypeScript types for `MenuItem` and `MenuItemCategory`.",
     "change_required" : null
   }, {
     "file_name" : "MenuPage.tsx",
@@ -2321,14 +2358,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Displays the full digital menu with category filters and a searchable grid of items.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "The main page component for displaying the restaurant's menu."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/Layout.tsx", "frontend/src/hooks/useMenu.ts", "frontend/src/components/menu/MenuGrid.tsx", "frontend/src/components/menu/MenuCategoryFilter.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays the full digital menu with category filters, search, and a grid of items, utilizing `Layout` from `core-frontend`.",
     "change_required" : null
   }, {
     "file_name" : "MenuGrid.tsx",
@@ -2339,14 +2381,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A grid component that displays menu items, composed of individual MenuItemCard components.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuGrid",
+      "parameters" : [ "{ menuItems: MenuItem[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Component to display a responsive grid of menu item cards."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/menu/MenuItemCard.tsx", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a grid of `MenuItemCard` components, receiving `menuItems: MenuItem[]` as props.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemCard.tsx",
@@ -2357,14 +2404,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Card component to display a single menu item with photo, name, description, and price.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuItemCard",
+      "parameters" : [ "{ menuItem: MenuItem }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Component to display details of a single menu item."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a single menu item, receiving `menuItem: MenuItem` as props.",
     "change_required" : null
   }, {
     "file_name" : "MenuCategoryFilter.tsx",
@@ -2375,14 +2427,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A component with buttons or tabs to filter the menu by category.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuCategoryFilter",
+      "parameters" : [ "{ categories: MenuItemCategory[], onSelectCategory: (category: MenuItemCategory | undefined) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Component for filtering menu items by category."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides category filter buttons, receiving `categories: MenuItemCategory[]` and `onSelectCategory: (category: MenuItemCategory | undefined) => void` as props.",
     "change_required" : null
   }, {
     "file_name" : "reservationService.ts",
@@ -3155,8 +3212,8 @@
     "feature_display_name" : "Menu Display (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/services/menuService.ts", "frontend/src/hooks/useMenu.ts", "frontend/src/types/menu.ts", "frontend/src/pages/MenuPage.tsx", "frontend/src/components/menu/MenuGrid.tsx", "frontend/src/components/menu/MenuItemCard.tsx", "frontend/src/components/menu/MenuCategoryFilter.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B78824] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides the frontend components and logic for displaying Circuit House's menu to customers. It consists of a service, a React Query hook, type definitions, a main menu page, and several UI components for displaying menu items and filtering them by category.\n\n### `menu.ts`\nThis file defines the TypeScript interfaces for `MenuItem` and `MenuItemCategory`, mirroring the backend `MenuItemDto` and `MenuItemCategory` data shapes from the `menu-management-backend` feature. These types are used throughout the frontend to ensure type safety and consistency.\n\n### `menuService.ts`\nThis service file (`frontend/src/services/menuService.ts`) is responsible for making API calls to the `menu-management-backend` to fetch menu data. It exports two asynchronous functions:\n- `getAllMenuItems(): Promise<MenuItem[]>`: This function makes a GET request to `/api/v1/menu` to retrieve all menu items. It returns a promise that resolves to an array of `MenuItem` objects.\n- `getMenuItemsByCategory(category: MenuItemCategory): Promise<MenuItem[]>`: This function makes a GET request to `/api/v1/menu/category/{category}` to retrieve menu items filtered by a specific category. It returns a promise that resolves to an array of `MenuItem` objects.\n\nBoth functions handle potential errors by logging them and re-throwing to be caught by the calling hook or component.\n\n### `useMenu.ts`\nThis React Query hook (`frontend/src/hooks/useMenu.ts`) provides a convenient way for components to fetch and manage menu data. It exports a `useMenu` hook that leverages `react-query` to handle caching, loading states, and error handling. The hook has the following signature:\n- `useMenu(category?: MenuItemCategory): { data: MenuItem[] | undefined, isLoading: boolean, isError: boolean, error: Error | null }`\n\nWhen `category` is provided, it calls `menuService.getMenuItemsByCategory(category)`. Otherwise, it calls `menuService.getAllMenuItems()`. The `data` returned by the hook will be an array of `MenuItem` objects, or `undefined` if still loading or an error occurred.\n\n### `MenuCategoryFilter.tsx`\nThis component (`frontend/src/components/menu/MenuCategoryFilter.tsx`) displays a set of filter buttons or tabs, allowing users to select a menu category. It receives `categories: MenuItemCategory[]` and `onSelectCategory: (category: MenuItemCategory | undefined) => void` as props. When a category button is clicked, it calls `onSelectCategory` with the selected category. An \"All\" option should be available to clear the category filter.\n\n### `MenuItemCard.tsx`\nThis component (`frontend/src/components/menu/MenuItemCard.tsx`) is responsible for rendering a single menu item. It receives a `menuItem: MenuItem` object as a prop. The card should display the `imageUrl`, `name`, `description`, and `price` of the menu item in an elegant and modern layout, consistent with the overall design. The `imageUrl` should be displayed prominently, with the name as a bold heading, description as body text, and price clearly visible.\n\n### `MenuGrid.tsx`\nThis component (`frontend/src/components/menu/MenuGrid.tsx`) arranges a collection of `MenuItemCard` components in a responsive grid layout. It receives `menuItems: MenuItem[]` as a prop. It iterates over the `menuItems` array and renders a `MenuItemCard` for each item. The grid should adapt to different screen sizes, displaying an appropriate number of columns.\n\n### `MenuPage.tsx`\nThis is the main page (`frontend/src/pages/MenuPage.tsx`) for displaying the restaurant's menu. It utilizes the `Layout` component from `core-frontend` for consistent navigation and footer. The page will:\n1.  **Fetch Menu Data**: Use the `useMenu` hook to fetch all menu items initially. It should also manage the currently selected category using `useState` and pass it to the `useMenu` hook to refetch data when the category changes.\n2.  **Category Filtering**: Render the `MenuCategoryFilter` component, passing it a list of unique categories derived from the fetched menu items and a callback to update the selected category.\n3.  **Search Functionality**: Implement a search input field that filters the displayed menu items by `name` or `description` based on user input.\n4.  **Display Menu Items**: Render the `MenuGrid` component, passing it the filtered and searched `MenuItem` array.\n5.  **Loading and Error States**: Display appropriate loading indicators while fetching data and error messages if the API call fails.\n\nThe page structure should include a hero section with a captivating image and a headline like \"Our Exquisite Menu\" with a subheadline \"A Culinary Journey Awaits\". The menu items should be presented in a clean, spacious layout, emphasizing high-resolution food photography. The categories should be displayed prominently, allowing for easy navigation.\n\n## Page Sections and Content for `MenuPage.tsx`\n\n### Hero Section\n- **Background Image**: `url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&q=80')` with a `bg-black bg-opacity-50` overlay.\n- **Headline**: `<h1 className=\"text-4xl md:text-6xl font-bold text-white\">Our Exquisite Menu</h1>`\n- **Subheadline**: `<p className=\"mt-4 text-xl text-white\">A Culinary Journey Awaits at Circuit House</p>`\n\n### Menu Section\n- **Heading**: `<h2 className=\"text-3xl font-bold text-[#1A202C] mb-8\">Discover Our Dishes</h2>`\n- **Category Filter**: `MenuCategoryFilter` component.\n- **Search Input**: A text input for searching menu items.\n- **Menu Grid**: `MenuGrid` component displaying `MenuItemCard`s.\n\nAll components will adhere to the design tokens for colors, typography, and spacing to maintain a consistent and elegant user experience.",
+    "depends_on_features" : [ "menu-management-backend", "core-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
