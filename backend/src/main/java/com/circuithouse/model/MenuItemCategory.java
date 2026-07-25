@@ -4,5 +4,8 @@ public enum MenuItemCategory {
     APPETIZER,
     MAIN_COURSE,
     DESSERT,
-    BEVERAGE
+    BEVERAGE,
+    SALAD,
+    SIDE,
+    DRINK
 }

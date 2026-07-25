@@ -2,6 +2,7 @@ package com.circuithouse.service;
 
 import com.circuithouse.dto.CreateOrderRequest;
 import com.circuithouse.dto.OrderItemRequest;
+import com.circuithouse.dto.OrderItemResponse;
 import com.circuithouse.dto.OrderResponse;
 import com.circuithouse.dto.PaymentDetails;
 import com.circuithouse.exception.ResourceNotFoundException;
@@ -76,11 +77,11 @@ public class OrderService {
         orderItemRepository.saveAll(orderItems);
 
         try {
-            PaymentDetails paymentDetails = paymentService.initiatePayment(savedOrder.getId(), totalAmount, request.getCustomerEmail());
+            PaymentDetails paymentDetails = paymentService.initiatePayment(savedOrder.getId(), totalAmount);
             savedOrder.setPaymentGatewayOrderId(paymentDetails.getPaymentGatewayOrderId());
             savedOrder = orderRepository.save(savedOrder);
         } catch (Exception e) {
-            throw new PaymentGatewayException("Failed to initiate payment for order: " + savedOrder.getId(), e);
+            throw new com.circuithouse.exception.PaymentGatewayException("Failed to initiate payment for order: " + savedOrder.getId(), e);
         }
 
         return mapToOrderResponse(savedOrder);

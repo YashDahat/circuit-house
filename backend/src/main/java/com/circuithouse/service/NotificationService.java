@@ -1,7 +1,9 @@
 package com.circuithouse.service;
 
 import com.circuithouse.model.Order;
+import com.circuithouse.model.OrderStatus;
 import com.circuithouse.model.Reservation;
+import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -50,6 +52,15 @@ public class NotificationService {
                 reservation.getStatus().toString()
         );
         sendEmail(reservation.getCustomerEmail(), subject, body);
+    }
+
+    public void sendOrderStatusUpdate(UUID orderId, OrderStatus status, String customerEmail) {
+        String subject = "Order Status Update - Circuit House";
+        String body = String.format(
+                "Your order #%s status has been updated to: %s",
+                orderId.toString(), status.toString()
+        );
+        sendEmail(customerEmail, subject, body);
     }
 
     private void sendEmail(String to, String subject, String body) {

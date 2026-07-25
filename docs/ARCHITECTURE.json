@@ -14,7 +14,7 @@
     "layer" : "EXCEPTION",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles all uncaught exceptions and maps them to standardized ErrorResponse DTOs.",
     "public_functions" : [ {
       "name" : "handleResourceNotFoundException",
@@ -42,7 +42,7 @@
     "layer" : "EXCEPTION",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom exception for cases where a requested entity (e.g., MenuItem, Order) is not found.",
     "public_functions" : [ ],
     "public_variables" : null,
@@ -60,7 +60,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Standardized JSON structure for API error responses.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -98,7 +98,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Forwards all non-API, non-static requests to index.html to support the React single-page application.",
     "public_functions" : [ {
       "name" : "forwardSpaRequests",
@@ -135,7 +135,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "JPA entity representing a single item on the restaurant's menu.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -177,7 +177,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Enum defining the categories for menu items (e.g., APPETIZER, MAIN_COURSE, DESSERT).",
     "public_functions" : [ ],
     "public_variables" : [ ],
@@ -195,7 +195,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on MenuItem entities.",
     "public_functions" : [ {
       "name" : "findByCategory",
@@ -218,7 +218,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for menu items, used for API requests and responses.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -260,7 +260,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Business logic for managing menu items, including creation, updates, and retrieval.",
     "public_functions" : [ {
       "name" : "getAllMenuItems",
@@ -308,7 +308,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Public-facing REST controller for fetching the restaurant menu.",
     "public_functions" : [ {
       "name" : "getAllMenuItems",
@@ -362,7 +362,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin-only REST controller for CRUD operations on menu items.",
     "public_functions" : [ {
       "name" : "createMenuItem",
@@ -440,7 +440,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "JPA entity representing a customer's table reservation.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -490,7 +490,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Enum for the status of a reservation (e.g., PENDING, CONFIRMED, CANCELLED).",
     "public_functions" : null,
     "public_variables" : null,
@@ -508,7 +508,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on Reservation entities.",
     "public_functions" : [ {
       "name" : "findByStatus",
@@ -536,7 +536,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "DTO for capturing new reservation requests from the public-facing form.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -578,7 +578,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "DTO for returning reservation details via the API.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -628,7 +628,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for creating and managing table reservations.",
     "public_functions" : [ {
       "name" : "createReservation",
@@ -676,7 +676,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Public REST controller for submitting new table reservations.",
     "public_functions" : [ {
       "name" : "createReservation",
@@ -706,7 +706,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin-only REST controller for viewing and managing all reservations.",
     "public_functions" : [ {
       "name" : "getAllReservations",
@@ -772,7 +772,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "JPA entity representing a customer's online food order.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -830,7 +830,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "JPA entity representing a single line item within an Order.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -868,7 +868,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Enum for the status of an online order (e.g., PENDING_PAYMENT, RECEIVED, PREPARING, DELIVERED).",
     "public_functions" : null,
     "public_variables" : null,
@@ -886,7 +886,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on Order entities.",
     "public_functions" : [ {
       "name" : "findById",
@@ -919,7 +919,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on OrderItem entities.",
     "public_functions" : [ {
       "name" : "saveAll",
@@ -942,7 +942,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "DTO for capturing new online order requests from the checkout flow.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -980,7 +980,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "DTO representing a single item within a CreateOrderRequest.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1006,7 +1006,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "DTO for returning full order details, including items, via the API.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1064,7 +1064,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for creating and managing online orders.",
     "public_functions" : [ {
       "name" : "createOrder",
@@ -1102,7 +1102,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Public REST controller for submitting new online orders and checking status.",
     "public_functions" : [ {
       "name" : "createOrder",
@@ -1132,7 +1132,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin-only REST controller for viewing and managing all online orders.",
     "public_functions" : [ {
       "name" : "getAllOrders",
@@ -1186,7 +1186,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles interactions with the payment gateway, such as creating payment orders and verifying signatures.",
     "public_functions" : [ {
       "name" : "initiatePayment",
@@ -1214,7 +1214,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles incoming webhooks from the payment gateway to confirm payment status.",
     "public_functions" : [ {
       "name" : "initiatePayment",
@@ -1256,7 +1256,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "DTO for returning payment gateway order details to the frontend to initiate payment.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1290,7 +1290,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "JPA entity representing a special event, like a live music night.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1336,7 +1336,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on Event entities.",
     "public_functions" : [ {
       "name" : "findByActiveTrueOrderByDateAscTimeAsc",
@@ -1359,7 +1359,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for event details for API requests and responses.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1405,7 +1405,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Business logic for managing special events.",
     "public_functions" : [ {
       "name" : "getAllEvents",
@@ -1453,7 +1453,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Public-facing REST controller for fetching upcoming events.",
     "public_functions" : [ {
       "name" : "getAllUpcomingEvents",
@@ -1483,7 +1483,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin-only REST controller for CRUD operations on events.",
     "public_functions" : [ {
       "name" : "getAllEvents",
@@ -1561,7 +1561,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Service for sending notifications, such as email confirmations for orders and reservations.",
     "public_functions" : [ {
       "name" : "sendOrderConfirmation",
@@ -1589,7 +1589,7 @@
     "layer" : "CONFIG",
     "created_date" : "2024-07-27",
     "updated_date" : "2026-07-25",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Seeds the database with initial domain data like menu items and events on application startup.",
     "public_functions" : [ {
       "name" : "run",
@@ -1611,8 +1611,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "Configures the global Axios instance with base URL and JWT interceptors.",
     "public_functions" : [ ],
     "public_variables" : [ ],
@@ -1629,8 +1629,8 @@
     "file_type" : "FRONTEND",
     "layer" : "COMPONENT",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "Root component that sets up the application context providers and react-router.",
     "public_functions" : [ {
       "name" : "App",
@@ -1859,8 +1859,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "Service for handling authentication API calls (login).",
     "public_functions" : [ {
       "name" : "login",
@@ -1889,8 +1889,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for authentication data structures.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -2264,8 +2264,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "Provides functions for interacting with the menu-related backend endpoints.",
     "public_functions" : [ {
       "name" : "getAllMenuItems",
@@ -2329,8 +2329,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for menu items and categories.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2447,8 +2447,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "Provides functions for interacting with the reservation-related backend endpoints.",
     "public_functions" : [ {
       "name" : "createReservation",
@@ -2500,8 +2500,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for reservation data.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -2595,8 +2595,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "Provides functions for interacting with the order-related backend endpoints.",
     "public_functions" : [ {
       "name" : "createOrder",
@@ -2648,8 +2648,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for order and order item data.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2718,8 +2718,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "GENERATED",
     "description" : "Local service to persist and retrieve the shopping cart from localStorage.",
     "public_functions" : [ {
       "name" : "getCartItems",
@@ -2876,8 +2876,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "Provides functions for interacting with the event-related backend endpoints.",
     "public_functions" : [ {
       "name" : "getUpcomingEvents",
@@ -2929,8 +2929,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for event data.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -3382,6 +3382,24 @@
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
     "file_role" : "COMPONENT layer — a confirmation dialog for deleting a special event.",
+    "change_required" : null
+  }, {
+    "file_name" : "routes.ts",
+    "file_path" : "frontend/src/routes.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "UTIL",
+    "created_date" : null,
+    "updated_date" : null,
+    "status" : "VALIDATED",
+    "description" : "Derived route registry — regenerated every attempt, never LLM-written",
+    "public_functions" : null,
+    "public_variables" : null,
+    "api_endpoints" : null,
+    "api_endpoints_consumed" : null,
+    "imports_from" : null,
+    "depends_on" : null,
+    "feature_name" : null,
+    "file_role" : null,
     "change_required" : null
   } ],
   "features" : [ {

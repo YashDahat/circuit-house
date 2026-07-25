@@ -3,6 +3,7 @@ package com.circuithouse.service;
 import com.circuithouse.dto.PaymentDetails;
 import com.circuithouse.model.Order;
 import com.circuithouse.repository.OrderRepository;
+import com.circuithouse.exception.PaymentGatewayException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -65,7 +66,8 @@ public class PaymentService {
             attributes.put("razorpay_payment_id", razorpayPaymentId);
             attributes.put("razorpay_signature", razorpaySignature);
 
-            return Utils.verifyPaymentSignature(attributes, razorpayKeySecret);
+            JSONObject jsonAttributes = new JSONObject(attributes);
+            return Utils.verifyPaymentSignature(jsonAttributes, razorpayKeySecret);
         } catch (RazorpayException e) {
             throw new PaymentGatewayException("Failed to verify payment signature: " + e.getMessage(), e);
         }
