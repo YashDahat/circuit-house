@@ -3047,14 +3047,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "The main dashboard page for the admin area, showing key stats and navigation.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminDashboardPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin dashboard with a welcome message and basic layout."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/AdminLayout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — the main dashboard for the admin area, providing an overview and navigation.",
     "change_required" : null
   }, {
     "file_name" : "AdminMenuPage.tsx",
@@ -3065,14 +3070,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Admin page for managing the restaurant menu, composed of a table and forms.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminMenuPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the menu management interface, including a table of menu items and modals for creating, editing, and deleting items."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/AdminLayout.tsx", "frontend/src/hooks/useMenu.ts", "frontend/src/components/admin/menu/MenuTable.tsx", "frontend/src/components/admin/menu/MenuItemForm.tsx", "frontend/src/components/admin/menu/DeleteMenuItemDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates menu item management using MenuTable, MenuItemForm, and DeleteMenuItemDialog, interacting with the useMenu hook.",
     "change_required" : null
   }, {
     "file_name" : "MenuTable.tsx",
@@ -3083,14 +3093,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A data table for displaying and managing all menu items in the admin panel.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuTable",
+      "parameters" : [ "{ menuItems: MenuItemDto[], onEditMenuItem: (item: MenuItemDto) => void, onDeleteMenuItem: (id: UUID) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of menu items, providing edit and delete actions."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a table of menu items with actions for editing and deleting.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemForm.tsx",
@@ -3101,14 +3116,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A form (used in a modal or separate view) for creating and editing menu items.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuItemForm",
+      "parameters" : [ "{ initialData?: MenuItemDto, onSubmit: (data: MenuItemDto) => void, onClose: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form to create or edit a menu item, handling submission and closure."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating or updating menu items.",
     "change_required" : null
   }, {
     "file_name" : "DeleteMenuItemDialog.tsx",
@@ -3119,14 +3139,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A confirmation dialog for deleting a menu item.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "DeleteMenuItemDialog",
+      "parameters" : [ "{ isOpen: boolean, onClose: () => void, onConfirmDelete: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a confirmation dialog for deleting a menu item."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — a confirmation dialog for deleting a menu item.",
     "change_required" : null
   }, {
     "file_name" : "AdminReservationsPage.tsx",
@@ -3137,14 +3162,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Admin page for viewing and managing all customer reservations.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminReservationsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the reservation management interface, including a table of reservations and forms for updating their statuses."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/AdminLayout.tsx", "frontend/src/hooks/useReservations.ts", "frontend/src/components/admin/reservations/ReservationsTable.tsx", "frontend/src/components/admin/reservations/UpdateReservationStatusForm.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates reservation management using ReservationsTable and UpdateReservationStatusForm, interacting with the useReservations hook.",
     "change_required" : null
   }, {
     "file_name" : "ReservationsTable.tsx",
@@ -3155,14 +3185,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A data table for displaying all reservations with filtering and sorting options.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ReservationsTable",
+      "parameters" : [ "{ reservations: ReservationResponse[], onUpdateStatus: (id: UUID, status: ReservationStatus) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of reservations, providing an action to update status."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a table of reservations with options to update status.",
     "change_required" : null
   }, {
     "file_name" : "UpdateReservationStatusForm.tsx",
@@ -3173,14 +3208,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A small form or set of actions to update the status of a reservation (e.g., confirm, cancel).",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "UpdateReservationStatusForm",
+      "parameters" : [ "{ reservationId: UUID, currentStatus: ReservationStatus, onStatusUpdate: (newStatus: ReservationStatus) => void, onClose: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form to update a reservation's status, handling submission and closure."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useReservations.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form to update the status of a reservation.",
     "change_required" : null
   }, {
     "file_name" : "AdminOrdersPage.tsx",
@@ -3191,14 +3231,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Admin page for viewing and managing all online orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminOrdersPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the order management interface, including a table of orders and a detailed view for single orders."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/AdminLayout.tsx", "frontend/src/hooks/useOrders.ts", "frontend/src/components/admin/orders/OrdersTable.tsx", "frontend/src/components/admin/orders/OrderDetailView.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates order management using OrdersTable and OrderDetailView, interacting with the useOrders hook.",
     "change_required" : null
   }, {
     "file_name" : "OrdersTable.tsx",
@@ -3209,14 +3254,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A data table for displaying all online orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "OrdersTable",
+      "parameters" : [ "{ orders: OrderResponse[], onViewOrderDetails: (orderId: UUID) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of orders, providing an action to view order details."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/order.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a table of online orders with an option to view details.",
     "change_required" : null
   }, {
     "file_name" : "OrderDetailView.tsx",
@@ -3227,14 +3277,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A detailed view (modal or side panel) showing all items and customer info for a single order.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "OrderDetailView",
+      "parameters" : [ "{ orderId: UUID, onClose: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a detailed view of a single order, fetching its data and displaying items and customer information."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/order.ts", "frontend/src/hooks/useOrders.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a detailed view of a single order.",
     "change_required" : null
   }, {
     "file_name" : "AdminEventsPage.tsx",
@@ -3245,14 +3300,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Admin page for managing special events.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminEventsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the event management interface, including a table of events and modals for creating, editing, and deleting events."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/AdminLayout.tsx", "frontend/src/hooks/useEvents.ts", "frontend/src/components/admin/events/EventsTable.tsx", "frontend/src/components/admin/events/EventForm.tsx", "frontend/src/components/admin/events/DeleteEventDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates event management using EventsTable, EventForm, and DeleteEventDialog, interacting with the useEvents hook.",
     "change_required" : null
   }, {
     "file_name" : "EventsTable.tsx",
@@ -3263,14 +3323,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A data table for displaying and managing all special events.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventsTable",
+      "parameters" : [ "{ events: EventDto[], onEditEvent: (event: EventDto) => void, onDeleteEvent: (id: UUID) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of events, providing edit and delete actions."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a table of events with actions for editing and deleting.",
     "change_required" : null
   }, {
     "file_name" : "EventForm.tsx",
@@ -3281,14 +3346,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A form for creating and editing special events.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventForm",
+      "parameters" : [ "{ initialData?: EventDto, onSubmit: (data: EventDto) => void, onClose: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form to create or edit an event, handling submission and closure."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useEvents.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating or updating events.",
     "change_required" : null
   }, {
     "file_name" : "DeleteEventDialog.tsx",
@@ -3299,14 +3369,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A confirmation dialog for deleting a special event.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "DeleteEventDialog",
+      "parameters" : [ "{ isOpen: boolean, onClose: () => void, onConfirmDelete: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a confirmation dialog for deleting an event."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useEvents.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — a confirmation dialog for deleting a special event.",
     "change_required" : null
   } ],
   "features" : [ {
@@ -3449,8 +3524,8 @@
     "feature_display_name" : "Admin Portal (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/AdminDashboardPage.tsx", "frontend/src/pages/AdminMenuPage.tsx", "frontend/src/components/admin/menu/MenuTable.tsx", "frontend/src/components/admin/menu/MenuItemForm.tsx", "frontend/src/components/admin/menu/DeleteMenuItemDialog.tsx", "frontend/src/pages/AdminReservationsPage.tsx", "frontend/src/components/admin/reservations/ReservationsTable.tsx", "frontend/src/components/admin/reservations/UpdateReservationStatusForm.tsx", "frontend/src/pages/AdminOrdersPage.tsx", "frontend/src/components/admin/orders/OrdersTable.tsx", "frontend/src/components/admin/orders/OrderDetailView.tsx", "frontend/src/pages/AdminEventsPage.tsx", "frontend/src/components/admin/events/EventsTable.tsx", "frontend/src/components/admin/events/EventForm.tsx", "frontend/src/components/admin/events/DeleteEventDialog.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B78822] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature implements the administrative interface for Circuit House, providing pages and components for managing the restaurant's menu, reservations, orders, and special events. All admin pages are wrapped in the `AdminLayout` component from the `core-frontend` feature, which provides the consistent sidebar navigation and overall layout. Each page utilizes specific `use` hooks from `menu-display-frontend`, `reservation-booking-frontend`, `order-flow-frontend`, and `event-display-frontend` to interact with the backend APIs for data fetching and mutations.\n\n### AdminDashboardPage.tsx\nThis page serves as the entry point for the admin portal, displaying a welcoming message and potentially summary statistics (though initial implementation will be basic). It uses the `AdminLayout` for its structure.\n\n### AdminMenuPage.tsx\nThis page allows administrators to manage menu items. It orchestrates the `MenuTable`, `MenuItemForm`, and `DeleteMenuItemDialog` components. It uses the `useMenu` hook from `menu-display-frontend` to fetch, create, update, and delete menu items. The page will display a table of existing menu items. When an admin wants to add a new item or edit an existing one, a modal containing `MenuItemForm` will appear. Deletion will trigger `DeleteMenuItemDialog` for confirmation.\n\n### MenuTable.tsx\nThis component displays a paginated and sortable table of `MenuItemDto` objects. It receives `menuItems`, `onEditMenuItem`, and `onDeleteMenuItem` as props. It renders each menu item with its details (name, description, price, category, image URL) and provides action buttons for editing and deleting.\n\n### MenuItemForm.tsx\nThis component provides a form for creating or updating a `MenuItemDto`. It takes an optional `initialData` prop for editing existing items and an `onSubmit` prop to handle form submission. It uses the `useMenu` hook's `createMenuItem` and `updateMenuItem` functions. The form includes fields for `name`, `description`, `price`, `category`, and `imageUrl`.\n\n### DeleteMenuItemDialog.tsx\nThis component is a confirmation dialog for deleting a menu item. It receives `isOpen`, `onClose`, and `onConfirmDelete` as props. When confirmed, it calls the `useMenu` hook's `deleteMenuItem` function.\n\n### AdminReservationsPage.tsx\nThis page enables administrators to view and manage customer reservations. It integrates `ReservationsTable` and `UpdateReservationStatusForm`. It uses the `useReservations` hook from `reservation-booking-frontend` to fetch all reservations and update their statuses. The page will display a table of reservations. An admin can update the status of a reservation (e.g., confirm, cancel) using the `UpdateReservationStatusForm`.\n\n### ReservationsTable.tsx\nThis component displays a table of `ReservationResponse` objects. It receives `reservations` and `onUpdateStatus` as props. It shows reservation details like customer name, email, phone, time, number of guests, and current status. It provides an action to update the reservation status.\n\n### UpdateReservationStatusForm.tsx\nThis component provides a form or set of actions to update the status of a specific reservation. It takes `reservationId`, `currentStatus`, and `onStatusUpdate` as props. It uses the `useReservations` hook's `updateReservationStatus` function.\n\n### AdminOrdersPage.tsx\nThis page allows administrators to view and manage online orders. It uses `OrdersTable` and `OrderDetailView`. It leverages the `useOrders` hook from `order-flow-frontend` to fetch all orders and retrieve details for a specific order. The page will display a table of orders. Clicking on an order will open `OrderDetailView` to show its full details.\n\n### OrdersTable.tsx\nThis component displays a table of `OrderResponse` objects. It receives `orders` and `onViewOrderDetails` as props. It shows order details like customer name, total amount, order time, and status. It provides an action to view detailed information for an order.\n\n### OrderDetailView.tsx\nThis component displays a detailed view of a single `OrderResponse`, typically in a modal or side panel. It receives `orderId` and `onClose` as props. It fetches the specific order details using the `useOrders` hook's `getOrderById` function and displays all items, customer information, and order status.\n\n### AdminEventsPage.tsx\nThis page is for administrators to manage special events. It combines `EventsTable`, `EventForm`, and `DeleteEventDialog`. It uses the `useEvents` hook from `event-display-frontend` to fetch, create, update, and delete events. The page will display a table of existing events. Adding or editing an event will open a modal with `EventForm`. Deleting an event will trigger `DeleteEventDialog` for confirmation.\n\n### EventsTable.tsx\nThis component displays a table of `EventDto` objects. It receives `events`, `onEditEvent`, and `onDeleteEvent` as props. It renders each event with its details (name, description, date, time, image URL, active status) and provides action buttons for editing and deleting.\n\n### EventForm.tsx\nThis component provides a form for creating or updating an `EventDto`. It takes an optional `initialData` prop for editing existing events and an `onSubmit` prop to handle form submission. It uses the `useEvents` hook's `createEvent` and `updateEvent` functions. The form includes fields for `name`, `description`, `date`, `time`, `imageUrl`, and `active` status.\n\n### DeleteEventDialog.tsx\nThis component is a confirmation dialog for deleting a special event. It receives `isOpen`, `onClose`, and `onConfirmDelete` as props. When confirmed, it calls the `useEvents` hook's `deleteEvent` function.",
+    "depends_on_features" : [ "core-frontend", "menu-display-frontend", "reservation-booking-frontend", "order-flow-frontend", "event-display-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
