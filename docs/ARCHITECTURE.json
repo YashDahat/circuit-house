@@ -2879,14 +2879,26 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Provides functions for interacting with the event-related backend endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getUpcomingEvents",
+      "parameters" : [ ],
+      "return_type" : "Promise<Event[]>",
+      "description" : "Fetches a list of upcoming events from the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/events",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all upcoming events.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "event-display-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — provides functions for interacting with the event-related backend endpoints, specifically `getUpcomingEvents(): Promise<Event[]>`.",
     "change_required" : null
   }, {
     "file_name" : "useEvents.ts",
@@ -2897,14 +2909,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "React Query hook for fetching and managing event data.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useEvents",
+      "parameters" : [ ],
+      "return_type" : "{ data: Event[] | undefined, isLoading: boolean, isError: boolean, error: Error | null }",
+      "description" : "Fetches and manages upcoming event data using React Query."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/eventService.ts", "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "event-display-frontend",
-    "file_role" : null,
+    "file_role" : "React Query hook for fetching and managing event data, exposing `useEvents(): { data: Event[] | undefined, isLoading: boolean, isError: boolean, error: Error | null }`.",
     "change_required" : null
   }, {
     "file_name" : "event.ts",
@@ -2916,13 +2933,41 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for event data.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "string",
+      "description" : "Unique identifier for the event."
+    }, {
+      "name" : "name",
+      "type" : "string",
+      "description" : "Name of the event."
+    }, {
+      "name" : "description",
+      "type" : "string",
+      "description" : "Description of the event."
+    }, {
+      "name" : "date",
+      "type" : "string",
+      "description" : "Date of the event (ISO 8601 string)."
+    }, {
+      "name" : "time",
+      "type" : "string",
+      "description" : "Time of the event (ISO 8601 string)."
+    }, {
+      "name" : "imageUrl",
+      "type" : "string",
+      "description" : "URL of the event's image."
+    }, {
+      "name" : "active",
+      "type" : "boolean",
+      "description" : "Whether the event is currently active."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "event-display-frontend",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines the TypeScript interface for event data.",
     "change_required" : null
   }, {
     "file_name" : "EventsPage.tsx",
@@ -2933,14 +2978,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Page listing upcoming events like live music nights.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the events page with a hero section and a list of upcoming events."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/layout/Layout.tsx", "frontend/src/hooks/useEvents.ts", "frontend/src/components/events/EventList.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "event-display-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates the display of upcoming events, using `useEvents` to fetch data and `EventList` to render them.",
     "change_required" : null
   }, {
     "file_name" : "EventList.tsx",
@@ -2951,14 +3001,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A list or grid component that displays upcoming events.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventList",
+      "parameters" : [ "{ events: Event[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a responsive grid of event cards."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/events/EventCard.tsx", "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "event-display-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a list or grid of `EventCard` components, accepting `events: Event[]` as props.",
     "change_required" : null
   }, {
     "file_name" : "EventCard.tsx",
@@ -2969,14 +3024,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Card component to display a single event with its details.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventCard",
+      "parameters" : [ "{ event: Event }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a card with the event's image, name, date, time, and description."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "event-display-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays the details of a single event in a card format, accepting `event: Event` as props.",
     "change_required" : null
   }, {
     "file_name" : "AdminDashboardPage.tsx",
@@ -3380,8 +3440,8 @@
     "feature_display_name" : "Event Display (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/services/eventService.ts", "frontend/src/hooks/useEvents.ts", "frontend/src/types/event.ts", "frontend/src/pages/EventsPage.tsx", "frontend/src/components/events/EventList.tsx", "frontend/src/components/events/EventCard.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#c28b27] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides a public-facing page to display upcoming events at Circuit House. It consists of `EventsPage.tsx` which orchestrates the display, `EventList.tsx` for rendering a collection of events, and `EventCard.tsx` for individual event details. Data is fetched via `useEvents.ts` hook, which in turn uses `eventService.ts` to interact with the backend API. The `event.ts` file defines the TypeScript types for event data.\n\n### Data Flow:\n1. `EventsPage.tsx` uses the `useEvents` hook to fetch a list of upcoming events.\n2. `useEvents.ts` calls `eventService.ts`'s `getUpcomingEvents` function.\n3. `eventService.ts` makes an HTTP GET request to the `/api/v1/events` endpoint of the `event-management-backend`.\n4. The fetched `EventDto` objects are typed using the interfaces defined in `event.ts`.\n5. `EventsPage.tsx` passes the fetched events to `EventList.tsx`.\n6. `EventList.tsx` iterates over the events and renders an `EventCard.tsx` for each event.\n7. `EventCard.tsx` displays the details of a single event.\n\n### File Interactions:\n- `EventsPage.tsx` imports `Layout`, `useEvents`, and `EventList`.\n- `useEvents.ts` imports `eventService` and `Event` (from `event.ts`).\n- `eventService.ts` imports `apiClient` (from `frontend/src/api/client.ts`) and `Event` (from `event.ts`).\n- `EventList.tsx` imports `EventCard` and `Event` (from `event.ts`).\n- `EventCard.tsx` imports `Event` (from `event.ts`).\n\n### `eventService.ts`\nThis service provides the `getUpcomingEvents` function to fetch event data from the backend.\n\n#### `getUpcomingEvents(): Promise<Event[]>`\n1. Makes a GET request to `/api/v1/events` using the `apiClient`.\n2. Returns a `Promise` that resolves to an array of `Event` objects.\n3. Throws an error if the API call fails.\n\n### `useEvents.ts`\nThis React Query hook provides a convenient way to fetch and manage event data.\n\n#### `useEvents(): { data: Event[] | undefined, isLoading: boolean, isError: boolean, error: Error | null }`\n1. Uses `react-query`'s `useQuery` hook.\n2. The query key is `['events', 'upcoming']`.\n3. The query function calls `eventService.getUpcomingEvents()`.\n4. Returns an object containing `data` (list of `Event` objects), `isLoading` (boolean), `isError` (boolean), and `error` (Error object or null).\n\n### `event.ts`\nDefines the `Event` interface, mirroring the `EventDto` from the `event-management-backend`.\n\n### `EventsPage.tsx`\nThis page displays all upcoming events. It uses the `Layout` component for consistent navigation and footer, and the `useEvents` hook to fetch data. It renders a hero section, a main content area with a heading, and the `EventList` component.\n\n**Page Structure:**\n- Wraps content in `<Layout>`.\n- **Hero Section:**\n  - Background image: `https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80` with a `bg-black bg-opacity-50` overlay.\n  - `h1` with text \"Experience the Best at Circuit House Events\" (text-4xl md:text-6xl font-bold text-white).\n  - `p` with text \"Join us for unforgettable live music, special dining experiences, and more.\" (text-xl text-white mt-4).\n- **Events Section:**\n  - `h2` with text \"Upcoming Events\" (text-3xl font-bold text-[#1A202C] mb-8).\n  - Displays a loading spinner if `isLoading` is true.\n  - Displays an error message if `isError` is true.\n  - Renders `EventList` with the fetched events if `data` is available.\n  - Displays a message \"No upcoming events found.\" if `data` is empty.\n\n### `EventList.tsx`\nThis component receives an array of `Event` objects and renders them using `EventCard` components. It should display events in a responsive grid layout.\n\n#### `EventList({ events }: { events: Event[] })`\n1. Receives an array of `Event` objects as props.\n2. Renders a grid of `EventCard` components, mapping each event to a card.\n3. Uses Tailwind CSS for a responsive grid (e.g., `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`).\n\n### `EventCard.tsx`\nThis component displays the details of a single event in a card format.\n\n#### `EventCard({ event }: { event: Event })`\n1. Receives a single `Event` object as props.\n2. Displays the event's `imageUrl`, `name`, `date`, `time`, and `description`.\n3. Uses the design tokens for card styling (bg-white rounded-xl shadow-md border border-gray-100 p-6).\n4. Formats `date` and `time` for readability (e.g., \"MMMM DD, YYYY\" and \"hh:mm A\").",
+    "depends_on_features" : [ "event-management-backend", "core-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
