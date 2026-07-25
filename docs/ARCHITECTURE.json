@@ -2590,14 +2590,59 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Custom hook to fetch and manage menu data using TanStack Query.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useMenuItems",
+      "parameters" : [ "string? categoryName" ],
+      "return_type" : "QueryObserverResult<MenuItemDto[], Error>",
+      "description" : "Fetches menu items, optionally filtered by category."
+    }, {
+      "name" : "useMenuItem",
+      "parameters" : [ "string id" ],
+      "return_type" : "QueryObserverResult<MenuItemDto, Error>",
+      "description" : "Fetches a single menu item by its ID."
+    }, {
+      "name" : "useMenuItemCategories",
+      "parameters" : [ ],
+      "return_type" : "QueryObserverResult<MenuItemCategoryDto[], Error>",
+      "description" : "Fetches all menu item categories."
+    }, {
+      "name" : "useCreateMenuItem",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<MenuItemDto, Error, Omit<MenuItemDto, 'id'>>",
+      "description" : "Provides a mutation to create a new menu item."
+    }, {
+      "name" : "useUpdateMenuItem",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<MenuItemDto, Error, MenuItemDto>",
+      "description" : "Provides a mutation to update an existing menu item."
+    }, {
+      "name" : "useDeleteMenuItem",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<void, Error, string>",
+      "description" : "Provides a mutation to delete a menu item by ID."
+    }, {
+      "name" : "useCreateMenuItemCategory",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<MenuItemCategoryDto, Error, Omit<MenuItemCategoryDto, 'id'>>",
+      "description" : "Provides a mutation to create a new menu item category."
+    }, {
+      "name" : "useUpdateMenuItemCategory",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<MenuItemCategoryDto, Error, MenuItemCategoryDto>",
+      "description" : "Provides a mutation to update an existing menu item category."
+    }, {
+      "name" : "useDeleteMenuItemCategory",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<void, Error, string>",
+      "description" : "Provides a mutation to delete a menu item category by ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/menuService.ts", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "Custom hook for managing menu data using TanStack Query, providing `useMenuItems`, `useMenuItem`, `useMenuItemCategories`, `useCreateMenuItem`, `useUpdateMenuItem`, `useDeleteMenuItem`, `useCreateMenuItemCategory`, `useUpdateMenuItemCategory`, and `useDeleteMenuItemCategory`.",
     "change_required" : null
   }, {
     "file_name" : "menuService.ts",
@@ -2608,14 +2653,134 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Provides functions for making API calls to the menu and admin menu endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllMenuItems",
+      "parameters" : [ ],
+      "return_type" : "Promise<MenuItemDto[]>",
+      "description" : "Fetches all active menu items."
+    }, {
+      "name" : "getMenuItemById",
+      "parameters" : [ "string id" ],
+      "return_type" : "Promise<MenuItemDto>",
+      "description" : "Fetches a single menu item by its ID."
+    }, {
+      "name" : "getMenuItemsByCategory",
+      "parameters" : [ "string categoryName" ],
+      "return_type" : "Promise<MenuItemDto[]>",
+      "description" : "Fetches menu items belonging to a specific category."
+    }, {
+      "name" : "getAllMenuItemCategories",
+      "parameters" : [ ],
+      "return_type" : "Promise<MenuItemCategoryDto[]>",
+      "description" : "Fetches all menu item categories."
+    }, {
+      "name" : "createMenuItem",
+      "parameters" : [ "Omit<MenuItemDto, 'id'> item" ],
+      "return_type" : "Promise<MenuItemDto>",
+      "description" : "Creates a new menu item."
+    }, {
+      "name" : "updateMenuItem",
+      "parameters" : [ "string id", "MenuItemDto item" ],
+      "return_type" : "Promise<MenuItemDto>",
+      "description" : "Updates an existing menu item."
+    }, {
+      "name" : "deleteMenuItem",
+      "parameters" : [ "string id" ],
+      "return_type" : "Promise<void>",
+      "description" : "Deletes a menu item."
+    }, {
+      "name" : "createMenuItemCategory",
+      "parameters" : [ "Omit<MenuItemCategoryDto, 'id'> category" ],
+      "return_type" : "Promise<MenuItemCategoryDto>",
+      "description" : "Creates a new menu item category."
+    }, {
+      "name" : "updateMenuItemCategory",
+      "parameters" : [ "string id", "MenuItemCategoryDto category" ],
+      "return_type" : "Promise<MenuItemCategoryDto>",
+      "description" : "Updates an existing menu item category."
+    }, {
+      "name" : "deleteMenuItemCategory",
+      "parameters" : [ "string id" ],
+      "return_type" : "Promise<void>",
+      "description" : "Deletes a menu item category."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/menu/items",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all active menu items.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/menu/items/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a single menu item by its ID.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/menu/items/category/{categoryName}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches menu items belonging to a specific category.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/menu/categories",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all menu item categories.",
+      "access" : null
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/menu/items",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new menu item.",
+      "access" : null
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/menu/items/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Updates an existing menu item.",
+      "access" : null
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/menu/items/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Deletes a menu item.",
+      "access" : null
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/menu/categories",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new menu item category.",
+      "access" : null
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/menu/categories/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Updates an existing menu item category.",
+      "access" : null
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/menu/categories/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Deletes a menu item category.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — provides functions for making API calls to the menu and admin menu endpoints, including `getAllMenuItems`, `getMenuItemById`, `getMenuItemsByCategory`, `getAllMenuItemCategories`, `createMenuItem`, `updateMenuItem`, `deleteMenuItem`, `createMenuItemCategory`, `updateMenuItemCategory`, and `deleteMenuItemCategory`.",
     "change_required" : null
   }, {
     "file_name" : "menu.ts",
@@ -2633,7 +2798,7 @@
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines TypeScript types and interfaces for menu items and categories.",
     "change_required" : null
   }, {
     "file_name" : "MenuPage.tsx",
@@ -2644,14 +2809,14 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Displays the full digital menu with category tabs and a grid of menu items.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts", "frontend/src/components/menu/MenuCategoryTabs.tsx", "frontend/src/components/menu/MenuItemsGrid.tsx", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays the full digital menu with category tabs and a grid of menu items.",
     "change_required" : null
   }, {
     "file_name" : "MenuCategoryTabs.tsx",
@@ -2662,14 +2827,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Renders interactive tabs for filtering the menu by category.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuCategoryTabs",
+      "parameters" : [ "{ categories: MenuItemCategoryDto[]; selectedCategory: string | null; onSelectCategory: (categoryName: string | null) => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders interactive tabs for filtering menu items."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — renders interactive tabs for filtering the menu by category, accepting `categories`, `selectedCategory`, and `onSelectCategory` props.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemsGrid.tsx",
@@ -2680,14 +2850,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Displays menu items in a responsive grid of cards with photos, descriptions, and prices.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuItemsGrid",
+      "parameters" : [ "{ menuItems: MenuItemDto[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays menu items in a responsive grid of cards."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays menu items in a responsive grid of cards with photos, descriptions, and prices, accepting `menuItems` as props.",
     "change_required" : null
   }, {
     "file_name" : "AdminMenuPage.tsx",
@@ -2698,14 +2873,14 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Admin interface for managing the menu, composing a data table and creation/edit forms.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts", "frontend/src/components/menu/MenuTable.tsx", "frontend/src/components/menu/MenuItemForm.tsx", "frontend/src/components/menu/DeleteMenuItemDialog.tsx", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "PAGE layer — admin interface for managing the menu, composing a data table and creation/edit forms.",
     "change_required" : null
   }, {
     "file_name" : "MenuTable.tsx",
@@ -2716,14 +2891,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Displays all menu items in a table with actions for editing and deleting.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuTable",
+      "parameters" : [ "{ menuItems: MenuItemDto[]; onEdit: (item: MenuItemDto) => void; onDelete: (id: string) => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays a table of menu items with edit and delete actions."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays all menu items in a table with actions for editing and deleting, accepting `menuItems`, `onEdit`, and `onDelete` props.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemForm.tsx",
@@ -2734,14 +2914,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "A form, typically in a dialog, for creating or editing a menu item.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuItemForm",
+      "parameters" : [ "{ initialData?: MenuItemDto; categories: MenuItemCategoryDto[]; onSubmit: (item: MenuItemDto) => void; onCancel: () => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Form for creating or editing a menu item."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — a form for creating or editing a menu item, accepting `initialData`, `categories`, `onSubmit`, and `onCancel` props.",
     "change_required" : null
   }, {
     "file_name" : "DeleteMenuItemDialog.tsx",
@@ -2752,14 +2937,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "A confirmation dialog for deleting a menu item.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "DeleteMenuItemDialog",
+      "parameters" : [ "{ isOpen: boolean; onConfirm: () => void; onCancel: () => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Confirmation dialog for deleting a menu item."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-display",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — a confirmation dialog for deleting a menu item, accepting `isOpen`, `onConfirm`, and `onCancel` props.",
     "change_required" : null
   }, {
     "file_name" : "useReservations.ts",
@@ -3492,8 +3682,8 @@
     "feature_display_name" : "Menu Display",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/hooks/useMenu.ts", "frontend/src/services/menuService.ts", "frontend/src/types/menu.ts", "frontend/src/pages/MenuPage.tsx", "frontend/src/components/menu/MenuCategoryTabs.tsx", "frontend/src/components/menu/MenuItemsGrid.tsx", "frontend/src/pages/admin/AdminMenuPage.tsx", "frontend/src/components/menu/MenuTable.tsx", "frontend/src/components/menu/MenuItemForm.tsx", "frontend/src/components/menu/DeleteMenuItemDialog.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B78727] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\n## Feature Instruction: Menu Display\n\nThis feature provides the frontend components and logic for displaying Circuit House's menu to customers and managing it in the admin portal. It consists of a public-facing menu page (`MenuPage.tsx`) and an admin menu management page (`AdminMenuPage.tsx`), along with shared components, hooks, services, and types.\n\n### Data Structures (`frontend/src/types/menu.ts`)\n\nThe `menu.ts` file defines the TypeScript interfaces for `MenuItemDto` and `MenuItemCategoryDto`, mirroring the backend `menu-management` feature's DTOs. These types ensure consistency across the frontend application when handling menu-related data.\n\n- `MenuItemDto`: Represents a single menu item with fields like `id`, `name`, `description`, `price`, `imageUrl`, `categoryName`, and `active`.\n- `MenuItemCategoryDto`: Represents a menu category with fields like `id`, `name`, and `description`.\n\n### API Service (`frontend/src/services/menuService.ts`)\n\nThe `menuService.ts` file encapsulates all API calls related to menu items and categories. It uses the `apiClient` from `frontend/src/api/client.ts` to make HTTP requests to the `menu-management` backend feature. This service provides functions for fetching all menu items, menu items by category, a single menu item by ID, and all menu categories. For admin operations, it includes functions for creating, updating, and deleting menu items and categories.\n\n- `getAllMenuItems()`: Fetches all active menu items. Calls `GET /api/v1/menu/items`.\n- `getMenuItemById(id: string)`: Fetches a single menu item by its ID. Calls `GET /api/v1/menu/items/{id}`.\n- `getMenuItemsByCategory(categoryName: string)`: Fetches menu items belonging to a specific category. Calls `GET /api/v1/menu/items/category/{categoryName}`.\n- `getAllMenuItemCategories()`: Fetches all menu categories. Calls `GET /api/v1/menu/categories`.\n- `createMenuItem(item: Omit<MenuItemDto, 'id'>)`: Creates a new menu item. Calls `POST /api/v1/admin/menu/items`.\n- `updateMenuItem(id: string, item: MenuItemDto)`: Updates an existing menu item. Calls `PUT /api/v1/admin/menu/items/{id}`.\n- `deleteMenuItem(id: string)`: Deletes a menu item. Calls `DELETE /api/v1/admin/menu/items/{id}`.\n- `createMenuItemCategory(category: Omit<MenuItemCategoryDto, 'id'>)`: Creates a new menu category. Calls `POST /api/v1/admin/menu/categories`.\n- `updateMenuItemCategory(id: string, category: MenuItemCategoryDto)`: Updates an existing menu category. Calls `PUT /api/v1/admin/menu/categories/{id}`.\n- `deleteMenuItemCategory(id: string)`: Deletes a menu category. Calls `DELETE /api/v1/admin/menu/categories/{id}`.\n\n### Custom Hook (`frontend/src/hooks/useMenu.ts`)\n\nThe `useMenu.ts` hook leverages TanStack Query to manage the state and caching of menu data. It provides functions to fetch menu items and categories, and mutations for admin operations. This hook abstracts the data fetching logic, making it reusable across different components and pages.\n\n- `useMenuItems(categoryName?: string)`: Fetches menu items. If `categoryName` is provided, it fetches items for that category; otherwise, it fetches all items. Returns `QueryObserverResult<MenuItemDto[], Error>`.\n- `useMenuItem(id: string)`: Fetches a single menu item by ID. Returns `QueryObserverResult<MenuItemDto, Error>`.\n- `useMenuItemCategories()`: Fetches all menu categories. Returns `QueryObserverResult<MenuItemCategoryDto[], Error>`.\n- `useCreateMenuItem()`: Returns a mutation function to create a menu item. On success, it invalidates the 'menuItems' query to refetch data. Calls `menuService.createMenuItem`.\n- `useUpdateMenuItem()`: Returns a mutation function to update a menu item. On success, it invalidates the 'menuItems' query. Calls `menuService.updateMenuItem`.\n- `useDeleteMenuItem()`: Returns a mutation function to delete a menu item. On success, it invalidates the 'menuItems' query. Calls `menuService.deleteMenuItem`.\n- `useCreateMenuItemCategory()`: Returns a mutation function to create a menu category. On success, it invalidates the 'menuCategories' query. Calls `menuService.createMenuItemCategory`.\n- `useUpdateMenuItemCategory()`: Returns a mutation function to update a menu category. On success, it invalidates the 'menuCategories' query. Calls `menuService.updateMenuItemCategory`.\n- `useDeleteMenuItemCategory()`: Returns a mutation function to delete a menu category. On success, it invalidates the 'menuCategories' query. Calls `menuService.deleteMenuItemCategory`.\n\n### Public Menu Page (`frontend/src/pages/MenuPage.tsx`)\n\nThe `MenuPage.tsx` component displays the public-facing menu of Circuit House. It uses the `Layout` component from `static-pages` for consistent navigation and footer. The page fetches all menu items and categories using `useMenu` hooks. It renders `MenuCategoryTabs` to allow users to filter menu items by category and `MenuItemsGrid` to display the filtered items.\n\n**Structure:**\n1.  Wraps content in `<Layout>`.\n2.  Fetches `menuItems` and `categories` using `useMenuItems()` and `useMenuItemCategories()`.\n3.  Manages `selectedCategory` state.\n4.  Renders a prominent heading: \"Our Exquisite Menu\" with a sub-heading: \"Discover a culinary journey crafted with passion and the finest ingredients.\"\n5.  Displays `MenuCategoryTabs` component, passing `categories` and `selectedCategory` as props, and an `onSelectCategory` handler.\n6.  Displays `MenuItemsGrid` component, passing `filteredMenuItems` as props.\n\n### Menu Category Tabs Component (`frontend/src/components/menu/MenuCategoryTabs.tsx`)\n\nThe `MenuCategoryTabs.tsx` component renders a set of interactive tabs for filtering menu items by category. It receives a list of `MenuItemCategoryDto` and the currently `selectedCategory` as props, along with an `onSelectCategory` callback.\n\n**Props:**\n- `categories: MenuItemCategoryDto[]`\n- `selectedCategory: string | null`\n- `onSelectCategory: (categoryName: string | null) => void`\n\n**Logic:**\n1.  Renders a list of clickable tabs, including an \"All\" tab.\n2.  Each tab displays the `name` of a `MenuItemCategoryDto`.\n3.  When a tab is clicked, it calls `onSelectCategory` with the corresponding category name (or `null` for \"All\").\n4.  The active tab is styled using `bg-[#D69E2E] text-white` and inactive tabs use `bg-gray-200 text-[#2D3748]`.\n\n### Menu Items Grid Component (`frontend/src/components/menu/MenuItemsGrid.tsx`)\n\nThe `MenuItemsGrid.tsx` component displays a responsive grid of `MenuItemDto` cards. Each card shows the item's `imageUrl`, `name`, `description`, and `price`.\n\n**Props:**\n- `menuItems: MenuItemDto[]`\n\n**Logic:**\n1.  Renders a responsive grid (e.g., `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`).\n2.  Each `MenuItemDto` is rendered as a card with an image, name, description, and price.\n3.  Image uses `object-cover` and `rounded-t-lg`.\n4.  Item name uses `text-xl font-semibold text-[#1A202C]`.\n5.  Description uses `text-[#2D3748]`.\n6.  Price uses `text-[#D69E2E] font-bold text-lg`.\n\n### Admin Menu Page (`frontend/src/pages/admin/AdminMenuPage.tsx`)\n\nThe `AdminMenuPage.tsx` component provides an interface for administrators to manage menu items and categories. It uses the `AdminLayout` component from `admin-portal` for consistent admin navigation. It fetches all menu items and categories using `useMenu` hooks and provides functionality to create, edit, and delete menu items.\n\n**Structure:**\n1.  Wraps content in `<AdminLayout>`.\n2.  Fetches `menuItems` and `categories` using `useMenuItems()` and `useMenuItemCategories()`.\n3.  Provides buttons for \"Add New Menu Item\" and \"Manage Categories\".\n4.  Renders `MenuTable` to display existing menu items.\n5.  Manages state for `isFormOpen`, `editingMenuItem`, `isDeleteDialogOpen`, `deletingMenuItemId`.\n6.  Displays `MenuItemForm` in a modal for creating/editing menu items.\n7.  Displays `DeleteMenuItemDialog` in a modal for confirming item deletion.\n\n### Menu Table Component (`frontend/src/components/menu/MenuTable.tsx`)\n\nThe `MenuTable.tsx` component displays a sortable and filterable table of `MenuItemDto` objects. It includes actions for editing and deleting menu items.\n\n**Props:**\n- `menuItems: MenuItemDto[]`\n- `onEdit: (item: MenuItemDto) => void`\n- `onDelete: (id: string) => void`\n\n**Logic:**\n1.  Renders a table with columns for `Image`, `Name`, `Category`, `Price`, `Active`, and `Actions`.\n2.  Each row represents a `MenuItemDto`.\n3.  \"Edit\" button triggers `onEdit` with the `MenuItemDto`.\n4.  \"Delete\" button triggers `onDelete` with the `MenuItemDto.id`.\n\n### Menu Item Form Component (`frontend/src/components/menu/MenuItemForm.tsx`)\n\nThe `MenuItemForm.tsx` component is a reusable form for creating or editing a `MenuItemDto`. It typically appears within a modal or dialog.\n\n**Props:**\n- `initialData?: MenuItemDto` (for editing)\n- `categories: MenuItemCategoryDto[]`\n- `onSubmit: (item: MenuItemDto) => void`\n- `onCancel: () => void`\n\n**Logic:**\n1.  Uses a form library (e.g., React Hook Form) for validation and state management.\n2.  Fields include `name`, `description`, `price`, `imageUrl`, `categoryName`, and `active`.\n3.  `categoryName` is a dropdown populated from `categories` prop.\n4.  \"Save\" button triggers `onSubmit` with the form data.\n5.  \"Cancel\" button triggers `onCancel`.\n\n### Delete Menu Item Dialog Component (`frontend/src/components/menu/DeleteMenuItemDialog.tsx`)\n\nThe `DeleteMenuItemDialog.tsx` component is a confirmation dialog for deleting a menu item.\n\n**Props:**\n- `isOpen: boolean`\n- `onConfirm: () => void`\n- `onCancel: () => void`\n\n**Logic:**\n1.  Displays a confirmation message.\n2.  \"Confirm\" button triggers `onConfirm`.\n3.  \"Cancel\" button triggers `onCancel`.\n\n### Inter-file Wiring\n\n- `MenuPage.tsx` and `AdminMenuPage.tsx` both import and use the `useMenu` hook to fetch and manage menu data.\n- `useMenu.ts` imports and calls functions from `menuService.ts` to interact with the backend API.\n- `menuService.ts` imports `apiClient` for making HTTP requests and `MenuItemDto`, `MenuItemCategoryDto` from `menu.ts` for type definitions.\n- `MenuPage.tsx` renders `MenuCategoryTabs.tsx` and `MenuItemsGrid.tsx`.\n- `AdminMenuPage.tsx` renders `MenuTable.tsx`, `MenuItemForm.tsx`, and `DeleteMenuItemDialog.tsx`.\n- `MenuCategoryTabs.tsx` and `MenuItemsGrid.tsx` receive `MenuItemDto` and `MenuItemCategoryDto` data as props.\n- `MenuTable.tsx`, `MenuItemForm.tsx`, and `DeleteMenuItemDialog.tsx` also work with `MenuItemDto` and `MenuItemCategoryDto` types.\n\n### Cross-Feature Contracts\n\nThis feature depends on the `menu-management` backend feature for all menu-related API operations. It consumes the following endpoints:\n\n- `GET /api/v1/menu/items` (public)\n- `GET /api/v1/menu/items/{id}` (public)\n- `GET /api/v1/menu/items/category/{categoryName}` (public)\n- `GET /api/v1/menu/categories` (public)\n- `POST /api/v1/admin/menu/items` (admin)\n- `PUT /api/v1/admin/menu/items/{id}` (admin)\n- `DELETE /api/v1/admin/menu/items/{id}` (admin)\n- `POST /api/v1/admin/menu/categories` (admin)\n- `PUT /api/v1/admin/menu/categories/{id}` (admin)\n- `DELETE /api/v1/admin/menu/categories/{id}` (admin)\n\nThis feature also uses the `Layout` component from `static-pages` and `AdminLayout` from `admin-portal`.\n",
+    "depends_on_features" : [ "menu-management", "admin-portal" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
