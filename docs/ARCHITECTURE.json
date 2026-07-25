@@ -1189,13 +1189,45 @@
     "status" : "PLANNED",
     "description" : "Represents a customer's food order, containing order items, total price, and status.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "orderId",
+      "type" : "UUID",
+      "description" : "Unique identifier for the order. Primary key."
+    }, {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer placing the order. Not null, max 255."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer. Not null, max 255."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer. Not null, max 20."
+    }, {
+      "name" : "orderTime",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the order was placed. Not null."
+    }, {
+      "name" : "totalAmount",
+      "type" : "BigDecimal",
+      "description" : "Total monetary amount of the order. Not null, precision 10, scale 2."
+    }, {
+      "name" : "status",
+      "type" : "OrderStatus",
+      "description" : "Current status of the order (e.g., PENDING, DELIVERED). Not null."
+    }, {
+      "name" : "orderItems",
+      "type" : "List<OrderItem>",
+      "description" : "List of items included in this order. One-to-many relationship."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/OrderStatus.java", "backend/src/main/java/com/circuithouse/model/OrderItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "MODEL layer — represents a customer's food order, containing order items, total price, and status.",
     "change_required" : null
   }, {
     "file_name" : "OrderItem.java",
@@ -1207,13 +1239,33 @@
     "status" : "PLANNED",
     "description" : "Represents a single line item within an order, linking a menu item with a quantity.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "orderItemId",
+      "type" : "UUID",
+      "description" : "Unique identifier for the order item. Primary key."
+    }, {
+      "name" : "menuItem",
+      "type" : "MenuItem",
+      "description" : "The menu item associated with this order item. Many-to-one relationship."
+    }, {
+      "name" : "quantity",
+      "type" : "int",
+      "description" : "Quantity of the menu item in this order. Not null, min 1."
+    }, {
+      "name" : "priceAtOrder",
+      "type" : "BigDecimal",
+      "description" : "Price of the menu item at the time of order. Not null, precision 10, scale 2."
+    }, {
+      "name" : "order",
+      "type" : "Order",
+      "description" : "The order this item belongs to. Many-to-one relationship."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/model/MenuItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "MODEL layer — represents a single line item within an order, linking a menu item with a quantity.",
     "change_required" : null
   }, {
     "file_name" : "OrderStatus.java",
@@ -1231,7 +1283,7 @@
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "MODEL layer — enum defining the possible statuses of an order (e.g., PENDING, CONFIRMED, DELIVERED).",
     "change_required" : null
   }, {
     "file_name" : "OrderRepository.java",
@@ -1242,14 +1294,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on the Order entity.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findByCustomerEmail",
+      "parameters" : [ "String customerEmail" ],
+      "return_type" : "List<Order>",
+      "description" : "Retrieves a list of orders placed by a specific customer email."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — Spring Data JPA repository for CRUD operations on the Order entity, and custom queries for customer orders.",
     "change_required" : null
   }, {
     "file_name" : "OrderItemRepository.java",
@@ -1260,14 +1317,14 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on the OrderItem entity.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/OrderItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — Spring Data JPA repository for CRUD operations on the OrderItem entity.",
     "change_required" : null
   }, {
     "file_name" : "CreateOrderRequest.java",
@@ -1279,13 +1336,29 @@
     "status" : "PLANNED",
     "description" : "Data transfer object for creating a new online order, containing customer details and items.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer. @NotBlank, @Size(max=255)."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer. @NotBlank, @Email, @Size(max=255)."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer. @NotBlank, @Size(max=20)."
+    }, {
+      "name" : "orderItems",
+      "type" : "List<OrderItemRequest>",
+      "description" : "List of items to be included in the order. @NotEmpty, @Valid."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/dto/OrderItemRequest.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "DTO layer — data transfer object for creating a new online order, containing customer details and items.",
     "change_required" : null
   }, {
     "file_name" : "OrderItemRequest.java",
@@ -1297,13 +1370,21 @@
     "status" : "PLANNED",
     "description" : "Data transfer object representing a single item within a CreateOrderRequest.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "menuItemId",
+      "type" : "UUID",
+      "description" : "ID of the menu item. @NotNull."
+    }, {
+      "name" : "quantity",
+      "type" : "int",
+      "description" : "Quantity of the menu item. @Min(1)."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "DTO layer — data transfer object representing a single item within a CreateOrderRequest.",
     "change_required" : null
   }, {
     "file_name" : "OrderResponse.java",
@@ -1315,13 +1396,45 @@
     "status" : "PLANNED",
     "description" : "Data transfer object for returning detailed order information in API responses.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "orderId",
+      "type" : "UUID",
+      "description" : "Unique identifier for the order."
+    }, {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer."
+    }, {
+      "name" : "orderTime",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the order was placed."
+    }, {
+      "name" : "totalAmount",
+      "type" : "BigDecimal",
+      "description" : "Total monetary amount of the order."
+    }, {
+      "name" : "status",
+      "type" : "OrderStatus",
+      "description" : "Current status of the order."
+    }, {
+      "name" : "orderItems",
+      "type" : "List<OrderItemResponse>",
+      "description" : "List of items included in this order. OrderItemResponse is a new DTO with menuItemName, quantity, and priceAtOrder."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "DTO layer — data transfer object for returning detailed order information in API responses.",
     "change_required" : null
   }, {
     "file_name" : "OrderService.java",
@@ -1332,14 +1445,39 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Handles business logic for creating and managing customer orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createOrder",
+      "parameters" : [ "CreateOrderRequest request" ],
+      "return_type" : "OrderResponse",
+      "description" : "Creates a new order based on the provided request, calculates total amount, saves order items, and sends a confirmation notification."
+    }, {
+      "name" : "getOrderById",
+      "parameters" : [ "UUID orderId" ],
+      "return_type" : "OrderResponse",
+      "description" : "Retrieves a detailed order by its unique identifier."
+    }, {
+      "name" : "getOrdersByCustomerEmail",
+      "parameters" : [ "String customerEmail" ],
+      "return_type" : "List<OrderResponse>",
+      "description" : "Retrieves all orders associated with a specific customer email."
+    }, {
+      "name" : "getAllOrders",
+      "parameters" : [ ],
+      "return_type" : "List<OrderResponse>",
+      "description" : "Retrieves all orders in the system."
+    }, {
+      "name" : "updateOrderStatus",
+      "parameters" : [ "UUID orderId", "OrderStatus newStatus" ],
+      "return_type" : "OrderResponse",
+      "description" : "Updates the status of an existing order and sends a notification to the customer."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/repository/OrderRepository.java", "backend/src/main/java/com/circuithouse/repository/MenuItemRepository.java", "backend/src/main/java/com/circuithouse/service/NotificationService.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements createOrder(CreateOrderRequest): OrderResponse, getOrderById(UUID): OrderResponse, getOrdersByCustomerEmail(String): List<OrderResponse>, getAllOrders(): List<OrderResponse>, and updateOrderStatus(UUID, OrderStatus): OrderResponse; delegates menu item lookup to MenuItemRepository and notifications to NotificationService.",
     "change_required" : null
   }, {
     "file_name" : "OrderController.java",
@@ -1350,14 +1488,50 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Exposes public API endpoints for customers to place and track their orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createOrder",
+      "parameters" : [ "CreateOrderRequest request" ],
+      "return_type" : "ResponseEntity<OrderResponse>",
+      "description" : "Handles POST requests to create a new order."
+    }, {
+      "name" : "getOrderById",
+      "parameters" : [ "UUID orderId" ],
+      "return_type" : "ResponseEntity<OrderResponse>",
+      "description" : "Handles GET requests to retrieve a specific order by ID."
+    }, {
+      "name" : "getOrdersByCustomerEmail",
+      "parameters" : [ "String customerEmail" ],
+      "return_type" : "ResponseEntity<List<OrderResponse>>",
+      "description" : "Handles GET requests to retrieve orders by customer email."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/orders",
+      "request_body" : "CreateOrderRequest",
+      "response_body" : "OrderResponse",
+      "description" : "Creates a new customer order.",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/orders/{orderId}",
+      "request_body" : null,
+      "response_body" : "OrderResponse",
+      "description" : "Retrieves a specific order by its ID.",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/orders/customer/{customerEmail}",
+      "request_body" : null,
+      "response_body" : "List<OrderResponse>",
+      "description" : "Retrieves all orders for a given customer email.",
+      "access" : "public"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/OrderService.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes public API endpoints for customers to place and track their orders.",
     "change_required" : null
   }, {
     "file_name" : "AdminOrderController.java",
@@ -1368,14 +1542,38 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Exposes admin-only API endpoints for viewing and managing all customer orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllOrders",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<OrderResponse>>",
+      "description" : "Handles GET requests to retrieve all orders."
+    }, {
+      "name" : "updateOrderStatus",
+      "parameters" : [ "UUID orderId", "OrderStatus newStatus" ],
+      "return_type" : "ResponseEntity<OrderResponse>",
+      "description" : "Handles PUT requests to update the status of an order."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/orders",
+      "request_body" : null,
+      "response_body" : "List<OrderResponse>",
+      "description" : "Retrieves all orders in the system for administrative view.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/orders/{orderId}/status",
+      "request_body" : "OrderStatus",
+      "response_body" : "OrderResponse",
+      "description" : "Updates the status of a specific order by ID.",
+      "access" : "admin"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/OrderService.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-processing",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes admin-only API endpoints for viewing and managing all customer orders.",
     "change_required" : null
   }, {
     "file_name" : "PaymentRequest.java",
@@ -2886,8 +3084,8 @@
     "feature_display_name" : "Order Processing",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/model/OrderItem.java", "backend/src/main/java/com/circuithouse/model/OrderStatus.java", "backend/src/main/java/com/circuithouse/repository/OrderRepository.java", "backend/src/main/java/com/circuithouse/repository/OrderItemRepository.java", "backend/src/main/java/com/circuithouse/dto/CreateOrderRequest.java", "backend/src/main/java/com/circuithouse/dto/OrderItemRequest.java", "backend/src/main/java/com/circuithouse/dto/OrderResponse.java", "backend/src/main/java/com/circuithouse/service/OrderService.java", "backend/src/main/java/com/circuithouse/controller/OrderController.java", "backend/src/main/java/com/circuithouse/controller/AdminOrderController.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Order Processing feature handles the backend logic for customers to place and manage food orders, and for administrators to view and update these orders. It consists of `Order`, `OrderItem`, and `OrderStatus` models, `OrderRepository` and `OrderItemRepository` for persistence, DTOs for request and response payloads, and `OrderService` and `OrderController`/`AdminOrderController` for business logic and API exposure.\n\n## Models\n- `Order.java`: Represents a customer's order. It will have fields for `orderId` (UUID, primary key), `customerName` (String), `customerEmail` (String), `customerPhone` (String), `orderTime` (LocalDateTime), `totalAmount` (BigDecimal), `status` (OrderStatus enum), and a one-to-many relationship with `OrderItem`.\n- `OrderItem.java`: Represents a single item within an order. It will have fields for `orderItemId` (UUID, primary key), `menuItem` (ManyToOne relationship with `MenuItem` from `menu-management` feature), `quantity` (int), `priceAtOrder` (BigDecimal), and a ManyToOne relationship with `Order`.\n- `OrderStatus.java`: An enum defining the possible states of an order: `PENDING`, `CONFIRMED`, `PREPARING`, `READY_FOR_PICKUP`, `DELIVERED`, `CANCELLED`.\n\n## Repositories\n- `OrderRepository.java`: Extends `JpaRepository<Order, UUID>` and provides standard CRUD operations for `Order` entities. It will include a custom method `findByCustomerEmail(String customerEmail): List<Order>` to retrieve orders for a specific customer.\n- `OrderItemRepository.java`: Extends `JpaRepository<OrderItem, UUID>` and provides standard CRUD operations for `OrderItem` entities.\n\n## DTOs\n- `CreateOrderRequest.java`: Used for creating new orders. It will contain `customerName` (String), `customerEmail` (String), `customerPhone` (String), and a list of `OrderItemRequest`.\n- `OrderItemRequest.java`: Represents a single item in `CreateOrderRequest`. It will contain `menuItemId` (UUID) and `quantity` (int).\n- `OrderResponse.java`: Used for returning order details. It will contain `orderId` (UUID), `customerName` (String), `customerEmail` (String), `customerPhone` (String), `orderTime` (LocalDateTime), `totalAmount` (BigDecimal), `status` (OrderStatus), and a list of `OrderItemResponse` (a new DTO to be created, similar to `OrderItemRequest` but with `menuItemName` and `priceAtOrder`).\n\n## Services\n- `OrderService.java`: This service orchestrates the order creation and management process.\n  - `createOrder(CreateOrderRequest request): OrderResponse`: \n    1. Validates the `CreateOrderRequest`. \n    2. Fetches `MenuItem` details for each `OrderItemRequest` using `menu-management`'s `MenuItemRepository.findByIdAndActiveTrue(UUID id)`. If any menu item is not found or inactive, throw `ResourceNotFoundException`.\n    3. Calculates `totalAmount` based on `MenuItem` prices and quantities.\n    4. Creates an `Order` entity with status `PENDING`.\n    5. Creates `OrderItem` entities linked to the `Order`.\n    6. Saves the `Order` and `OrderItem`s using `OrderRepository` and `OrderItemRepository`.\n    7. Calls `notification-service`'s `NotificationService.sendNotification(String recipient, String message)` to send an order confirmation to the customer's phone number.\n    8. Returns an `OrderResponse`.\n  - `getOrderById(UUID orderId): OrderResponse`: \n    1. Retrieves an `Order` by `orderId` from `OrderRepository`. Throws `ResourceNotFoundException` if not found.\n    2. Maps the `Order` entity to `OrderResponse`.\n  - `getOrdersByCustomerEmail(String customerEmail): List<OrderResponse>`:\n    1. Retrieves a list of `Order` entities by `customerEmail` from `OrderRepository`.\n    2. Maps the list of `Order` entities to `List<OrderResponse>`.\n  - `getAllOrders(): List<OrderResponse>`:\n    1. Retrieves all `Order` entities from `OrderRepository`.\n    2. Maps the list of `Order` entities to `List<OrderResponse>`.\n  - `updateOrderStatus(UUID orderId, OrderStatus newStatus): OrderResponse`:\n    1. Retrieves an `Order` by `orderId` from `OrderRepository`. Throws `ResourceNotFoundException` if not found.\n    2. Updates the `status` of the `Order` to `newStatus`.\n    3. Saves the updated `Order` using `OrderRepository`.\n    4. Calls `notification-service`'s `NotificationService.sendNotification(String recipient, String message)` to inform the customer about the status update.\n    5. Returns an `OrderResponse`.\n\n## Controllers\n- `OrderController.java`: Exposes public API endpoints for customers.\n  - `createOrder(CreateOrderRequest request)`: Handles POST requests to `/api/v1/orders`.\n  - `getOrderById(UUID orderId)`: Handles GET requests to `/api/v1/orders/{orderId}`.\n  - `getOrdersByCustomerEmail(String customerEmail)`: Handles GET requests to `/api/v1/orders/customer/{customerEmail}`.\n- `AdminOrderController.java`: Exposes admin-only API endpoints.\n  - `getAllOrders()`: Handles GET requests to `/api/v1/admin/orders`.\n  - `updateOrderStatus(UUID orderId, OrderStatus newStatus)`: Handles PUT requests to `/api/v1/admin/orders/{orderId}/status`.\n\n## Inter-feature Wiring\n- `OrderService` injects `OrderRepository`, `OrderItemRepository`, `menu-management`'s `MenuItemRepository`, and `notification-service`'s `NotificationService`.\n- `OrderController` and `AdminOrderController` inject `OrderService`.\n\n## Error Handling\n- `ResourceNotFoundException` will be thrown by `OrderService` if an order or menu item is not found. Controllers will catch this and return a 404 Not Found response.",
+    "depends_on_features" : [ "menu-management", "notification-service" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
