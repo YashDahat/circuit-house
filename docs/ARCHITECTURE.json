@@ -2960,14 +2960,44 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Custom hook to create and manage reservation data using TanStack Query.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useCreateReservation",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<ReservationDto, Error, CreateReservationRequest>",
+      "description" : "Provides a mutation function to create a new reservation. Invalidates 'reservations' queries on success."
+    }, {
+      "name" : "useReservation",
+      "parameters" : [ "string id" ],
+      "return_type" : "QueryObserverResult<ReservationDto, Error>",
+      "description" : "Fetches a single reservation by its ID."
+    }, {
+      "name" : "useAllReservations",
+      "parameters" : [ ],
+      "return_type" : "QueryObserverResult<ReservationDto[], Error>",
+      "description" : "Fetches all reservations for administrative purposes."
+    }, {
+      "name" : "useReservationsByStatus",
+      "parameters" : [ "ReservationStatus status" ],
+      "return_type" : "QueryObserverResult<ReservationDto[], Error>",
+      "description" : "Fetches reservations filtered by their status for administrative purposes."
+    }, {
+      "name" : "useUpdateReservationStatus",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<ReservationDto, Error, { id: string; newStatus: ReservationStatus }>",
+      "description" : "Provides a mutation function to update the status of a reservation. Invalidates 'reservations' queries on success."
+    }, {
+      "name" : "useDeleteReservation",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<void, Error, string>",
+      "description" : "Provides a mutation function to delete a reservation by ID. Invalidates 'reservations' queries on success."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/reservationService.ts", "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-booking",
-    "file_role" : null,
+    "file_role" : "Custom React hook for managing reservation data using TanStack Query, providing data fetching and mutation capabilities to components.",
     "change_required" : null
   }, {
     "file_name" : "reservationService.ts",
@@ -2978,14 +3008,86 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Provides functions for making API calls to the reservation endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createReservation",
+      "parameters" : [ "CreateReservationRequest reservation" ],
+      "return_type" : "Promise<ReservationDto>",
+      "description" : "Sends a POST request to create a new reservation."
+    }, {
+      "name" : "getReservationById",
+      "parameters" : [ "string id" ],
+      "return_type" : "Promise<ReservationDto>",
+      "description" : "Sends a GET request to fetch a single reservation by ID."
+    }, {
+      "name" : "getAllReservations",
+      "parameters" : [ ],
+      "return_type" : "Promise<ReservationDto[]>",
+      "description" : "Sends a GET request to fetch all reservations (admin access)."
+    }, {
+      "name" : "getReservationsByStatus",
+      "parameters" : [ "ReservationStatus status" ],
+      "return_type" : "Promise<ReservationDto[]>",
+      "description" : "Sends a GET request to fetch reservations filtered by status (admin access)."
+    }, {
+      "name" : "updateReservationStatus",
+      "parameters" : [ "string id", "ReservationStatus newStatus" ],
+      "return_type" : "Promise<ReservationDto>",
+      "description" : "Sends a PUT request to update the status of a reservation (admin access)."
+    }, {
+      "name" : "deleteReservation",
+      "parameters" : [ "string id" ],
+      "return_type" : "Promise<void>",
+      "description" : "Sends a DELETE request to delete a reservation by ID (admin access)."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/reservations",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Endpoint for creating a new reservation.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/reservations/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Endpoint for fetching a single reservation by ID.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/reservations",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Endpoint for fetching all reservations (admin access).",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/reservations/status/{status}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Endpoint for fetching reservations filtered by status (admin access).",
+      "access" : null
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/reservations/{id}/status",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Endpoint for updating the status of a reservation (admin access).",
+      "access" : null
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/reservations/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Endpoint for deleting a reservation by ID (admin access).",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-booking",
-    "file_role" : null,
+    "file_role" : "Frontend service layer for interacting with the backend reservation API, exposing functions for CRUD operations on reservations.",
     "change_required" : null
   }, {
     "file_name" : "reservation.ts",
@@ -2997,13 +3099,25 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for reservation data.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "ReservationStatus",
+      "type" : "enum",
+      "description" : "Enum for reservation statuses: PENDING, CONFIRMED, CANCELLED, COMPLETED."
+    }, {
+      "name" : "ReservationDto",
+      "type" : "interface",
+      "description" : "DTO for reservation details, including id, reservationTime, partySize, customerName, customerEmail, customerPhone, and status."
+    }, {
+      "name" : "CreateReservationRequest",
+      "type" : "interface",
+      "description" : "Request DTO for creating a new reservation, including reservationTime, partySize, customerName, customerEmail, and customerPhone."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "reservation-booking",
-    "file_role" : null,
+    "file_role" : "TypeScript types and interfaces for reservation data, generated from the backend API contract.",
     "change_required" : null
   }, {
     "file_name" : "ReservationPage.tsx",
@@ -3014,14 +3128,14 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Page containing a form for customers to book a table at the restaurant.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/reservation/ReservationForm.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-booking",
-    "file_role" : null,
+    "file_role" : "Public-facing page for customers to book a table at Circuit House, integrating the reservation form.",
     "change_required" : null
   }, {
     "file_name" : "ReservationForm.tsx",
@@ -3032,14 +3146,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "The interactive form for submitting a new table reservation.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ReservationForm",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the form for creating a new reservation. Handles form state, validation, and submission using `useCreateReservation`."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useReservations.ts", "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-booking",
-    "file_role" : null,
+    "file_role" : "React component rendering an interactive form for customers to submit new table reservations.",
     "change_required" : null
   }, {
     "file_name" : "AdminReservationsPage.tsx",
@@ -3050,14 +3169,14 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Admin interface for managing all customer reservations.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useReservations.ts", "frontend/src/components/reservation/ReservationsTable.tsx", "frontend/src/components/reservation/ReservationDetailModal.tsx", "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-booking",
-    "file_role" : null,
+    "file_role" : "Admin page for viewing, filtering, and managing all customer reservations, including status updates and deletion.",
     "change_required" : null
   }, {
     "file_name" : "ReservationsTable.tsx",
@@ -3068,14 +3187,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Displays all reservations in a table with sorting and filtering capabilities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ReservationsTable",
+      "parameters" : [ "{ reservations: ReservationDto[]; onViewDetails: (reservation: ReservationDto) => void; onDelete: (id: string) => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of reservations with columns for details and action buttons."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-booking",
-    "file_role" : null,
+    "file_role" : "React component displaying a sortable and filterable table of reservations, typically for admin use.",
     "change_required" : null
   }, {
     "file_name" : "ReservationDetailModal.tsx",
@@ -3086,14 +3210,19 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "A modal dialog to view reservation details and update its status.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ReservationDetailModal",
+      "parameters" : [ "{ isOpen: boolean; onClose: () => void; reservation: ReservationDto | null; onUpdateStatus: (id: string, newStatus: ReservationStatus) => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a modal displaying reservation details and options to update its status."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "reservation-booking",
-    "file_role" : null,
+    "file_role" : "React component for a modal dialog to view detailed reservation information and update its status.",
     "change_required" : null
   }, {
     "file_name" : "useOrders.ts",
@@ -3691,8 +3820,8 @@
     "feature_display_name" : "Reservation Booking",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/hooks/useReservations.ts", "frontend/src/services/reservationService.ts", "frontend/src/types/reservation.ts", "frontend/src/pages/ReservationPage.tsx", "frontend/src/components/reservation/ReservationForm.tsx", "frontend/src/pages/admin/AdminReservationsPage.tsx", "frontend/src/components/reservation/ReservationsTable.tsx", "frontend/src/components/reservation/ReservationDetailModal.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#c28b29] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides the frontend functionality for customers to book reservations at Circuit House and for administrators to manage these reservations. It consists of several files working together:\n\n1.  **`reservation.ts`**: Defines the TypeScript types and interfaces for reservation-related data, ensuring type safety across the feature.\n\n2.  **`reservationService.ts`**: Handles all API interactions with the backend `reservation-system` feature. It exports asynchronous functions for creating, fetching, updating, and deleting reservations. This service uses the `api/client.ts` for making HTTP requests.\n\n    -   `createReservation(reservation: CreateReservationRequest): Promise<ReservationDto>`: Sends a POST request to `/api/v1/reservations` to create a new reservation.\n    -   `getReservationById(id: string): Promise<ReservationDto>`: Sends a GET request to `/api/v1/reservations/{id}` to fetch a single reservation.\n    -   `getAllReservations(): Promise<ReservationDto[]>`: Sends a GET request to `/api/v1/admin/reservations` to fetch all reservations (admin access).\n    -   `getReservationsByStatus(status: ReservationStatus): Promise<ReservationDto[]>`: Sends a GET request to `/api/v1/admin/reservations/status/{status}` to fetch reservations filtered by status (admin access).\n    -   `updateReservationStatus(id: string, newStatus: ReservationStatus): Promise<ReservationDto>`: Sends a PUT request to `/api/v1/admin/reservations/{id}/status` to update a reservation's status (admin access).\n    -   `deleteReservation(id: string): Promise<void>`: Sends a DELETE request to `/api/v1/admin/reservations/{id}` to delete a reservation (admin access).\n\n3.  **`useReservations.ts`**: A custom React hook built with TanStack Query. It consumes the `reservationService.ts` to provide data fetching and mutation capabilities to React components. It exports:\n\n    -   `useCreateReservation()`: A mutation hook for creating new reservations. On success, it invalidates the `['reservations']` query to refetch the list of reservations.\n    -   `useReservation(id: string)`: A query hook for fetching a single reservation by its ID.\n    -   `useAllReservations()`: A query hook for fetching all reservations (for admin use).\n    -   `useReservationsByStatus(status: ReservationStatus)`: A query hook for fetching reservations filtered by status (for admin use).\n    -   `useUpdateReservationStatus()`: A mutation hook for updating a reservation's status. On success, it invalidates the `['reservations']` query.\n    -   `useDeleteReservation()`: A mutation hook for deleting a reservation. On success, it invalidates the `['reservations']` query.\n\n4.  **`ReservationForm.tsx`**: A React component that renders the form for customers to submit a new reservation. It uses `useCreateReservation` from `useReservations.ts` to handle form submission. The form collects `reservationTime`, `partySize`, `customerName`, `customerEmail`, and `customerPhone`. It includes input validation and displays success/error messages.\n\n5.  **`ReservationPage.tsx`**: The public-facing page where customers can book a table. It wraps the `ReservationForm` component and uses the `Layout` component from the `static-pages` feature for consistent navigation and footer. The page features a prominent heading \"Book Your Table at Circuit House\" and a sub-heading \"Experience our graceful ambiance and exquisite dining. Reserve your spot now!\" with a background image of the restaurant interior.\n\n6.  **`ReservationsTable.tsx`**: A React component for displaying a list of reservations in a tabular format, typically used in the admin interface. It receives a list of `ReservationDto` objects as props and allows for sorting and filtering. Each row includes reservation details and actions (e.g., view details, update status, delete).\n\n7.  **`ReservationDetailModal.tsx`**: A modal component to display the full details of a selected reservation and allow administrators to update its status. It receives a `ReservationDto` and functions for updating/closing the modal as props. It uses `useUpdateReservationStatus` from `useReservations.ts`.\n\n8.  **`AdminReservationsPage.tsx`**: The admin page for managing all reservations. It uses `useAllReservations` and `useReservationsByStatus` from `useReservations.ts` to fetch reservation data. It renders the `ReservationsTable` to display the list of reservations and integrates `ReservationDetailModal` for viewing and updating individual reservation details. This page is wrapped in `AdminLayout` from the `admin-portal` feature.\n\n**Inter-file Wiring:**\n- `ReservationPage.tsx` renders `ReservationForm.tsx`.\n- `ReservationForm.tsx` uses the `useCreateReservation` hook from `useReservations.ts`.\n- `AdminReservationsPage.tsx` uses `useAllReservations`, `useReservationsByStatus`, `useUpdateReservationStatus`, and `useDeleteReservation` hooks from `useReservations.ts`. It renders `ReservationsTable.tsx` and `ReservationDetailModal.tsx`.\n- `ReservationsTable.tsx` and `ReservationDetailModal.tsx` consume `ReservationDto` types from `reservation.ts`.\n- `useReservations.ts` calls functions from `reservationService.ts`.\n- `reservationService.ts` uses `frontend/src/api/client.ts` for HTTP requests and types from `reservation.ts`.\n\n**Cross-Feature Contracts:**\n- `ReservationPage.tsx` uses the `Layout` component from the `static-pages` feature.\n- `AdminReservationsPage.tsx` uses the `AdminLayout` component from the `admin-portal` feature.\n- `reservationService.ts` calls the `reservation-system` backend feature's API endpoints:\n    - `POST /api/v1/reservations` for `createReservation`.\n    - `GET /api/v1/reservations/{id}` for `getReservationById`.\n    - `GET /api/v1/admin/reservations` for `getAllReservations`.\n    - `GET /api/v1/admin/reservations/status/{status}` for `getReservationsByStatus`.\n    - `PUT /api/v1/admin/reservations/{id}/status` for `updateReservationStatus`.\n    - `DELETE /api/v1/admin/reservations/{id}` for `deleteReservation`.",
+    "depends_on_features" : [ "reservation-system", "static-pages", "admin-portal" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
