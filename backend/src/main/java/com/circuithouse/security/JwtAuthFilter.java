@@ -1,5 +1,7 @@
 package com.circuithouse.security;
 
+
+import org.springframework.context.annotation.Lazy;
 import com.circuithouse.util.JwtUtil;
 import com.circuithouse.service.UserService;
 import jakarta.servlet.FilterChain;
@@ -21,7 +23,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserService userService;
 
-    public JwtAuthFilter(JwtUtil jwtUtil, UserService userService) {
+    public JwtAuthFilter(JwtUtil jwtUtil, @Lazy UserService userService) {
         this.jwtUtil = jwtUtil;
         this.userService = userService;
     }

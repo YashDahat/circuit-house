@@ -2,6 +2,7 @@ package com.circuithouse.service;
 
 import com.circuithouse.dto.CreateOrderRequest;
 import com.circuithouse.dto.OrderItemRequest;
+import com.circuithouse.dto.OrderItemResponse;
 import com.circuithouse.dto.OrderResponse;
 import com.circuithouse.exception.ResourceNotFoundException;
 import com.circuithouse.model.MenuItem;
@@ -71,7 +72,7 @@ public class OrderService {
 
         String confirmationMessage = String.format("Your order %s has been placed. Total: $%.2f",
                 savedOrder.getOrderId().toString().substring(0, 8), savedOrder.getTotalAmount());
-        notificationService.sendNotification(savedOrder.getCustomerPhone(), confirmationMessage);
+        notificationService.sendNotification(savedOrder.getCustomerEmail(), "Order Confirmation", confirmationMessage);
 
         return mapToOrderResponse(savedOrder);
     }
@@ -106,7 +107,7 @@ public class OrderService {
 
         String statusUpdateMessage = String.format("Your order %s status has been updated to: %s",
                 updatedOrder.getOrderId().toString().substring(0, 8), newStatus.name());
-        notificationService.sendNotification(updatedOrder.getCustomerPhone(), statusUpdateMessage);
+        notificationService.sendNotification(updatedOrder.getCustomerEmail(), "Order Status Update", statusUpdateMessage);
 
         return mapToOrderResponse(updatedOrder);
     }
