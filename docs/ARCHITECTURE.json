@@ -1591,14 +1591,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Seeds the database with initial domain data like menu items and events on application startup.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "run",
+      "parameters" : [ "String... args" ],
+      "return_type" : "void",
+      "description" : "Executes on application startup to seed menu items and events if the database is empty."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/MenuService.java", "backend/src/main/java/com/circuithouse/service/EventService.java" ],
     "depends_on" : [ ],
     "feature_name" : "data-seeding-backend",
-    "file_role" : null,
+    "file_role" : "CONFIG layer — implements `CommandLineRunner` to seed initial data for menu items and events on application startup by calling `menuService.createMenuItem(MenuItemDto menuItemDto)` and `eventService.createEvent(EventDto eventDto)`.",
     "change_required" : null
   }, {
     "file_name" : "client.ts",
@@ -2965,8 +2970,8 @@
     "feature_display_name" : "Data Seeding (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/config/DataSeeder.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The `DataSeeder.java` file is a Spring Boot `CommandLineRunner` that executes on application startup to populate the database with initial data for menu items and events. It ensures that the application has essential business data available immediately after deployment, which is crucial for demonstration, testing, and initial production setup. The seeder injects `MenuService` and `EventService` to interact with the respective domain services for creating new menu items and events. It defines a list of `MenuItemDto` objects with details such as name, description, price, category, and image URL, and a list of `EventDto` objects with details like name, description, date, time, and image URL. On run, it first checks if the database already contains menu items or events. If not, it iterates through the predefined lists and calls `menuService.createMenuItem(MenuItemDto menuItemDto)` for each menu item and `eventService.createEvent(EventDto eventDto)` for each event. This prevents duplicate data from being inserted on subsequent application restarts. The image URLs for menu items and events are Unsplash links, ensuring they are publicly accessible.",
+    "depends_on_features" : [ "menu-management-backend", "event-management-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
