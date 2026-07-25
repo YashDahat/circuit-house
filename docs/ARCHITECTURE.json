@@ -1584,14 +1584,22 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Data transfer object for initiating a payment, containing order ID and amount.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "orderId",
+      "type" : "UUID",
+      "description" : "The unique identifier of the order for which payment is being initiated. Not null."
+    }, {
+      "name" : "amount",
+      "type" : "BigDecimal",
+      "description" : "The total amount of the payment. Not null, positive value."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "payment-gateway",
-    "file_role" : null,
+    "file_role" : "Data Transfer Object (DTO) — defines the structure for requests to initiate a payment.",
     "change_required" : null
   }, {
     "file_name" : "PaymentVerificationRequest.java",
@@ -1602,14 +1610,30 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Data transfer object for verifying a payment signature from the payment gateway.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "paymentId",
+      "type" : "String",
+      "description" : "The payment ID provided by the payment gateway. Not null."
+    }, {
+      "name" : "orderId",
+      "type" : "String",
+      "description" : "The order ID associated with the payment, as provided by the payment gateway. Not null."
+    }, {
+      "name" : "signature",
+      "type" : "String",
+      "description" : "The signature provided by the payment gateway for verification. Not null."
+    }, {
+      "name" : "status",
+      "type" : "String",
+      "description" : "The status of the payment (e.g., 'success', 'failed'). Not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "payment-gateway",
-    "file_role" : null,
+    "file_role" : "Data Transfer Object (DTO) — defines the structure for requests to verify a payment from the payment gateway webhook.",
     "change_required" : null
   }, {
     "file_name" : "PaymentService.java",
@@ -1620,14 +1644,24 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Handles interactions with the payment gateway, such as creating orders and verifying signatures.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "initiatePayment",
+      "parameters" : [ "PaymentRequest request" ],
+      "return_type" : "PaymentResponse",
+      "description" : "Initiates a payment with the third-party payment gateway. Returns a PaymentResponse containing gateway-specific details. Throws PaymentGatewayException on gateway communication errors."
+    }, {
+      "name" : "verifyPayment",
+      "parameters" : [ "PaymentVerificationRequest request" ],
+      "return_type" : "String",
+      "description" : "Verifies the payment signature received from the payment gateway webhook. Updates order status via OrderService if successful. Returns 'success' or 'failure'. Throws IllegalArgumentException if signature verification fails."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/OrderService.java" ],
     "depends_on" : [ ],
     "feature_name" : "payment-gateway",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements initiatePayment(PaymentRequest request): PaymentResponse and verifyPayment(PaymentVerificationRequest request): String; delegates order status updates to OrderService.",
     "change_required" : null
   }, {
     "file_name" : "PaymentController.java",
@@ -1638,14 +1672,38 @@
     "updated_date" : "2024-07-30",
     "status" : "PLANNED",
     "description" : "Exposes endpoints for payment initiation and for receiving webhooks from the payment gateway.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ {
+      "name" : "initiatePayment",
+      "parameters" : [ "PaymentRequest request" ],
+      "return_type" : "ResponseEntity<PaymentResponse>",
+      "description" : "Handles requests to initiate a payment. Delegates to PaymentService.initiatePayment(). Returns 200 OK with PaymentResponse or 500 Internal Server Error on failure."
+    }, {
+      "name" : "verifyPayment",
+      "parameters" : [ "PaymentVerificationRequest request" ],
+      "return_type" : "ResponseEntity<String>",
+      "description" : "Handles payment verification callbacks from the payment gateway. Delegates to PaymentService.verifyPayment(). Returns 200 OK with 'success' or 400 Bad Request on verification failure."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/payments/initiate",
+      "request_body" : "PaymentRequest",
+      "response_body" : "PaymentResponse",
+      "description" : "Initiates a payment for an order. Requires authentication.",
+      "access" : "authenticated"
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/payments/verify",
+      "request_body" : "PaymentVerificationRequest",
+      "response_body" : "String",
+      "description" : "Webhook endpoint for the payment gateway to send payment verification callbacks. Publicly accessible for the gateway.",
+      "access" : "public"
+    } ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/PaymentService.java" ],
     "depends_on" : [ ],
     "feature_name" : "payment-gateway",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes POST /api/v1/payments/initiate and POST /api/v1/payments/verify endpoints.",
     "change_required" : null
   }, {
     "file_name" : "Event.java",
@@ -3093,8 +3151,8 @@
     "feature_display_name" : "Payment Gateway",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/dto/PaymentRequest.java", "backend/src/main/java/com/circuithouse/dto/PaymentVerificationRequest.java", "backend/src/main/java/com/circuithouse/service/PaymentService.java", "backend/src/main/java/com/circuithouse/controller/PaymentController.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Payment Gateway feature handles all interactions with a third-party payment gateway for processing online orders. It consists of two DTOs, a service, and a controller. The `PaymentRequest` DTO is used to initiate a payment, carrying the `orderId` and `amount`. The `PaymentVerificationRequest` DTO is used to receive and verify payment signatures from the gateway's webhooks.\n\nThe `PaymentService` is the core business logic component. It exposes `initiatePayment(PaymentRequest request)` to create a payment order with the gateway and `verifyPayment(PaymentVerificationRequest request)` to validate the payment status received from the gateway. When a payment is successfully verified, `PaymentService` calls `order-processing` feature's `OrderService.updateOrderStatus(UUID orderId, OrderStatus newStatus)` to update the corresponding order's status to `PAID`.\n\nThe `PaymentController` exposes two API endpoints: `POST /api/v1/payments/initiate` for clients to initiate a payment, and `POST /api/v1/payments/verify` which acts as a webhook endpoint for the payment gateway to send payment verification callbacks. The `initiatePayment` endpoint takes a `PaymentRequest` and returns a `PaymentResponse` (which includes the payment gateway's order ID and signature for the frontend to use). The `verifyPayment` endpoint takes a `PaymentVerificationRequest` and returns a `String` indicating success or failure.\n\nError Handling:\n- `PaymentService.initiatePayment` will throw `PaymentGatewayException` if there's an issue communicating with the payment gateway. The `PaymentController` will catch this and return a `500 Internal Server Error` with a descriptive message.\n- `PaymentService.verifyPayment` will throw `IllegalArgumentException` if the signature verification fails. The `PaymentController` will catch this and return a `400 Bad Request`.",
+    "depends_on_features" : [ "order-processing" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
