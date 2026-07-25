@@ -3399,8 +3399,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-30",
-    "updated_date" : "2024-07-30",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "GENERATED",
     "description" : "Manages cart persistence in the browser's localStorage.",
     "public_functions" : [ {
       "name" : "getCartItems",
