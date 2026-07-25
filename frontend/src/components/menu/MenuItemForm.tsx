@@ -1,11 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Label } from '@radix-ui/react-label';
 import { Root as CheckboxRoot } from '@radix-ui/react-checkbox';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
 import type { MenuItemCategory, MenuItemDto } from '@/types/menu';
 
 interface MenuItemFormProps {
@@ -15,20 +13,17 @@ interface MenuItemFormProps {
   onCancel: () => void;
 }
 
-const menuItemSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  description: z.string().optional(),
-  price: z.coerce.number().min(0.01, 'Price must be greater than 0'),
-  imageUrl: z.string().url('Invalid URL').optional().or(z.literal('')),
-  categoryName: z.string().min(1, 'Category is required'),
-  active: z.boolean().default(true),
-});
-
-type MenuItemFormValues = z.infer<typeof menuItemSchema>;
+interface MenuItemFormValues {
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  categoryName: string;
+  active: boolean;
+}
 
 export function MenuItemForm({ initialData, categories, onSubmit, onCancel }: MenuItemFormProps) {
-  const { register, handleSubmit, control, setValue, watch, formState: { errors } } = useForm<MenuItemFormValues>({
-    resolver: zodResolver(menuItemSchema),
+  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<MenuItemFormValues>({
     defaultValues: {
       name: initialData?.name ?? '',
       description: initialData?.description ?? '',
@@ -43,9 +38,13 @@ export function MenuItemForm({ initialData, categories, onSubmit, onCancel }: Me
 
   const handleFormSubmit = (values: MenuItemFormValues) => {
     onSubmit({
-      ...initialData,
-      ...values,
       id: initialData?.id ?? null,
+      name: values.name,
+      description: values.description ?? null,
+      price: values.price,
+      imageUrl: values.imageUrl ?? null,
+      categoryName: values.categoryName,
+      active: values.active,
     });
   };
 
@@ -56,7 +55,7 @@ export function MenuItemForm({ initialData, categories, onSubmit, onCancel }: Me
         <Input
           id="name"
           type="text"
-          {...register('name')}
+          {...register('name', { required: 'Name is required' })}
           className="mt-1 block w-full"
         />
         {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
@@ -70,7 +69,6 @@ export function MenuItemForm({ initialData, categories, onSubmit, onCancel }: Me
           {...register('description')}
           className="mt-1 block w-full"
         />
-        {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
       </div>
 
       <div>
@@ -79,7 +77,11 @@ export function MenuItemForm({ initialData, categories, onSubmit, onCancel }: Me
           id="price"
           type="number"
           step="0.01"
-          {...register('price')}
+          {...register('price', {
+            required: 'Price is required',
+            min: { value: 0.01, message: 'Price must be greater than 0' },
+            valueAsNumber: true,
+          })}
           className="mt-1 block w-full"
         />
         {errors.price && <p className="text-red-500 text-sm mt-1">{errors.price.message}</p>}
@@ -93,21 +95,20 @@ export function MenuItemForm({ initialData, categories, onSubmit, onCancel }: Me
           {...register('imageUrl')}
           className="mt-1 block w-full"
         />
-        {errors.imageUrl && <p className="text-red-500 text-sm mt-1">{errors.imageUrl.message}</p>}
       </div>
 
       <div>
         <Label htmlFor="categoryName" className="block text-sm font-medium text-gray-700">Category</Label>
         <Select
           value={watch('categoryName')}
-          onValueChange={(value) => setValue('categoryName', value)}
+          onValueChange={(value: string) => setValue('categoryName', value)}
         >
-          <SelectTrigger className="mt-1 block w-full">
+          <SelectTrigger className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm">
             <SelectValue placeholder="Select a category" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-white border border-gray-200 rounded-md shadow-lg z-50">
             {categories.map((category) => (
-              <SelectItem key={category.id} value={category.name ?? ''}>
+              <SelectItem key={category.id} value={category.name ?? ''} className="px-3 py-2 text-sm cursor-pointer hover:bg-gray-100">
                 {category.name}
               </SelectItem>
             ))}

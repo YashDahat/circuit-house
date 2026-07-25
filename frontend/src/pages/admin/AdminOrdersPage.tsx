@@ -4,7 +4,7 @@ import { useAllOrders, useUpdateOrderStatus } from '@/hooks/useOrders';
 import { OrdersTable } from '@/components/order/OrdersTable';
 import OrderDetailModal from '@/components/order/OrderDetailModal';
 import { OrderResponse, OrderStatus } from '@/types/order';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 
 const AdminOrdersPage: React.FC = () => {
@@ -18,17 +18,10 @@ const AdminOrdersPage: React.FC = () => {
 
   const handleUpdateStatus = async (orderId: string, status: OrderStatus) => {
     try {
-      await updateOrderStatusMutation.mutateAsync({ orderId, status });
-      toast({
-        title: 'Order Status Updated',
-        description: `Order ${orderId} status changed to ${status}.`,
-      });
+      await updateOrderStatusMutation.mutateAsync(orderId);
+      toast.success(`Order ${orderId} status changed to ${status}.`);
     } catch (error) {
-      toast({
-        title: 'Failed to Update Status',
-        description: 'There was an error updating the order status.',
-        variant: 'destructive',
-      });
+      toast.error('There was an error updating the order status.');
     }
   };
 

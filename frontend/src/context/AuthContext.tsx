@@ -13,6 +13,8 @@ interface AuthContextProviderProps {
   children: ReactNode;
 }
 
+export const AuthProvider = (props: AuthContextProviderProps) => <AuthContextProvider {...props} />;
+
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!token);

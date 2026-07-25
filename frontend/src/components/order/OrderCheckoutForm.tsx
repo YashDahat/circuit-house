@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { useCart } from '@/context/CartContext';
 import { useCreateOrder } from '@/hooks/useOrders';
 import { usePayment } from '@/hooks/usePayment';
@@ -10,15 +8,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@radix-ui/react-label';
 import { Card } from '@/components/ui/card';
-import { ROUTES } from '@/routes';
 
-const formSchema = z.object({
-  customerName: z.string().min(1, 'Name is required'),
-  customerEmail: z.string().email('Invalid email address'),
-  customerPhone: z.string().min(10, 'Phone number is required'),
-});
-
-type CheckoutFormValues = z.infer<typeof formSchema>;
+interface CheckoutFormValues {
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+}
 
 const OrderCheckoutForm = () => {
   const { cartItems, getCartTotal, clearCart } = useCart();
@@ -28,7 +23,6 @@ const OrderCheckoutForm = () => {
   const [orderPlacementError, setOrderPlacementError] = useState<string | null>(null);
 
   const form = useForm<CheckoutFormValues>({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       customerName: '',
       customerEmail: '',
@@ -45,7 +39,7 @@ const OrderCheckoutForm = () => {
     }
 
     const orderItems = cartItems.map((item) => ({
-      menuItemId: item.id,
+      menuItemId: item.menuItemId,
       quantity: item.quantity,
     }));
 
@@ -65,9 +59,6 @@ const OrderCheckoutForm = () => {
           amount: newOrder.totalAmount,
         });
         clearCart();
-        // The initiatePayment hook handles the redirect, so no explicit navigate here.
-        // If initiatePayment didn't redirect, we would navigate to confirmation page.
-        // navigate(`${ROUTES.ORDER_CONFIRMATION}?orderId=${newOrder.orderId}`);
       } else {
         setOrderPlacementError('Failed to get order ID or total amount after order creation.');
       }
@@ -92,7 +83,7 @@ const OrderCheckoutForm = () => {
           <Input
             id="customerName"
             type="text"
-            {...form.register('customerName')}
+            {...form.register('customerName', { required: 'Name is required' })}
             className="mt-1 block w-full"
           />
           {form.formState.errors.customerName && (
@@ -108,7 +99,7 @@ const OrderCheckoutForm = () => {
           <Input
             id="customerEmail"
             type="email"
-            {...form.register('customerEmail')}
+            {...form.register('customerEmail', { required: 'Email is required' })}
             className="mt-1 block w-full"
           />
           {form.formState.errors.customerEmail && (
@@ -124,7 +115,7 @@ const OrderCheckoutForm = () => {
           <Input
             id="customerPhone"
             type="tel"
-            {...form.register('customerPhone')}
+            {...form.register('customerPhone', { required: 'Phone is required' })}
             className="mt-1 block w-full"
           />
           {form.formState.errors.customerPhone && (

@@ -1,26 +1,20 @@
-"use client";
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { format } from 'date-fns';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@radix-ui/react-label';
 import { useCreateReservation } from '@/hooks/useReservations';
 import { CreateReservationRequest } from '@/types/reservation';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 
-const reservationSchema = z.object({
-  customerName: z.string().min(1, 'Name is required'),
-  customerEmail: z.string().email('Invalid email address'),
-  customerPhone: z.string().min(10, 'Phone number must be at least 10 digits').max(15, 'Phone number must be at most 15 digits'),
-  reservationTime: z.string().min(1, 'Reservation time is required'),
-  partySize: z.coerce.number().min(1, 'Party size must be at least 1'),
-});
-
-type ReservationFormValues = z.infer<typeof reservationSchema>;
+interface ReservationFormValues {
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  reservationTime: string;
+  partySize: number;
+}
 
 const ReservationForm = () => {
   const {
@@ -28,9 +22,7 @@ const ReservationForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ReservationFormValues>({
-    resolver: zodResolver(reservationSchema),
-  });
+  } = useForm<ReservationFormValues>();
 
   const createReservationMutation = useCreateReservation();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,7 +61,7 @@ const ReservationForm = () => {
           <Input
             id="customerName"
             type="text"
-            {...register('customerName')}
+            {...register('customerName', { required: 'Name is required' })}
             className="mt-1 block w-full"
           />
           {errors.customerName && (
@@ -82,7 +74,7 @@ const ReservationForm = () => {
           <Input
             id="customerEmail"
             type="email"
-            {...register('customerEmail')}
+            {...register('customerEmail', { required: 'Email is required' })}
             className="mt-1 block w-full"
           />
           {errors.customerEmail && (
@@ -95,7 +87,11 @@ const ReservationForm = () => {
           <Input
             id="customerPhone"
             type="tel"
-            {...register('customerPhone')}
+            {...register('customerPhone', {
+              required: 'Phone is required',
+              minLength: { value: 10, message: 'Phone number must be at least 10 digits' },
+              maxLength: { value: 15, message: 'Phone number must be at most 15 digits' },
+            })}
             className="mt-1 block w-full"
           />
           {errors.customerPhone && (
@@ -108,7 +104,7 @@ const ReservationForm = () => {
           <Input
             id="reservationTime"
             type="datetime-local"
-            {...register('reservationTime')}
+            {...register('reservationTime', { required: 'Reservation time is required' })}
             min={getCurrentDateTime()}
             className="mt-1 block w-full"
           />
@@ -122,7 +118,11 @@ const ReservationForm = () => {
           <Input
             id="partySize"
             type="number"
-            {...register('partySize')}
+            {...register('partySize', {
+              required: 'Party size is required',
+              min: { value: 1, message: 'Party size must be at least 1' },
+              valueAsNumber: true,
+            })}
             className="mt-1 block w-full"
           />
           {errors.partySize && (

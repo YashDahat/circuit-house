@@ -4,7 +4,7 @@ import { OrderResponse, OrderStatus } from '@/types/order';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
 import { useUpdateOrderStatus } from '@/hooks/useOrders';
 import { useState } from 'react';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 
 interface OrderDetailModalProps {
   order: OrderResponse;
@@ -18,19 +18,12 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({ order, onStatusUpda
   const handleStatusChange = async (newStatus: OrderStatus) => {
     if (order.orderId) {
       try {
-        await updateOrderStatusMutation.mutateAsync({ orderId: order.orderId, status: newStatus });
+        await updateOrderStatusMutation.mutateAsync(order.orderId);
         setCurrentStatus(newStatus);
         onStatusUpdate(order.orderId, newStatus);
-        toast({
-          title: 'Order Status Updated',
-          description: `Order ${order.orderId} status changed to ${newStatus}.`,
-        });
+        toast.success(`Order ${order.orderId} status changed to ${newStatus}.`);
       } catch (error) {
-        toast({
-          title: 'Failed to Update Status',
-          description: 'There was an error updating the order status.',
-          variant: 'destructive',
-        });
+        toast.error('There was an error updating the order status.');
       }
     }
   };

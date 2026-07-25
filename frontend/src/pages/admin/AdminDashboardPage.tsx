@@ -41,8 +41,8 @@ const AdminDashboardPage: React.FC = () => {
                 <button className="mt-4 bg-[#D69E2E] hover:bg-[#B7872A] text-white font-semibold rounded-md px-4 py-2 transition-all duration-200">
                   Go to Orders
                 </button>
-              </Link>
-            </div>
+              </div>
+            </Link>
 
             {/* Events Card */}
             <Link to={ROUTES.ADMIN_EVENTS} className="block">

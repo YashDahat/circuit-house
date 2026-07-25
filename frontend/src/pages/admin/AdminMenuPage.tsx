@@ -1,7 +1,8 @@
+import { DialogHeader } from '@/components/ui/dialog';
 import { useState } from 'react';
-import { AdminLayout } from '@/components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@radix-ui/react-dialog';
+import { Dialog, DialogContent, DialogTitle } from '@radix-ui/react-dialog';
 import {
   useCreateMenuItem,
   useDeleteMenuItem,

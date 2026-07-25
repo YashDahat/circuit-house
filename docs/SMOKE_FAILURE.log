@@ -1,0 +1,123 @@
+# Smoke Test Failure — attempt 1 — 2026-07-25T05:07:09.872062842
+Failed gate: api-data
+
+== Gate report ==
+PASS boot — /actuator/health 200
+PASS frontend — SPA shell + bundle /assets/index-CHEXgAwz.js served
+FAIL api-data — no public endpoint returned data (DataSeeder likely didn't run or seeded nothing): /api/v1/menu/items→200 empty, /api/v1/menu/categories→200 empty, /api/v1/admin/reservations→403, /api/v1/admin/orders→403, /api/v1/events→200 empty, /api/v1/events/upcoming→200 empty
+PASS flows — ADVISORY — 2 of 7 journeys broken: admin GET /api/v1/admin/reservations (403 — logged-in admin is denied; role authority mismatch or matcher gap); admin GET /api/v1/admin/orders (403 — logged-in admin is denied; role authority mismatch or matcher gap) — full list in docs/SMOKE_REPORT.md
+
+== Container logs (tail 2000 lines) ==
+app-1  | 
+app-1  |   .   ____          _            __ _ _
+app-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+app-1  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+app-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+app-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
+app-1  |  =========|_|==============|___/=/_/_/_/
+app-1  | 
+app-1  |  :: Spring Boot ::                (v4.1.0)
+app-1  | 
+app-1  | 2026-07-25T05:07:04.614Z  INFO 1 --- [circuithouse] [           main] c.c.CircuithousebackendApplication       : Starting CircuithousebackendApplication v0.0.1-SNAPSHOT using Java 17.0.19 with PID 1 (/app/app.jar started by app in /app)
+app-1  | 2026-07-25T05:07:04.616Z  INFO 1 --- [circuithouse] [           main] c.c.CircuithousebackendApplication       : No active profile set, falling back to 1 default profile: "default"
+app-1  | 2026-07-25T05:07:05.043Z  INFO 1 --- [circuithouse] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+app-1  | 2026-07-25T05:07:05.112Z  INFO 1 --- [circuithouse] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 7 JPA repository interfaces.
+app-1  | 2026-07-25T05:07:05.392Z  INFO 1 --- [circuithouse] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+app-1  | 2026-07-25T05:07:05.398Z  INFO 1 --- [circuithouse] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+app-1  | 2026-07-25T05:07:05.398Z  INFO 1 --- [circuithouse] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+app-1  | 2026-07-25T05:07:05.410Z  INFO 1 --- [circuithouse] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 772 ms
+app-1  | 2026-07-25T05:07:05.545Z  INFO 1 --- [circuithouse] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+app-1  | 2026-07-25T05:07:05.572Z  INFO 1 --- [circuithouse] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.1.Final
+app-1  | 2026-07-25T05:07:05.780Z  INFO 1 --- [circuithouse] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+app-1  | 2026-07-25T05:07:05.793Z  INFO 1 --- [circuithouse] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+app-1  | 2026-07-25T05:07:05.899Z  INFO 1 --- [circuithouse] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2ed84be9
+app-1  | 2026-07-25T05:07:05.900Z  INFO 1 --- [circuithouse] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+app-1  | 2026-07-25T05:07:05.920Z  WARN 1 --- [circuithouse] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+app-1  | 2026-07-25T05:07:05.930Z  INFO 1 --- [circuithouse] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+app-1  | 	Database JDBC URL [jdbc:postgresql://db:5432/circuithouse]
+app-1  | 	Database driver: PostgreSQL JDBC Driver
+app-1  | 	Database dialect: PostgreSQLDialect
+app-1  | 	Database version: 16.14
+app-1  | 	Default catalog/schema: circuithouse/public
+app-1  | 	Autocommit mode: undefined/unknown
+app-1  | 	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+app-1  | 	JDBC fetch size: none
+app-1  | 	Pool: DataSourceConnectionProvider
+app-1  | 	Minimum pool size: undefined/unknown
+app-1  | 	Maximum pool size: undefined/unknown
+app-1  | 2026-07-25T05:07:06.448Z  INFO 1 --- [circuithouse] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+app-1  | 2026-07-25T05:07:06.485Z  WARN 1 --- [circuithouse] [           main] org.hibernate.orm.jdbc.warn              : HHH000247: ErrorCode: 0, SQLState: 00000
+app-1  | 2026-07-25T05:07:06.485Z  WARN 1 --- [circuithouse] [           main] org.hibernate.orm.jdbc.warn              : constraint "ukh68poyy7uqbi9nwfu78u0lbqj" of relation "menu_item_category" does not exist, skipping
+app-1  | 2026-07-25T05:07:06.489Z  INFO 1 --- [circuithouse] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+app-1  | 2026-07-25T05:07:06.524Z  INFO 1 --- [circuithouse] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+app-1  | 2026-07-25T05:07:06.656Z  INFO 1 --- [circuithouse] [           main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+app-1  | 2026-07-25T05:07:06.656Z  WARN 1 --- [circuithouse] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+app-1  | 2026-07-25T05:07:06.675Z  WARN 1 --- [circuithouse] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+app-1  | 2026-07-25T05:07:06.791Z  INFO 1 --- [circuithouse] [           main] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page: class path resource [static/index.html]
+app-1  | 2026-07-25T05:07:06.984Z  INFO 1 --- [circuithouse] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+app-1  | 2026-07-25T05:07:07.021Z  INFO 1 --- [circuithouse] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+app-1  | 2026-07-25T05:07:07.026Z  INFO 1 --- [circuithouse] [           main] c.c.CircuithousebackendApplication       : Started CircuithousebackendApplication in 2.613 seconds (process running for 2.843)
+app-1  | Default admin user created.
+app-1  | Regular user created: user@example.com
+app-1  | 2026-07-25T05:07:09.270Z  INFO 1 --- [circuithouse] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+app-1  | 2026-07-25T05:07:09.270Z  INFO 1 --- [circuithouse] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+app-1  | 2026-07-25T05:07:09.271Z  INFO 1 --- [circuithouse] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+db-1   | The files belonging to this database system will be owned by user "postgres".
+db-1   | This user must also own the server process.
+db-1   | 
+db-1   | The database cluster will be initialized with locale "en_US.utf8".
+db-1   | The default database encoding has accordingly been set to "UTF8".
+db-1   | The default text search configuration will be set to "english".
+db-1   | 
+db-1   | Data page checksums are disabled.
+db-1   | 
+db-1   | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1   | creating subdirectories ... ok
+db-1   | selecting dynamic shared memory implementation ... posix
+db-1   | selecting default max_connections ... 100
+db-1   | selecting default shared_buffers ... 128MB
+db-1   | selecting default time zone ... UTC
+db-1   | creating configuration files ... ok
+db-1   | running bootstrap script ... ok
+db-1   | sh: locale: not found
+db-1   | 2026-07-25 05:06:53.835 UTC [35] WARNING:  no usable system locales were found
+db-1   | performing post-bootstrap initialization ... ok
+db-1   | initdb: warning: enabling "trust" authentication for local connections
+db-1   | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1   | syncing data to disk ... ok
+db-1   | 
+db-1   | 
+db-1   | Success. You can now start the database server using:
+db-1   | 
+db-1   |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1   | 
+db-1   | waiting for server to start....2026-07-25 05:06:54.067 UTC [41] LOG:  starting PostgreSQL 16.14 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+db-1   | 2026-07-25 05:06:54.068 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1   | 2026-07-25 05:06:54.069 UTC [44] LOG:  database system was shut down at 2026-07-25 05:06:53 UTC
+db-1   | 2026-07-25 05:06:54.071 UTC [41] LOG:  database system is ready to accept connections
+db-1   |  done
+db-1   | server started
+db-1   | CREATE DATABASE
+db-1   | 
+db-1   | 
+db-1   | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db-1   | 
+db-1   | waiting for server to shut down....2026-07-25 05:06:54.200 UTC [41] LOG:  received fast shutdown request
+db-1   | 2026-07-25 05:06:54.201 UTC [41] LOG:  aborting any active transactions
+db-1   | 2026-07-25 05:06:54.202 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+db-1   | 2026-07-25 05:06:54.202 UTC [42] LOG:  shutting down
+db-1   | 2026-07-25 05:06:54.202 UTC [42] LOG:  checkpoint starting: shutdown immediate
+db-1   | 2026-07-25 05:06:54.220 UTC [42] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.010 s, total=0.019 s; sync files=301, longest=0.003 s, average=0.001 s; distance=4283 kB, estimate=4283 kB; lsn=0/1925D20, redo lsn=0/1925D20
+db-1   | 2026-07-25 05:06:54.222 UTC [41] LOG:  database system is shut down
+db-1   |  done
+db-1   | server stopped
+db-1   | 
+db-1   | PostgreSQL init process complete; ready for start up.
+db-1   | 
+db-1   | 2026-07-25 05:06:54.314 UTC [1] LOG:  starting PostgreSQL 16.14 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+db-1   | 2026-07-25 05:06:54.314 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1   | 2026-07-25 05:06:54.314 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1   | 2026-07-25 05:06:54.315 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1   | 2026-07-25 05:06:54.317 UTC [57] LOG:  database system was shut down at 2026-07-25 05:06:54 UTC
+db-1   | 2026-07-25 05:06:54.318 UTC [1] LOG:  database system is ready to accept connections
+

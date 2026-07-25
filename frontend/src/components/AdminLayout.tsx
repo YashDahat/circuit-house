@@ -4,7 +4,11 @@ import { ROUTES } from '@/routes';
 import { Home, Utensils, Calendar, ClipboardList, BookOpen } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
-const AdminLayout: React.FC = () => {
+interface AdminLayoutProps {
+  children?: React.ReactNode;
+}
+
+const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const { logout } = useAuth();
 
   const adminNavItems = [
@@ -51,7 +55,7 @@ const AdminLayout: React.FC = () => {
           {/* User info or other header elements can go here */}
         </header>
         <div className="flex-1 p-6 overflow-auto">
-          <Outlet />
+          {children ?? <Outlet />}
         </div>
       </main>
     </div>

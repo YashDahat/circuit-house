@@ -1,7 +1,7 @@
-import { Layout } from '@/components/Layout';
+import Layout from '@/components/Layout';
 import { EventsList } from '@/components/events/EventsList';
 import { useGetUpcomingEvents } from '@/hooks/useEvents';
-import { Spinner } from '@/components/ui/Spinner';
+import { Spinner } from '@/components/ui/spinner';
 
 const EventsPage = () => {
   const { data: events, isLoading, isError, error } = useGetUpcomingEvents();

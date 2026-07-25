@@ -25,26 +25,23 @@ const OrderCartView: React.FC = () => {
             {cartItems.map((item) => (
               <div key={item.menuItemId} className="flex items-center justify-between border-b pb-4 last:border-b-0 last:pb-0">
                 <div className="flex items-center space-x-4">
-                  {item.imageUrl && (
-                    <img src={item.imageUrl} alt={item.name ?? 'Menu Item'} className="w-16 h-16 object-cover rounded-md" />
-                  )}
                   <div>
-                    <h3 className="font-medium text-[#2D3748]">{item.name}</h3>
-                    <p className="text-sm text-gray-600">${item.priceAtOrder?.toFixed(2)}</p>
+                    <h3 className="font-medium text-[#2D3748]">{item.menuItemName}</h3>
+                    <p className="text-sm text-gray-600">${item.price.toFixed(2)}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Input
                     type="number"
                     min="1"
-                    value={item.quantity}
-                    onChange={(e) => updateItemQuantity(item.menuItemId, parseInt(e.target.value))}
+                    value={item.quantity ?? 1}
+                    onChange={(e) => updateItemQuantity(item.menuItemId ?? '', parseInt(e.target.value))}
                     className="w-20 text-center"
                   />
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => removeItem(item.menuItemId)}
+                    onClick={() => removeItem(item.menuItemId ?? '')}
                     className="text-red-500 hover:text-red-700 transition-all duration-200"
                   >
                     <Trash2 className="h-5 w-5" />
@@ -61,7 +58,7 @@ const OrderCartView: React.FC = () => {
             <Button onClick={clearCart} variant="outline" className="w-full text-gray-700 border-gray-300 hover:bg-gray-50 transition-all duration-200">
               Clear Cart
             </Button>
-            <Link to={ROUTES.ORDER_CONFIRMATION}> {/* This will be updated to point to the checkout form */}
+            <Link to={ROUTES.ORDER_CONFIRMATION}>
               <Button className="w-full bg-[#D69E2E] hover:bg-[#B7872A] text-white font-semibold rounded-md py-3 transition-all duration-200">
                 Proceed to Checkout
               </Button>

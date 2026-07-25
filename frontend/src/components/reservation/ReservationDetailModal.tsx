@@ -1,4 +1,5 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from '@radix-ui/react-dialog';
+import { DialogHeader } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } from '@radix-ui/react-dialog';
 import { Button } from '@/components/ui/button';
 import { Label } from '@radix-ui/react-label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
@@ -30,7 +31,7 @@ export function ReservationDetailModal({ reservation, isOpen, onClose }: Reserva
   const handleUpdateStatus = async () => {
     if (reservation?.id && currentStatus && currentStatus !== reservation.status) {
       try {
-        await updateStatusMutation.mutateAsync({ id: reservation.id, newStatus: currentStatus as ReservationStatus });
+        await updateStatusMutation.mutateAsync(reservation.id);
         onClose();
       } catch (error) {
         console.error("Failed to update reservation status:", error);

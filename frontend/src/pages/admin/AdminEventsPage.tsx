@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AdminLayout } from '@/components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { EventForm } from '@/components/events/EventForm';
 import { EventsTable } from '@/components/events/EventsTable';
@@ -16,10 +16,7 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@radix-ui/react-alert-dialog';
 import { PlusCircle } from 'lucide-react';
 
@@ -126,21 +123,21 @@ export default function AdminEventsPage() {
           />
 
           <AlertDialog open={!!eventToDelete} onOpenChange={(open) => !open && setEventToDelete(null)}>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
+            <AlertDialogContent className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-white rounded-lg p-6 shadow-lg z-50 w-full max-w-md">
+              <div>
+                <AlertDialogTitle className="text-lg font-semibold">Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription className="text-gray-500 mt-2">
                   This action cannot be undone. This will permanently delete the event.
                 </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
+              </div>
+              <div className="flex justify-end gap-2 mt-4">
                 <AlertDialogCancel asChild>
                   <Button variant="outline" onClick={() => setEventToDelete(null)}>Cancel</Button>
                 </AlertDialogCancel>
                 <AlertDialogAction asChild>
                   <Button variant="destructive" onClick={confirmDeleteEvent}>Delete</Button>
                 </AlertDialogAction>
-              </AlertDialogFooter>
+            </div>
             </AlertDialogContent>
           </AlertDialog>
         </div>

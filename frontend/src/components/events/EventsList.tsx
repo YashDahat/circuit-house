@@ -1,5 +1,5 @@
 import { EventDto } from '@/types/event';
-import { EventCard } from './EventCard';
+import EventCard from './EventCard';
 
 interface EventsListProps {
   events: EventDto[];
