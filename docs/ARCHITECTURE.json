@@ -1816,14 +1816,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "React context for managing global authentication state (user, token, login/logout functions).",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "AuthContext.Provider",
+      "parameters" : [ "React.ReactNode children" ],
+      "return_type" : "JSX.Element",
+      "description" : "Provides the authentication context to its children. Manages `user` (User | null), `token` (string | null), `login(username: string, password: string): Promise<void>`, and `logout(): void`."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "auth-frontend",
-    "file_role" : null,
+    "file_role" : "React context for managing global authentication state (user, token, login/logout functions). It provides the `AuthContext.Provider` to wrap the application and expose the authentication state.",
     "change_required" : null
   }, {
     "file_name" : "useAuth.ts",
@@ -1834,14 +1839,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Custom hook providing easy access to the authentication context and actions.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "useAuth",
+      "parameters" : [ ],
+      "return_type" : "{ user: User | null, token: string | null, login: (username: string, password: string) => Promise<void>, logout: () => void }",
+      "description" : "Returns the current authentication state and functions from AuthContext."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/context/AuthContext.tsx", "frontend/src/services/authService.ts" ],
     "depends_on" : [ ],
     "feature_name" : "auth-frontend",
-    "file_role" : null,
+    "file_role" : "Custom hook providing easy access to the authentication context and actions. It exports the `useAuth()` function.",
     "change_required" : null
   }, {
     "file_name" : "authService.ts",
@@ -1852,14 +1862,26 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Service for handling authentication API calls (login).",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "login",
+      "parameters" : [ "LoginCredentials credentials" ],
+      "return_type" : "Promise<LoginResponse>",
+      "description" : "Authenticates a user by sending credentials to the backend and returns a LoginResponse with a JWT token."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/auth/login",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Authenticates user credentials and returns a JWT token.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/auth.ts" ],
     "depends_on" : [ ],
     "feature_name" : "auth-frontend",
-    "file_role" : null,
+    "file_role" : "Service for handling authentication API calls (login). It exports the `login(credentials: LoginCredentials): Promise<LoginResponse>` function.",
     "change_required" : null
   }, {
     "file_name" : "auth.ts",
@@ -1870,14 +1892,26 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for authentication data structures.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "LoginCredentials",
+      "type" : "{ username: string; password: string; }",
+      "description" : "Interface for user login credentials."
+    }, {
+      "name" : "LoginResponse",
+      "type" : "{ token: string; }",
+      "description" : "Interface for the response received after a successful login, containing the JWT token."
+    }, {
+      "name" : "User",
+      "type" : "{ id: string; username: string; roles: string[]; }",
+      "description" : "Interface for the authenticated user's details, typically derived from the JWT token."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "auth-frontend",
-    "file_role" : null,
+    "file_role" : "TypeScript types and interfaces for authentication data structures. Generated from the backend API contract — authentication.",
     "change_required" : null
   }, {
     "file_name" : "LoginPage.tsx",
@@ -1888,14 +1922,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "Admin login page with a simple form for username and password.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "LoginPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the login form for administrators."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useAuth.ts" ],
     "depends_on" : [ ],
     "feature_name" : "auth-frontend",
-    "file_role" : null,
+    "file_role" : "Admin login page with a simple form for username and password. It uses the `useAuth` hook to perform login and redirects on success.",
     "change_required" : null
   }, {
     "file_name" : "ProtectedRoute.tsx",
@@ -1906,14 +1945,19 @@
     "updated_date" : "2024-07-27",
     "status" : "PLANNED",
     "description" : "A wrapper component that restricts access to admin routes, redirecting unauthenticated users.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "ProtectedRoute",
+      "parameters" : [ "{ children: React.ReactNode } props" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders children if authenticated, otherwise redirects to the login page."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useAuth.ts" ],
     "depends_on" : [ ],
     "feature_name" : "auth-frontend",
-    "file_role" : null,
+    "file_role" : "A wrapper component that restricts access to admin routes, redirecting unauthenticated users. It exports the `ProtectedRoute` component.",
     "change_required" : null
   }, {
     "file_name" : "HomePage.tsx",
@@ -3028,8 +3072,8 @@
     "feature_display_name" : "Authentication (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/context/AuthContext.tsx", "frontend/src/hooks/useAuth.ts", "frontend/src/services/authService.ts", "frontend/src/types/auth.ts", "frontend/src/pages/LoginPage.tsx", "frontend/src/components/shared/ProtectedRoute.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "This feature provides the frontend authentication mechanism for the Circuit House admin portal. It includes a React Context (`AuthContext.tsx`) to manage the global authentication state, a custom hook (`useAuth.ts`) for easy access to this context, a service (`authService.ts`) to interact with the backend authentication API, and a type definition file (`auth.ts`). It also includes a login page (`LoginPage.tsx`) for administrators to authenticate and a protected route component (`ProtectedRoute.tsx`) to guard admin-only sections of the application.\n\n## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B78826] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-gray-50 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\n### AuthContext.tsx\nThis file defines the `AuthContext` which holds the authentication state, including the `user` object (of type `User` from `auth.ts`) and the `token` (string). It provides `login` and `logout` functions. The `login` function takes `username` and `password`, calls `authService.login`, stores the received `token` in `localStorage` under the key 'token', and updates the context state. The `logout` function clears the `token` from `localStorage` and resets the context state. The `AuthContext.Provider` wraps the application, making the authentication state and functions available to all child components.\n\n### useAuth.ts\nThis custom hook provides a convenient way for components to access the authentication state and actions from `AuthContext`. It exports a `useAuth` function that returns the `user`, `token`, `login`, and `logout` functions.\n\n### authService.ts\nThis service handles the actual API call for user login. It exports an `async` function `login(credentials: LoginCredentials): Promise<LoginResponse>`. This function makes a POST request to `/api/v1/auth/login` with the provided `username` and `password`. On successful login, it returns a `LoginResponse` containing the JWT token. It uses the `apiClient` from `frontend/src/api/client.ts` for making the HTTP request.\n\n### auth.ts\nThis file defines the TypeScript interfaces for authentication-related data structures:\n- `LoginCredentials`: `username: string`, `password: string`\n- `LoginResponse`: `token: string`\n- `User`: `id: string`, `username: string`, `roles: string[]` (This `User` interface represents the decoded information from the JWT token, not necessarily the full user profile from the backend. For this feature, a simple `username` and `roles` array is sufficient).\n\n### LoginPage.tsx\nThis page provides the user interface for administrators to log in. It uses the `useAuth` hook to access the `login` function. The page displays a form with fields for `username` and `password`. Upon successful login, the user is redirected to the `/admin/dashboard` route. The page should have a clean, modern layout with the Circuit House branding. The form should be centered and visually appealing, using the defined design tokens for colors and typography. The 'Login' button should use the Primary CTA design token.\n\n### ProtectedRoute.tsx\nThis component acts as a guard for routes that require authentication. It takes `children` as props. It uses the `useAuth` hook to check if a `token` exists in the authentication context. If no `token` is present, it redirects the user to the `/admin/login` page. Otherwise, it renders the `children` components. This ensures that only authenticated users can access specific routes, typically admin routes.",
+    "depends_on_features" : [ ],
     "change_required" : true,
     "change_instruction" : null
   }, {
