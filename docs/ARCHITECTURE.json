@@ -202,8 +202,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-30",
-    "updated_date" : "2024-07-30",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "GENERATED",
     "description" : "Configures web security, including JWT filter chain, CORS, and public/protected routes.",
     "public_functions" : [ {
       "name" : "securityFilterChain",
@@ -273,8 +273,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-30",
-    "updated_date" : "2024-07-30",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "GENERATED",
     "description" : "A per-request servlet filter that validates JWTs and sets the security context.",
     "public_functions" : [ {
       "name" : "doFilterInternal",
@@ -319,8 +319,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-30",
-    "updated_date" : "2024-07-30",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "GENERATED",
     "description" : "Initializes the default admin user on application startup if one does not exist.",
     "public_functions" : [ {
       "name" : "run",
@@ -342,8 +342,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-30",
-    "updated_date" : "2024-07-30",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-25",
+    "status" : "GENERATED",
     "description" : "Populates the database with initial sample data for development and demonstration.",
     "public_functions" : [ {
       "name" : "run",
