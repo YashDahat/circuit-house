@@ -2034,14 +2034,14 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Configures the global Axios instance with base URL and interceptors for auth tokens.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — configures the global Axios instance with base URL and an interceptor for attaching JWT tokens and handling 401 errors.",
     "change_required" : null
   }, {
     "file_name" : "App.tsx",
@@ -2052,14 +2052,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Root component that sets up the main router and application-wide contexts.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "App",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "The main application component that renders the router and global contexts."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-frontend",
-    "file_role" : null,
+    "file_role" : "Root component — sets up the main router, application-wide contexts, and defines public and admin routes.",
     "change_required" : null
   }, {
     "file_name" : "Layout.tsx",
@@ -2070,14 +2075,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Main layout for public pages, including the header, footer, and main content area.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Layout",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the header, footer, and wraps the provided children in a main content area."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "core-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides the consistent layout for all public pages, including header, footer, and a main content area.",
     "change_required" : null
   }, {
     "file_name" : "Header.tsx",
@@ -2088,14 +2098,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Site-wide header with logo, navigation links, and call-to-action buttons.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Header",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main navigation header for the application."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — renders the site-wide header with logo, navigation links, and a call-to-action button.",
     "change_required" : null
   }, {
     "file_name" : "Footer.tsx",
@@ -2106,14 +2121,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Site-wide footer with contact information, social links, and quick navigation.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Footer",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main footer for the application with business details and navigation."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — renders the site-wide footer with contact information, social links, and quick navigation.",
     "change_required" : null
   }, {
     "file_name" : "seoUtils.ts",
@@ -2124,14 +2144,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Utilities for generating and embedding JSON-LD schema markup for SEO.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "generateRestaurantSchema",
+      "parameters" : [ "string name", "string address", "string phone", "string latitude", "string longitude", "string openingHours", "string menuUrl", "string reservationUrl" ],
+      "return_type" : "object",
+      "description" : "Generates a JSON-LD schema object for a Restaurant."
+    }, {
+      "name" : "embedSchema",
+      "parameters" : [ "object schema" ],
+      "return_type" : "void",
+      "description" : "Embeds a JSON-LD schema object into the document's head."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-frontend",
-    "file_role" : null,
+    "file_role" : "UTILITY layer — provides functions for generating and embedding JSON-LD schema markup for SEO.",
     "change_required" : null
   }, {
     "file_name" : "AuthContext.tsx",
@@ -3354,8 +3384,8 @@
     "feature_display_name" : "Core Frontend",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/api/client.ts", "frontend/src/App.tsx", "frontend/src/components/Layout.tsx", "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx", "frontend/src/utils/seoUtils.ts" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The `core-frontend` feature establishes the foundational structure and global utilities for the Circuit House restaurant's web application. It includes the main application entry point (`App.tsx`), the global Axios client configuration (`client.ts`), the primary public page layout (`Layout.tsx`), and its constituent components (`Header.tsx`, `Footer.tsx`), and SEO utilities (`seoUtils.ts`).\n\n## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#C28B2A] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\n### `client.ts`\nThis file configures the global Axios instance. It sets the `baseURL` to `/api/v1` for all requests. It also includes an interceptor that automatically attaches the JWT token from `localStorage` (using the key 'token') to the `Authorization` header for every outgoing request. This ensures that all authenticated API calls are made correctly. The interceptor also handles error responses, specifically logging 401 Unauthorized errors and redirecting to the login page if `AuthContext` is available.\n\n### `App.tsx`\nThis is the root component of the application. It sets up the `BrowserRouter` from `react-router-dom` to manage client-side routing. It will wrap the entire application with necessary context providers, such as `AuthContext` (from `auth-frontend`) and `QueryClientProvider` (from `react-query`). The main routes for public pages (e.g., home, menu, about, contact, reservations, events, order, order status, order confirmation) and admin pages will be defined here. Public pages will use the `Layout` component, while admin pages will use `AdminLayout` (from `admin-portal-frontend`). A `ProtectedRoute` (from `auth-frontend`) will guard admin routes.\n\n### `Layout.tsx`\nThis component provides the consistent layout for all public-facing pages. It renders the `Header` component at the top, the `Footer` component at the bottom, and a `main` content area in between. The `main` content area will receive `children` as props, allowing individual pages to inject their specific content. The layout ensures a responsive design and applies global styling based on the design tokens.\n\n### `Header.tsx`\nThis component renders the site-wide header. It includes the Circuit House logo (linking to the home page), primary navigation links (Home, Menu, Reservations, Events, About, Contact), and a prominent 'Order Online' call-to-action button. The navigation links will use `NavLink` from `react-router-dom` for active link styling. The 'Order Online' button will navigate to the `/order` page. The header will be styled with `bg-[#1A202C]` and `text-white`.\n\n### `Footer.tsx`\nThis component renders the site-wide footer. It displays the restaurant's contact information (address: Laxman Nagar, Baner, Pune, Maharashtra 411045; phone: 070587 56269), opening hours, social media links (placeholder icons), and quick navigation links (e.g., Privacy Policy, Terms of Service). The footer will be styled with `bg-[#1A202C]` and `text-white`.\n\n### `seoUtils.ts`\nThis utility file provides functions to generate JSON-LD schema markup. The `generateRestaurantSchema` function will take restaurant details (name, address, phone, coordinates, opening hours, menu URL, reservation URL) and return a JSON-LD object for a `Restaurant` type. The `embedSchema` function will take a JSON-LD object and inject it into the document's `<head>` as a `<script type=\"application/ld+json\">` tag. This will be used by pages like `HomePage.tsx` and `AboutPage.tsx` to enhance SEO.",
+    "depends_on_features" : [ "auth-frontend", "static-pages-frontend", "menu-display-frontend", "reservation-booking-frontend", "order-checkout-frontend", "events-display-frontend", "testimonials-display-frontend", "admin-portal-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
