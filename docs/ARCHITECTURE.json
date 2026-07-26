@@ -205,13 +205,37 @@
     "status" : "PLANNED",
     "description" : "Represents a single food or beverage item on the menu.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "Long",
+      "description" : "Unique identifier for the menu item. Not null."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the menu item. Not null, max 100 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Description of the menu item. Nullable, max 500 characters."
+    }, {
+      "name" : "price",
+      "type" : "BigDecimal",
+      "description" : "Price of the menu item. Not null, decimal(10,2)."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL of the image for the menu item. Nullable, max 255 characters."
+    }, {
+      "name" : "category",
+      "type" : "MenuItemCategory",
+      "description" : "The category this menu item belongs to. Not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/MenuItemCategory.java" ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — represents a single food or beverage item on the menu, linked to a category.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemCategory.java",
@@ -223,13 +247,25 @@
     "status" : "PLANNED",
     "description" : "Represents a category for menu items, such as 'Appetizers' or 'Main Courses'.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "Long",
+      "description" : "Unique identifier for the menu item category. Not null."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the category. Not null, max 50 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Description of the category. Nullable, max 255 characters."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — represents a category for menu items.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemRepository.java",
@@ -240,14 +276,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on MenuItem entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findByCategoryId",
+      "parameters" : [ "Long categoryId" ],
+      "return_type" : "List<MenuItem>",
+      "description" : "Retrieves all menu items belonging to a specific category ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/MenuItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides CRUD operations for MenuItem entities and custom queries.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemCategoryRepository.java",
@@ -258,14 +299,14 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on MenuItemCategory entities.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/MenuItemCategory.java" ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides CRUD operations for MenuItemCategory entities.",
     "change_required" : null
   }, {
     "file_name" : "MenuService.java",
@@ -276,14 +317,59 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Handles business logic for managing menu items and categories.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllMenuItems",
+      "parameters" : [ ],
+      "return_type" : "List<MenuItemDto>",
+      "description" : "Retrieves all menu items, mapped to DTOs."
+    }, {
+      "name" : "getMenuItemsByCategory",
+      "parameters" : [ "Long categoryId" ],
+      "return_type" : "List<MenuItemDto>",
+      "description" : "Retrieves menu items by category ID, mapped to DTOs. Throws ResourceNotFoundException if category does not exist."
+    }, {
+      "name" : "getAllMenuItemCategories",
+      "parameters" : [ ],
+      "return_type" : "List<MenuItemCategoryDto>",
+      "description" : "Retrieves all menu item categories, mapped to DTOs."
+    }, {
+      "name" : "createMenuItem",
+      "parameters" : [ "MenuItemDto menuItemDto" ],
+      "return_type" : "MenuItemDto",
+      "description" : "Creates a new menu item. Throws IllegalArgumentException if category ID is invalid."
+    }, {
+      "name" : "updateMenuItem",
+      "parameters" : [ "Long id", "MenuItemDto menuItemDto" ],
+      "return_type" : "MenuItemDto",
+      "description" : "Updates an existing menu item. Throws ResourceNotFoundException if item not found, or IllegalArgumentException if category ID is invalid."
+    }, {
+      "name" : "deleteMenuItem",
+      "parameters" : [ "Long id" ],
+      "return_type" : "void",
+      "description" : "Deletes a menu item by ID. Throws ResourceNotFoundException if item not found."
+    }, {
+      "name" : "createMenuItemCategory",
+      "parameters" : [ "MenuItemCategoryDto categoryDto" ],
+      "return_type" : "MenuItemCategoryDto",
+      "description" : "Creates a new menu item category."
+    }, {
+      "name" : "updateMenuItemCategory",
+      "parameters" : [ "Long id", "MenuItemCategoryDto categoryDto" ],
+      "return_type" : "MenuItemCategoryDto",
+      "description" : "Updates an existing menu item category. Throws ResourceNotFoundException if category not found."
+    }, {
+      "name" : "deleteMenuItemCategory",
+      "parameters" : [ "Long id" ],
+      "return_type" : "void",
+      "description" : "Deletes a menu item category by ID. Throws ResourceNotFoundException if category not found."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/repository/MenuItemRepository.java", "backend/src/main/java/com/circuithouse/repository/MenuItemCategoryRepository.java", "backend/src/main/java/com/circuithouse/dto/MenuItemDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements business logic for menu items and categories, exposing methods like getAllMenuItems(): List<MenuItemDto> and createMenuItem(MenuItemDto menuItemDto): MenuItemDto.",
     "change_required" : null
   }, {
     "file_name" : "MenuController.java",
@@ -294,14 +380,50 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Public-facing REST controller for fetching the digital menu.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllMenuItems",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<MenuItemDto>>",
+      "description" : "Handles GET requests for all menu items."
+    }, {
+      "name" : "getMenuItemsByCategory",
+      "parameters" : [ "Long categoryId" ],
+      "return_type" : "ResponseEntity<List<MenuItemDto>>",
+      "description" : "Handles GET requests for menu items by category."
+    }, {
+      "name" : "getAllMenuItemCategories",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<MenuItemCategoryDto>>",
+      "description" : "Handles GET requests for all menu item categories."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/menus/items",
+      "request_body" : null,
+      "response_body" : "List<MenuItemDto>",
+      "description" : "Retrieves all menu items.",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/menus/items/category/{categoryId}",
+      "request_body" : null,
+      "response_body" : "List<MenuItemDto>",
+      "description" : "Retrieves menu items by category ID.",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/menus/categories",
+      "request_body" : null,
+      "response_body" : "List<MenuItemCategoryDto>",
+      "description" : "Retrieves all menu item categories.",
+      "access" : "public"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/MenuService.java" ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — provides public-facing REST endpoints for fetching menu items and categories.",
     "change_required" : null
   }, {
     "file_name" : "AdminMenuController.java",
@@ -312,14 +434,86 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin-only REST controller for CRUD operations on menu items and categories.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createMenuItem",
+      "parameters" : [ "MenuItemDto menuItemDto" ],
+      "return_type" : "ResponseEntity<MenuItemDto>",
+      "description" : "Handles POST requests to create a new menu item."
+    }, {
+      "name" : "updateMenuItem",
+      "parameters" : [ "Long id", "MenuItemDto menuItemDto" ],
+      "return_type" : "ResponseEntity<MenuItemDto>",
+      "description" : "Handles PUT requests to update an existing menu item."
+    }, {
+      "name" : "deleteMenuItem",
+      "parameters" : [ "Long id" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Handles DELETE requests to delete a menu item."
+    }, {
+      "name" : "createMenuItemCategory",
+      "parameters" : [ "MenuItemCategoryDto categoryDto" ],
+      "return_type" : "ResponseEntity<MenuItemCategoryDto>",
+      "description" : "Handles POST requests to create a new menu item category."
+    }, {
+      "name" : "updateMenuItemCategory",
+      "parameters" : [ "Long id", "MenuItemCategoryDto categoryDto" ],
+      "return_type" : "ResponseEntity<MenuItemCategoryDto>",
+      "description" : "Handles PUT requests to update an existing menu item category."
+    }, {
+      "name" : "deleteMenuItemCategory",
+      "parameters" : [ "Long id" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Handles DELETE requests to delete a menu item category."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/admin/menus/items",
+      "request_body" : "MenuItemDto",
+      "response_body" : "MenuItemDto",
+      "description" : "Creates a new menu item.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/menus/items/{id}",
+      "request_body" : "MenuItemDto",
+      "response_body" : "MenuItemDto",
+      "description" : "Updates an existing menu item.",
+      "access" : "admin"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/menus/items/{id}",
+      "request_body" : null,
+      "response_body" : "Void",
+      "description" : "Deletes a menu item by ID.",
+      "access" : "admin"
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/menus/categories",
+      "request_body" : "MenuItemCategoryDto",
+      "response_body" : "MenuItemCategoryDto",
+      "description" : "Creates a new menu item category.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/menus/categories/{id}",
+      "request_body" : "MenuItemCategoryDto",
+      "response_body" : "MenuItemCategoryDto",
+      "description" : "Updates an existing menu item category.",
+      "access" : "admin"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/menus/categories/{id}",
+      "request_body" : null,
+      "response_body" : "Void",
+      "description" : "Deletes a menu item category by ID.",
+      "access" : "admin"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/MenuService.java" ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — provides admin-only REST endpoints for CRUD operations on menu items and categories.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemDto.java",
@@ -331,13 +525,37 @@
     "status" : "PLANNED",
     "description" : "Data Transfer Object for MenuItem entities, used in API responses.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "Long",
+      "description" : "Unique identifier for the menu item. Read-only."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the menu item. Not null, min 2, max 100 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Description of the menu item. Nullable, max 500 characters."
+    }, {
+      "name" : "price",
+      "type" : "BigDecimal",
+      "description" : "Price of the menu item. Not null, must be positive."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL of the image for the menu item. Nullable, max 255 characters."
+    }, {
+      "name" : "categoryId",
+      "type" : "Long",
+      "description" : "ID of the category this menu item belongs to. Not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — Data Transfer Object for MenuItem entities, used in API requests and responses.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemCategoryDto.java",
@@ -349,13 +567,25 @@
     "status" : "PLANNED",
     "description" : "Data Transfer Object for MenuItemCategory entities.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "Long",
+      "description" : "Unique identifier for the menu item category. Read-only."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the category. Not null, min 2, max 50 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Description of the category. Nullable, max 255 characters."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-management-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — Data Transfer Object for MenuItemCategory entities, used in API requests and responses.",
     "change_required" : null
   }, {
     "file_name" : "Reservation.java",
@@ -2244,8 +2474,8 @@
     "feature_display_name" : "Menu Management (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/model/MenuItem.java", "backend/src/main/java/com/circuithouse/model/MenuItemCategory.java", "backend/src/main/java/com/circuithouse/repository/MenuItemRepository.java", "backend/src/main/java/com/circuithouse/repository/MenuItemCategoryRepository.java", "backend/src/main/java/com/circuithouse/service/MenuService.java", "backend/src/main/java/com/circuithouse/controller/MenuController.java", "backend/src/main/java/com/circuithouse/controller/admin/AdminMenuController.java", "backend/src/main/java/com/circuithouse/dto/MenuItemDto.java", "backend/src/main/java/com/circuithouse/dto/MenuItemCategoryDto.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Menu Management (Backend) feature provides a comprehensive API for managing and displaying Circuit House's menu items and categories. It consists of two model entities, `MenuItem` and `MenuItemCategory`, which represent the core data structures. `MenuItem` includes fields such as `name`, `description`, `price`, `imageUrl`, and a many-to-one relationship with `MenuItemCategory`. `MenuItemCategory` has `name` and `description` fields.\n\nTwo Spring Data JPA repositories, `MenuItemRepository` and `MenuItemCategoryRepository`, handle persistence for these entities. `MenuItemRepository` provides standard CRUD operations and a custom method `findByCategoryId(Long categoryId)` to retrieve menu items belonging to a specific category. `MenuItemCategoryRepository` offers standard CRUD operations.\n\n`MenuService` encapsulates the business logic. It injects both `MenuItemRepository` and `MenuItemCategoryRepository`. It exposes methods for public consumption, such as `getAllMenuItems()` which returns a `List<MenuItemDto>`, `getMenuItemsByCategory(Long categoryId)` which returns a `List<MenuItemDto>`, and `getAllMenuItemCategories()` which returns a `List<MenuItemCategoryDto>`. For admin operations, it provides `createMenuItem(MenuItemDto menuItemDto)`, `updateMenuItem(Long id, MenuItemDto menuItemDto)`, `deleteMenuItem(Long id)`, `createMenuItemCategory(MenuItemCategoryDto categoryDto)`, `updateMenuItemCategory(Long id, MenuItemCategoryDto categoryDto)`, and `deleteMenuItemCategory(Long id)`. All DTOs are used for input and output to decouple the API from the internal entity structure. The service throws `ResourceNotFoundException` if an item or category is not found during update or delete operations.\n\n`MenuController` is the public-facing REST controller, exposing read-only endpoints for the menu. It injects `MenuService` and provides `GET /api/v1/menus/items` to fetch all menu items, `GET /api/v1/menus/items/category/{categoryId}` to fetch items by category, and `GET /api/v1/menus/categories` to fetch all categories. These endpoints return lists of `MenuItemDto` or `MenuItemCategoryDto` respectively.\n\n`AdminMenuController` is the admin-only REST controller for full CRUD operations. It also injects `MenuService`. It provides `POST /api/v1/admin/menus/items` to create a new menu item, `PUT /api/v1/admin/menus/items/{id}` to update an existing menu item, `DELETE /api/v1/admin/menus/items/{id}` to delete a menu item, `POST /api/v1/admin/menus/categories` to create a new category, `PUT /api/v1/admin/menus/categories/{id}` to update a category, and `DELETE /api/v1/admin/menus/categories/{id}` to delete a category. All admin endpoints require authentication and administrator privileges.\n\n`MenuItemDto` and `MenuItemCategoryDto` are Data Transfer Objects used to expose menu data through the API, ensuring that internal entity details are not directly exposed. `MenuItemDto` includes fields like `id`, `name`, `description`, `price`, `imageUrl`, and `categoryId`. `MenuItemCategoryDto` includes `id`, `name`, and `description`.\n\nError handling is consistent across controllers, utilizing Spring's `@ExceptionHandler` to return appropriate HTTP status codes and error messages for `ResourceNotFoundException` (404 Not Found) and `IllegalArgumentException` (400 Bad Request).",
+    "depends_on_features" : [ ],
     "change_required" : true,
     "change_instruction" : null
   }, {
