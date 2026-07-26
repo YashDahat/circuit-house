@@ -987,13 +987,49 @@
     "status" : "PLANNED",
     "description" : "Represents a customer's online food order.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the order. Not null."
+    }, {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer placing the order. Not null, max 255 characters."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer. Not null, max 255 characters, valid email format."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer. Not null, max 20 characters."
+    }, {
+      "name" : "deliveryAddress",
+      "type" : "String",
+      "description" : "Delivery address for the order. Not null, max 500 characters."
+    }, {
+      "name" : "orderTime",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the order was placed. Not null."
+    }, {
+      "name" : "totalAmount",
+      "type" : "BigDecimal",
+      "description" : "Total amount of the order. Not null, precision 10, scale 2."
+    }, {
+      "name" : "status",
+      "type" : "OrderStatus",
+      "description" : "Current status of the order. Not null."
+    }, {
+      "name" : "orderItems",
+      "type" : "List<OrderItem>",
+      "description" : "List of items included in the order. One-to-many relationship, eagerly fetched, cascade all operations."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/OrderStatus.java", "backend/src/main/java/com/circuithouse/model/OrderItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-core-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — represents a customer's online food order with associated items and status.",
     "change_required" : null
   }, {
     "file_name" : "OrderItem.java",
@@ -1005,13 +1041,37 @@
     "status" : "PLANNED",
     "description" : "Represents a single line item within an Order.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the order item. Not null."
+    }, {
+      "name" : "order",
+      "type" : "Order",
+      "description" : "The parent order this item belongs to. Many-to-one relationship, not null."
+    }, {
+      "name" : "menuItemId",
+      "type" : "Long",
+      "description" : "ID of the menu item. Not null."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the menu item. Not null, max 255 characters."
+    }, {
+      "name" : "quantity",
+      "type" : "int",
+      "description" : "Quantity of the menu item. Not null, must be greater than 0."
+    }, {
+      "name" : "price",
+      "type" : "BigDecimal",
+      "description" : "Price of a single menu item at the time of order. Not null, precision 10, scale 2."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/model/MenuItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-core-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — represents a single line item within an Order, linking to a MenuItem.",
     "change_required" : null
   }, {
     "file_name" : "OrderStatus.java",
@@ -1023,13 +1083,41 @@
     "status" : "PLANNED",
     "description" : "Enum for the status of an order (e.g., PENDING_PAYMENT, RECEIVED, PREPARING, DELIVERED).",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "PENDING_PAYMENT",
+      "type" : "OrderStatus",
+      "description" : "Order created, awaiting payment."
+    }, {
+      "name" : "RECEIVED",
+      "type" : "OrderStatus",
+      "description" : "Payment successful, order received by the restaurant."
+    }, {
+      "name" : "PREPARING",
+      "type" : "OrderStatus",
+      "description" : "Order is being prepared."
+    }, {
+      "name" : "READY_FOR_DELIVERY",
+      "type" : "OrderStatus",
+      "description" : "Order is ready and awaiting pickup/delivery."
+    }, {
+      "name" : "OUT_FOR_DELIVERY",
+      "type" : "OrderStatus",
+      "description" : "Order is out for delivery."
+    }, {
+      "name" : "DELIVERED",
+      "type" : "OrderStatus",
+      "description" : "Order has been successfully delivered."
+    }, {
+      "name" : "CANCELLED",
+      "type" : "OrderStatus",
+      "description" : "Order was cancelled."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-core-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — enum defining the possible states of an order.",
     "change_required" : null
   }, {
     "file_name" : "OrderRepository.java",
@@ -1040,14 +1128,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on Order entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findByCustomerEmail",
+      "parameters" : [ "String customerEmail" ],
+      "return_type" : "List<Order>",
+      "description" : "Finds all orders placed by a specific customer email."
+    }, {
+      "name" : "findByStatus",
+      "parameters" : [ "OrderStatus status" ],
+      "return_type" : "List<Order>",
+      "description" : "Finds all orders with a specific status."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-core-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — Spring Data JPA repository for CRUD operations on Order entities.",
     "change_required" : null
   }, {
     "file_name" : "OrderItemRepository.java",
@@ -1058,14 +1156,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on OrderItem entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findByOrderId",
+      "parameters" : [ "UUID orderId" ],
+      "return_type" : "List<OrderItem>",
+      "description" : "Finds all order items belonging to a specific order ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/OrderItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-core-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — Spring Data JPA repository for CRUD operations on OrderItem entities.",
     "change_required" : null
   }, {
     "file_name" : "OrderService.java",
@@ -1076,14 +1179,39 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Handles business logic for creating and managing orders, including payment integration.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createOrder",
+      "parameters" : [ "CreateOrderRequest request" ],
+      "return_type" : "OrderResponseDto",
+      "description" : "1. Validates menu items and quantities using MenuItemRepository. 2. Calculates total amount. 3. Creates and saves a new Order with status PENDING_PAYMENT. 4. Creates and saves OrderItems. 5. Returns the created order as OrderResponseDto. Throws ResourceNotFoundException if a menu item is not found, IllegalArgumentException if quantity is invalid."
+    }, {
+      "name" : "getOrderById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "OrderResponseDto",
+      "description" : "1. Retrieves an order by its ID from OrderRepository. 2. Throws ResourceNotFoundException if the order does not exist. 3. Returns the order as OrderResponseDto."
+    }, {
+      "name" : "updateOrderStatus",
+      "parameters" : [ "UUID id", "UpdateOrderStatusRequest request" ],
+      "return_type" : "OrderResponseDto",
+      "description" : "1. Retrieves an order by its ID from OrderRepository. 2. Throws ResourceNotFoundException if the order does not exist. 3. Updates the order's status. 4. Saves the updated order. 5. Sends a notification via NotificationService about the status change. 6. Returns the updated order as OrderResponseDto. Throws IllegalArgumentException if the status transition is invalid."
+    }, {
+      "name" : "getAllOrders",
+      "parameters" : [ ],
+      "return_type" : "List<OrderResponseDto>",
+      "description" : "1. Retrieves all orders from OrderRepository. 2. Returns a list of OrderResponseDto."
+    }, {
+      "name" : "getOrdersByStatus",
+      "parameters" : [ "OrderStatus status" ],
+      "return_type" : "List<OrderResponseDto>",
+      "description" : "1. Retrieves orders by status from OrderRepository. 2. Returns a list of OrderResponseDto."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/repository/OrderRepository.java", "backend/src/main/java/com/circuithouse/repository/MenuItemRepository.java", "backend/src/main/java/com/circuithouse/service/NotificationService.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-core-backend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements createOrder(CreateOrderRequest): OrderResponseDto, getOrderById(UUID): OrderResponseDto, and updateOrderStatus(UUID, UpdateOrderStatusRequest): OrderResponseDto; delegates persistence to OrderRepository and OrderItemRepository, menu item validation to MenuItemRepository, and notifications to NotificationService.",
     "change_required" : null
   }, {
     "file_name" : "OrderController.java",
@@ -2720,8 +2848,8 @@
     "feature_display_name" : "Order Management Core (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/model/OrderItem.java", "backend/src/main/java/com/circuithouse/model/OrderStatus.java", "backend/src/main/java/com/circuithouse/repository/OrderRepository.java", "backend/src/main/java/com/circuithouse/repository/OrderItemRepository.java", "backend/src/main/java/com/circuithouse/service/OrderService.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "This feature, Order Management Core (Backend), provides the foundational models, repositories, and service logic for handling customer food orders. It defines the `Order` and `OrderItem` entities, their respective JPA repositories, and an `OrderStatus` enum. The `OrderService` orchestrates the creation and management of orders, interacting with `OrderRepository`, `OrderItemRepository`, and `MenuItemRepository` (from the `menu-management-backend` feature) to validate menu items. It also integrates with `NotificationService` (from the `shared-backend` feature) to send notifications upon order creation or status updates. The `OrderService` will expose methods for creating new orders, retrieving order details, and updating order statuses. It will handle the initial status of an order as `PENDING_PAYMENT` and transition it through various stages. Error handling will include `ResourceNotFoundException` for non-existent orders or menu items, and `IllegalArgumentException` for invalid order states or requests.",
+    "depends_on_features" : [ "menu-management-backend", "shared-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
