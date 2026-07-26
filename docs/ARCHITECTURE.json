@@ -1188,14 +1188,24 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Handles interactions with the payment gateway (e.g., Razorpay) for creating orders and verifying payment signatures.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createPaymentOrder",
+      "parameters" : [ "PaymentOrderRequest request", "Long orderId", "BigDecimal amount" ],
+      "return_type" : "PaymentResponse",
+      "description" : "Creates a payment order with the payment gateway and returns the necessary details for the frontend."
+    }, {
+      "name" : "verifyPaymentSignature",
+      "parameters" : [ "PaymentVerificationRequest request" ],
+      "return_type" : "boolean",
+      "description" : "Verifies the payment signature received from the payment gateway webhook."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/dto/PaymentVerificationRequest.java" ],
     "depends_on" : [ ],
     "feature_name" : "payment-processing",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements createPaymentOrder(PaymentOrderRequest request, Long orderId, BigDecimal amount): PaymentResponse and verifyPaymentSignature(PaymentVerificationRequest request): boolean; interacts with a third-party payment gateway.",
     "change_required" : null
   }, {
     "file_name" : "PaymentController.java",
@@ -1206,14 +1216,38 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Handles payment gateway webhooks to update order status upon successful payment.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createPaymentOrder",
+      "parameters" : [ "PaymentOrderRequest request" ],
+      "return_type" : "ResponseEntity<PaymentResponse>",
+      "description" : "Initiates a payment order with the payment gateway."
+    }, {
+      "name" : "handlePaymentWebhook",
+      "parameters" : [ "PaymentVerificationRequest request" ],
+      "return_type" : "ResponseEntity<String>",
+      "description" : "Handles incoming webhooks from the payment gateway to verify payment and update order status."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/payments/orders",
+      "request_body" : "PaymentOrderRequest",
+      "response_body" : "PaymentResponse",
+      "description" : "Endpoint for creating a payment order with the payment gateway.",
+      "access" : "authenticated"
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/payments/webhook",
+      "request_body" : "PaymentVerificationRequest",
+      "response_body" : "String",
+      "description" : "Webhook endpoint for receiving payment status updates from the payment gateway.",
+      "access" : "public"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/PaymentService.java", "backend/src/main/java/com/circuithouse/service/OrderService.java" ],
     "depends_on" : [ ],
     "feature_name" : "payment-processing",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes API endpoints for initiating payments and handles payment gateway webhooks; calls PaymentService and OrderService.",
     "change_required" : null
   }, {
     "file_name" : "PaymentOrderRequest.java",
@@ -1225,13 +1259,21 @@
     "status" : "PLANNED",
     "description" : "DTO for requesting the creation of a payment gateway order.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "orderId",
+      "type" : "Long",
+      "description" : "The ID of the order for which payment is being initiated. Not null."
+    }, {
+      "name" : "amount",
+      "type" : "BigDecimal",
+      "description" : "The total amount to be paid for the order. Not null, positive value."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "payment-processing",
-    "file_role" : null,
+    "file_role" : "DTO — represents the request body for initiating a payment order.",
     "change_required" : null
   }, {
     "file_name" : "PaymentVerificationRequest.java",
@@ -1243,13 +1285,25 @@
     "status" : "PLANNED",
     "description" : "DTO containing payment gateway signature details for verification.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "razorpay_order_id",
+      "type" : "String",
+      "description" : "The order ID provided by Razorpay. Not null."
+    }, {
+      "name" : "razorpay_payment_id",
+      "type" : "String",
+      "description" : "The payment ID provided by Razorpay. Not null."
+    }, {
+      "name" : "razorpay_signature",
+      "type" : "String",
+      "description" : "The payment signature provided by Razorpay for verification. Not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "payment-processing",
-    "file_role" : null,
+    "file_role" : "DTO — represents the data received from the payment gateway webhook for verification.",
     "change_required" : null
   }, {
     "file_name" : "PaymentResponse.java",
@@ -1261,13 +1315,25 @@
     "status" : "PLANNED",
     "description" : "DTO returning details needed by the frontend to initiate payment, like the gateway order ID.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "paymentOrderId",
+      "type" : "String",
+      "description" : "The ID of the payment order generated by the payment gateway. Not null."
+    }, {
+      "name" : "amount",
+      "type" : "BigDecimal",
+      "description" : "The amount for which the payment order was created. Not null."
+    }, {
+      "name" : "currency",
+      "type" : "String",
+      "description" : "The currency of the payment (e.g., 'INR'). Not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "payment-processing",
-    "file_role" : null,
+    "file_role" : "DTO — represents the response containing details needed by the frontend to initiate payment.",
     "change_required" : null
   }, {
     "file_name" : "Event.java",
@@ -2936,8 +3002,8 @@
     "feature_display_name" : "Payment Processing",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/service/PaymentService.java", "backend/src/main/java/com/circuithouse/controller/PaymentController.java", "backend/src/main/java/com/circuithouse/dto/PaymentOrderRequest.java", "backend/src/main/java/com/circuithouse/dto/PaymentVerificationRequest.java", "backend/src/main/java/com/circuithouse/dto/PaymentResponse.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Payment Processing feature handles interactions with a third-party payment gateway (e.g., Razorpay) to facilitate online payments for orders. It consists of a `PaymentService` for core payment logic, a `PaymentController` for exposing API endpoints and handling webhooks, and several DTOs for request and response data.\n\n### PaymentService.java\nThis service is responsible for creating payment orders with the payment gateway and verifying payment signatures. It will expose the following public methods:\n\n1.  `createPaymentOrder(PaymentOrderRequest request, Long orderId, BigDecimal amount)`: This method takes a `PaymentOrderRequest` (though the current DTO is minimal, it's for future expansion), the `orderId` from the `order-management` feature, and the `amount` to be paid. It will:\n    a.  Construct a request payload for the payment gateway (e.g., Razorpay API) including the `amount`, `currency` (INR), and a unique `receipt` (e.g., `orderId`).\n    b.  Call the payment gateway's order creation API.\n    c.  Parse the response from the payment gateway to extract the `paymentOrderId` and other relevant details.\n    d.  Return a `PaymentResponse` DTO containing the `paymentOrderId`, `amount`, and `currency`.\n    e.  Throws `PaymentGatewayException` if the payment gateway call fails.\n\n2.  `verifyPaymentSignature(PaymentVerificationRequest request)`: This method takes a `PaymentVerificationRequest` which contains the payment gateway's order ID, payment ID, and signature. It will:\n    a.  Construct a payload for signature verification using the received details.\n    b.  Call the payment gateway's utility or API to verify the signature.\n    c.  Return `true` if the signature is valid, `false` otherwise.\n    d.  Throws `PaymentGatewayException` if the verification process encounters an error.\n\n### PaymentController.java\nThis controller exposes REST endpoints for initiating payments and handling payment gateway webhooks. It injects `PaymentService` and `OrderService` (from the `order-management` feature).\n\n1.  `createPaymentOrder(@RequestBody PaymentOrderRequest request)`: This endpoint (`POST /api/v1/payments/orders`) is called by the frontend to initiate a payment. It will:\n    a.  Call `paymentService.createPaymentOrder(request.getOrderId(), request.getAmount())`.\n    b.  Return a `ResponseEntity` with `PaymentResponse` and HTTP status 200 OK.\n    c.  If `PaymentGatewayException` is thrown, return `ResponseEntity` with HTTP status 500 Internal Server Error and an appropriate error message.\n\n2.  `handlePaymentWebhook(@RequestBody PaymentVerificationRequest request)`: This endpoint (`POST /api/v1/payments/webhook`) is called by the payment gateway (e.g., Razorpay) to notify the application about payment status. It will:\n    a.  Call `paymentService.verifyPaymentSignature(request)`.\n    b.  If the signature is valid:\n        i.   Extract the `orderId` from the `request.getPaymentOrderId()` (assuming the `paymentOrderId` contains or can be mapped to the `orderId`).\n        ii.  Call `orderService.updateOrderStatus(orderId, OrderStatus.PAID)` to update the order status in the `order-management` feature.\n        iii. Return a `ResponseEntity` with HTTP status 200 OK and a success message.\n    c.  If the signature is invalid:\n        i.   Log the invalid signature attempt.\n        ii.  Return a `ResponseEntity` with HTTP status 400 Bad Request and an error message.\n    d.  If `PaymentGatewayException` is thrown during verification, return `ResponseEntity` with HTTP status 500 Internal Server Error and an appropriate error message.\n\n### DTOs\n-   `PaymentOrderRequest.java`: Used for requesting a new payment order from the payment gateway. It will contain `orderId` and `amount`.\n-   `PaymentVerificationRequest.java`: Used for receiving payment verification details from the payment gateway webhook. It will contain `razorpay_order_id`, `razorpay_payment_id`, and `razorpay_signature`.\n-   `PaymentResponse.java`: Used for returning payment order details to the frontend after creating a payment order. It will contain `paymentOrderId`, `amount`, and `currency`.",
+    "depends_on_features" : [ "order-management" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
