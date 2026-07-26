@@ -3592,14 +3592,44 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Custom hook for fetching and managing event data using react-query.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useGetAllActiveEvents",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<EventDto[], Error>",
+      "description" : "Fetches all active events for public display."
+    }, {
+      "name" : "useGetAllEvents",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<EventDto[], Error>",
+      "description" : "Fetches all events (active and inactive) for admin display."
+    }, {
+      "name" : "useGetEventById",
+      "parameters" : [ "number id" ],
+      "return_type" : "UseQueryResult<EventDto, Error>",
+      "description" : "Fetches a single event by its ID."
+    }, {
+      "name" : "useCreateEvent",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<EventDto, Error, CreateEventDto>",
+      "description" : "Provides a mutation function to create an event."
+    }, {
+      "name" : "useUpdateEvent",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<EventDto, Error, { id: number; event: CreateEventDto }>",
+      "description" : "Provides a mutation function to update an event."
+    }, {
+      "name" : "useDeleteEvent",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<void, Error, number>",
+      "description" : "Provides a mutation function to delete an event."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/eventService.ts", "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Custom React Query hook for fetching and managing event data, providing `useGetAllActiveEvents`, `useGetAllEvents`, `useGetEventById`, `useCreateEvent`, `useUpdateEvent`, and `useDeleteEvent`.",
     "change_required" : null
   }, {
     "file_name" : "eventService.ts",
@@ -3610,14 +3640,86 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Provides functions for making API calls to event-related endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllActiveEvents",
+      "parameters" : [ ],
+      "return_type" : "Promise<EventDto[]>",
+      "description" : "Fetches all active events from the backend."
+    }, {
+      "name" : "getAllEvents",
+      "parameters" : [ ],
+      "return_type" : "Promise<EventDto[]>",
+      "description" : "Fetches all events (active and inactive) from the backend for admin purposes."
+    }, {
+      "name" : "getEventById",
+      "parameters" : [ "number id" ],
+      "return_type" : "Promise<EventDto>",
+      "description" : "Fetches a single event by its ID from the backend."
+    }, {
+      "name" : "createEvent",
+      "parameters" : [ "CreateEventDto event" ],
+      "return_type" : "Promise<EventDto>",
+      "description" : "Creates a new event in the backend."
+    }, {
+      "name" : "updateEvent",
+      "parameters" : [ "number id", "CreateEventDto event" ],
+      "return_type" : "Promise<EventDto>",
+      "description" : "Updates an existing event in the backend."
+    }, {
+      "name" : "deleteEvent",
+      "parameters" : [ "number id" ],
+      "return_type" : "Promise<void>",
+      "description" : "Deletes an event from the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/events",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all active events.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/events",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all events for admin.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/events/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a single event by ID.",
+      "access" : null
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/events",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new event.",
+      "access" : null
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/events/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Updates an existing event.",
+      "access" : null
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/events/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Deletes an event.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Frontend service layer for interacting with the backend event API, exposing functions like `getAllActiveEvents`, `getAllEvents`, `getEventById`, `createEvent`, `updateEvent`, and `deleteEvent`.",
     "change_required" : null
   }, {
     "file_name" : "event.ts",
@@ -3629,13 +3731,21 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for special event data structures.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "EventDto",
+      "type" : "interface",
+      "description" : "Represents an event with id, name, description, date, time, image URL, and active status."
+    }, {
+      "name" : "CreateEventDto",
+      "type" : "interface",
+      "description" : "Represents the data required to create a new event."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — TypeScript types and interfaces for special event data structures.",
     "change_required" : null
   }, {
     "file_name" : "EventsPage.tsx",
@@ -3646,14 +3756,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A page listing upcoming and past events like live music nights.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the public events listing page."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useEvents.ts", "frontend/src/components/events/EventList.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Public-facing page displaying a list of upcoming and past events.",
     "change_required" : null
   }, {
     "file_name" : "EventList.tsx",
@@ -3664,14 +3779,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A component that displays a list of event cards.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventList",
+      "parameters" : [ "{ events: EventDto[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a grid of event cards based on the provided events array."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Component that displays a list of event cards.",
     "change_required" : null
   }, {
     "file_name" : "AdminEventsPage.tsx",
@@ -3682,14 +3802,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Admin interface for creating, updating, and deleting special events.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminEventsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin events management page with a table of events and forms for creation/editing."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useEvents.ts", "frontend/src/components/admin/events/EventsTable.tsx", "frontend/src/components/admin/events/EventForm.tsx", "frontend/src/components/admin/events/DeleteEventDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Admin interface for creating, updating, and deleting special events.",
     "change_required" : null
   }, {
     "file_name" : "EventsTable.tsx",
@@ -3700,14 +3825,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A data table listing all events with actions to edit or delete.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventsTable",
+      "parameters" : [ "{ events: EventDto[]; onEdit: (event: EventDto) => void; onDelete: (id: number) => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays a table of events with edit and delete actions."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Data table component listing all events with actions to edit or delete.",
     "change_required" : null
   }, {
     "file_name" : "EventForm.tsx",
@@ -3718,14 +3848,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A form, typically in a dialog, for creating or editing an event.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventForm",
+      "parameters" : [ "{ event?: EventDto; onClose: () => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form to create or edit event details."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Form component for creating or editing an event, typically used within a dialog.",
     "change_required" : null
   }, {
     "file_name" : "DeleteEventDialog.tsx",
@@ -3736,14 +3871,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A confirmation dialog to prevent accidental deletion of an event.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "DeleteEventDialog",
+      "parameters" : [ "{ eventId: number; onClose: () => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a confirmation dialog for deleting an event."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "events",
-    "file_role" : null,
+    "file_role" : "Confirmation dialog component to prevent accidental deletion of an event.",
     "change_required" : null
   }, {
     "file_name" : "useTestimonials.ts",
@@ -4124,8 +4264,8 @@
     "feature_display_name" : "Event Listing & Management",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/hooks/useEvents.ts", "frontend/src/services/eventService.ts", "frontend/src/types/event.ts", "frontend/src/pages/EventsPage.tsx", "frontend/src/components/events/EventList.tsx", "frontend/src/pages/AdminEventsPage.tsx", "frontend/src/components/admin/events/EventsTable.tsx", "frontend/src/components/admin/events/EventForm.tsx", "frontend/src/components/admin/events/DeleteEventDialog.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#c28b29] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides both public-facing event listings and an administrative interface for managing events at Circuit House. It consists of `event.ts` for defining the data structure, `eventService.ts` for API interactions, `useEvents.ts` as a React Query hook, and several React components and pages for display and management.\n\n### Data Structures (`event.ts`)\nThe `event.ts` file defines the `EventDto` interface, which mirrors the `EventDto` data shape from the `event-management` backend feature. This ensures type safety and consistency across the frontend.\n\n```\n\ntypescript\nexport interface EventDto {\n  id: number;\n  name: string;\n  description: string;\n  eventDate: string; // LocalDate from backend, use string for simplicity in frontend\n  startTime: string; // LocalTime from backend, use string\n  endTime: string; // LocalTime from backend, use string\n  imageUrl: string;\n  active: boolean;\n}\n\nexport interface CreateEventDto {\n  name: string;\n  description: string;\n  eventDate: string;\n  startTime: string;\n  endTime: string;\n  imageUrl: string;\n  active: boolean;\n}\n\n\n```\n\n### API Service (`eventService.ts`)\nThe `eventService.ts` file encapsulates all direct API calls to the `event-management` backend. It uses `axios` (via `apiClient`) to perform HTTP requests. All functions return `Promise<EventDto[]>` or `Promise<EventDto>` or `Promise<void>`.\n\n- `getAllActiveEvents(): Promise<EventDto[]>`: Fetches all active events for public display.\n- `getAllEvents(): Promise<EventDto[]>`: Fetches all events (active and inactive) for admin display.\n- `getEventById(id: number): Promise<EventDto>`: Fetches a single event by its ID.\n- `createEvent(event: CreateEventDto): Promise<EventDto>`: Sends a POST request to create a new event.\n- `updateEvent(id: number, event: CreateEventDto): Promise<EventDto>`: Sends a PUT request to update an existing event.\n- `deleteEvent(id: number): Promise<void>`: Sends a DELETE request to remove an event.\n\n### React Query Hook (`useEvents.ts`)\nThe `useEvents.ts` hook leverages `react-query` to provide data fetching, caching, and mutation capabilities for events. It exports the following custom hooks:\n\n- `useGetAllActiveEvents()`: Uses `eventService.getAllActiveEvents` to fetch and cache active events. Returns `UseQueryResult<EventDto[], Error>`.\n- `useGetAllEvents()`: Uses `eventService.getAllEvents` to fetch and cache all events (for admin). Returns `UseQueryResult<EventDto[], Error>`.\n- `useGetEventById(id: number)`: Uses `eventService.getEventById` to fetch a single event. Returns `UseQueryResult<EventDto, Error>`.\n- `useCreateEvent()`: Provides a mutation function to create an event using `eventService.createEvent`. On success, it invalidates the `['events']` query to refetch the event list. Returns `UseMutationResult<EventDto, Error, CreateEventDto>`.\n- `useUpdateEvent()`: Provides a mutation function to update an event using `eventService.updateEvent`. On success, it invalidates the `['events']` query. Returns `UseMutationResult<EventDto, Error, { id: number; event: CreateEventDto }>`.\n- `useDeleteEvent()`: Provides a mutation function to delete an event using `eventService.deleteEvent`. On success, it invalidates the `['events']` query. Returns `UseMutationResult<void, Error, number>`.\n\n### Public Event Listing Page (`EventsPage.tsx`)\n`EventsPage.tsx` is the public-facing page that displays a list of upcoming and past events. It uses the `Layout` component from `core-ui` for consistent navigation and footer.\n\n- It fetches active events using `useGetAllActiveEvents()`.\n- It renders the `EventList` component, passing the fetched events as props.\n- The page structure includes a hero section with a background image (Unsplash URL for restaurant/food), a compelling headline, and a subheadline. Below the hero, it displays the event list.\n\n### Event List Component (`EventList.tsx`)\n`EventList.tsx` is a presentational component that receives an array of `EventDto` objects and renders them as a grid of event cards.\n\n- Each event card displays the event's `name`, `description`, `eventDate`, `startTime`, `endTime`, and `imageUrl`.\n- The layout should be responsive, displaying events in a grid format.\n\n### Admin Event Management Page (`AdminEventsPage.tsx`)\n`AdminEventsPage.tsx` provides the administrative interface for managing events. It uses the `AdminLayout` component from `core-ui` for consistent admin navigation.\n\n- It fetches all events (active and inactive) using `useGetAllEvents()`.\n- It provides functionality to open `EventForm` for creating or editing an event and `DeleteEventDialog` for confirming deletion.\n- The page renders `EventsTable` to display the list of events.\n\n### Events Table Component (`EventsTable.tsx`)\n`EventsTable.tsx` displays a tabular list of events with options to edit or delete each event. It receives `EventDto[]`, `onEdit` and `onDelete` callbacks as props.\n\n- Each row in the table represents an event and includes its `name`, `eventDate`, `startTime`, `endTime`, and `active` status.\n- Action buttons (Edit, Delete) are provided for each event, triggering the `onEdit` and `onDelete` callbacks.\n\n### Event Form Component (`EventForm.tsx`)\n`EventForm.tsx` is a reusable form component for creating or editing event details. It can be rendered within a dialog or modal.\n\n- It accepts an optional `event` prop (of type `EventDto`) for pre-filling the form fields in edit mode.\n- It includes input fields for `name`, `description`, `eventDate`, `startTime`, `endTime`, `imageUrl`, and `active` status.\n- It uses `react-hook-form` and `yup` for form validation.\n- On submission, it calls the appropriate `useCreateEvent` or `useUpdateEvent` mutation from `useEvents.ts`.\n\n### Delete Event Dialog Component (`DeleteEventDialog.tsx`)\n`DeleteEventDialog.tsx` is a confirmation dialog for deleting an event.\n\n- It receives `eventId` and `onClose` callback as props.\n- When confirmed, it calls the `useDeleteEvent` mutation from `useEvents.ts` to delete the specified event.\n\n### Inter-file Wiring\n- `EventsPage.tsx` imports and uses `useEvents.ts` and `EventList.tsx`.\n- `AdminEventsPage.tsx` imports and uses `useEvents.ts`, `EventsTable.tsx`, `EventForm.tsx`, and `DeleteEventDialog.tsx`.\n- `useEvents.ts` imports and uses `eventService.ts` and `event.ts`.\n- `eventService.ts` imports and uses `event.ts`.\n- `EventList.tsx` imports `event.ts`.\n- `EventsTable.tsx` imports `event.ts`.\n- `EventForm.tsx` imports `event.ts`.\n\n### Cross-Feature Contracts\n- This feature consumes the `event-management` backend feature's API endpoints for events. Specifically:\n  - `GET /api/v1/events` for `getAllActiveEvents`\n  - `GET /api/v1/admin/events` for `getAllEvents`\n  - `GET /api/v1/events/{id}` and `GET /api/v1/admin/events/{id}` for `getEventById`\n  - `POST /api/v1/admin/events` for `createEvent`\n  - `PUT /api/v1/admin/events/{id}` for `updateEvent`\n  - `DELETE /api/v1/admin/events/{id}` for `deleteEvent`\n- It uses `Layout` and `AdminLayout` components from the `core-ui` feature.\n- It relies on the authentication context (implicitly via `AdminLayout` and protected routes) from the `authentication` feature to secure admin routes.",
+    "depends_on_features" : [ "event-management", "core-ui", "authentication" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
