@@ -3311,14 +3311,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Custom hook to fetch and manage testimonial data using React Query.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useTestimonials",
+      "parameters" : [ ],
+      "return_type" : "{ testimonials: Testimonial[] | undefined, isLoading: boolean, error: Error | null }",
+      "description" : "Fetches and manages testimonial data using React Query, returning the data, loading state, and error."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/testimonialService.ts", "frontend/src/types/testimonial.ts" ],
     "depends_on" : [ ],
     "feature_name" : "testimonials-display-frontend",
-    "file_role" : null,
+    "file_role" : "Custom React hook for fetching and managing testimonial data using React Query, exposing `useTestimonials(): { testimonials: Testimonial[] | undefined, isLoading: boolean, error: Error | null }`.",
     "change_required" : null
   }, {
     "file_name" : "testimonialService.ts",
@@ -3329,14 +3334,26 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service for making API calls to testimonial-related endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "Promise<Testimonial[]>",
+      "description" : "Fetches all approved testimonials from the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/testimonials",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Retrieves a list of all approved testimonials.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/testimonial.ts" ],
     "depends_on" : [ ],
     "feature_name" : "testimonials-display-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements `getAllTestimonials(): Promise<Testimonial[]>` for fetching testimonials from the backend.",
     "change_required" : null
   }, {
     "file_name" : "testimonial.ts",
@@ -3348,13 +3365,37 @@
     "status" : "PLANNED",
     "description" : "TypeScript types for testimonial data.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "string",
+      "description" : "Unique identifier for the testimonial."
+    }, {
+      "name" : "author",
+      "type" : "string",
+      "description" : "Name of the testimonial author."
+    }, {
+      "name" : "content",
+      "type" : "string",
+      "description" : "The content of the testimonial."
+    }, {
+      "name" : "rating",
+      "type" : "number",
+      "description" : "Rating given in the testimonial (e.g., 1-5)."
+    }, {
+      "name" : "date",
+      "type" : "string",
+      "description" : "Date the testimonial was created, in ISO format."
+    }, {
+      "name" : "approved",
+      "type" : "boolean",
+      "description" : "Indicates if the testimonial has been approved for display."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "testimonials-display-frontend",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines the TypeScript interface for testimonial data.",
     "change_required" : null
   }, {
     "file_name" : "AdminLayout.tsx",
@@ -3812,8 +3853,8 @@
     "feature_display_name" : "Testimonials Display (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/hooks/useTestimonials.ts", "frontend/src/services/testimonialService.ts", "frontend/src/types/testimonial.ts" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "This feature provides the frontend logic for fetching and displaying customer testimonials for Circuit House restaurant. It consists of a TypeScript type definition for testimonials, a service for making API calls to the backend, and a custom React hook for managing testimonial data with React Query.\n\n## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B78825] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\n### `frontend/src/types/testimonial.ts`\nThis file defines the `Testimonial` interface, which mirrors the `TestimonialDto` structure from the `testimonial-management-backend` feature. It includes fields for `id`, `author`, `content`, `rating`, `date`, and `approved`.\n\n### `frontend/src/services/testimonialService.ts`\nThis service provides an asynchronous function `getAllTestimonials` that makes a GET request to the `/api/v1/testimonials` endpoint of the `testimonial-management-backend`. It uses the `apiClient` from `@/api/client.ts` to perform the HTTP call and expects a `Promise<Testimonial[]>` as a response. This function will be called by the `useTestimonials` hook.\n\n### `frontend/src/hooks/useTestimonials.ts`\nThis custom React Query hook, `useTestimonials`, is responsible for fetching and managing the testimonial data. It uses `react-query`'s `useQuery` hook to call `testimonialService.getAllTestimonials()`. The hook exposes `testimonials`, `isLoading`, and `error` states, allowing components to easily consume testimonial data and handle loading/error states. Components like `TestimonialsCarousel.tsx` (from `static-pages-frontend`) will consume this hook to display testimonials.",
+    "depends_on_features" : [ "testimonial-management-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
