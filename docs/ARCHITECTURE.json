@@ -2570,14 +2570,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays the full digital menu with category filters and a visual grid of items.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the menu page, including a hero section, category filter, and menu items grid."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts", "frontend/src/components/menu/MenuCategoryFilter.tsx", "frontend/src/components/menu/MenuItemsGrid.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates the display of menu categories and items, using the `useMenu` hook for data and rendering `MenuCategoryFilter` and `MenuItemsGrid` components.",
     "change_required" : null
   }, {
     "file_name" : "useMenu.ts",
@@ -2588,14 +2593,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Custom hook to fetch and manage menu data using React Query.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useMenu",
+      "parameters" : [ ],
+      "return_type" : "{ menuItems: MenuItem[], categories: MenuItemCategory[], isLoading: boolean, error: Error | null, setSelectedCategory: (categoryId: number | null) => void }",
+      "description" : "Fetches and manages menu items and categories, providing filtering capabilities."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/menuService.ts", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "HOOK layer — provides `menuItems: MenuItem[]`, `categories: MenuItemCategory[]`, `isLoading: boolean`, `error: Error | null`, and `setSelectedCategory: (categoryId: number | null) => void` for fetching and managing menu data.",
     "change_required" : null
   }, {
     "file_name" : "menuService.ts",
@@ -2606,14 +2616,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service for making API calls to menu-related endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllMenuItems",
+      "parameters" : [ ],
+      "return_type" : "Promise<MenuItem[]>",
+      "description" : "Fetches all menu items from the backend."
+    }, {
+      "name" : "getAllMenuItemCategories",
+      "parameters" : [ ],
+      "return_type" : "Promise<MenuItemCategory[]>",
+      "description" : "Fetches all menu item categories from the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/menus/items",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all menu items.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/menus/categories",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all menu item categories.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — provides `getAllMenuItems(): Promise<MenuItem[]>` and `getAllMenuItemCategories(): Promise<MenuItemCategory[]>` for interacting with the menu backend API.",
     "change_required" : null
   }, {
     "file_name" : "menu.ts",
@@ -2625,13 +2659,21 @@
     "status" : "PLANNED",
     "description" : "TypeScript types for menu items and categories.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "MenuItem",
+      "type" : "{ id: number; name: string; description: string; price: number; imageUrl: string; categoryId: number; }",
+      "description" : "Represents a single menu item with its details."
+    }, {
+      "name" : "MenuItemCategory",
+      "type" : "{ id: number; name: string; description: string; }",
+      "description" : "Represents a category for menu items."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines TypeScript types for menu items and categories.",
     "change_required" : null
   }, {
     "file_name" : "MenuCategoryFilter.tsx",
@@ -2642,14 +2684,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Allows users to filter the displayed menu items by category.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuCategoryFilter",
+      "parameters" : [ "{ categories: MenuItemCategory[], setSelectedCategory: (categoryId: number | null) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders category filter buttons. On click, sets the selected category."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a list of clickable category buttons and emits the selected category ID.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemsGrid.tsx",
@@ -2660,14 +2707,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Renders menu items in a responsive grid of cards with photos and descriptions.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuItemsGrid",
+      "parameters" : [ "{ menuItems: MenuItem[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays menu items in a grid of cards."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "menu-display-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — renders a responsive grid of `MenuItem` cards.",
     "change_required" : null
   }, {
     "file_name" : "ReservationPage.tsx",
@@ -3521,8 +3573,8 @@
     "feature_display_name" : "Menu Display (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/MenuPage.tsx", "frontend/src/hooks/useMenu.ts", "frontend/src/services/menuService.ts", "frontend/src/types/menu.ts", "frontend/src/components/menu/MenuCategoryFilter.tsx", "frontend/src/components/menu/MenuItemsGrid.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B78725] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides the frontend for displaying Circuit House's digital menu, allowing customers to browse menu items by category. It consists of a main `MenuPage.tsx` that orchestrates the display, a `useMenu.ts` hook for data fetching, a `menuService.ts` for API interactions, and two presentational components: `MenuCategoryFilter.tsx` and `MenuItemsGrid.tsx`. The `menu.ts` file defines the TypeScript types for menu data.\n\nThe `MenuPage.tsx` will render the overall layout, including a hero section at the top, followed by the category filter and the grid of menu items. It will use the `useMenu` hook to fetch both menu categories and menu items from the backend. The `MenuCategoryFilter` component will display the available categories and allow users to select a category, which will then filter the items displayed in the `MenuItemsGrid`. The `MenuItemsGrid` component will be responsible for rendering the individual menu items, displaying their name, description, price, and an image.\n\n### `menu.ts`\nThis file defines the `MenuItem` and `MenuItemCategory` interfaces, which are direct TypeScript representations of the `MenuItemDto` and `MenuItemCategoryDto` data shapes provided by the `menu-management-backend` feature.\n\n### `menuService.ts`\nThis service acts as a client for the `menu-management-backend` API. It exports two asynchronous functions: `getAllMenuItems` and `getAllMenuItemCategories`. `getAllMenuItems` will make a GET request to `/api/v1/menus/items` to retrieve all menu items. `getAllMenuItemCategories` will make a GET request to `/api/v1/menus/categories` to retrieve all available menu categories. Both functions will return promises that resolve to arrays of the corresponding TypeScript types defined in `menu.ts`.\n\n### `useMenu.ts`\nThis custom React hook leverages `react-query` to manage the fetching, caching, and state of menu data. It exports an object containing `menuItems`, `categories`, `isLoading`, `error`, and `setSelectedCategory`. Internally, it will use `menuService.getAllMenuItems()` and `menuService.getAllMenuItemCategories()` to fetch data. It will also manage a `selectedCategory` state, and when a category is selected, it will filter the `menuItems` accordingly before returning them.\n\n### `MenuCategoryFilter.tsx`\nThis component receives the list of `categories` and the `setSelectedCategory` function from `useMenu.ts` as props. It will render a list of clickable category buttons. When a button is clicked, it will call `setSelectedCategory` with the ID of the selected category. The active category button should have a distinct visual style using the `Accent` color token.\n\n### `MenuItemsGrid.tsx`\nThis component receives the filtered `menuItems` from `useMenu.ts` as a prop. It will render these items in a responsive grid layout. Each menu item will be displayed within a card, showing its `imageUrl`, `name`, `description`, and `price`. The card design should adhere to the `Card` design token.\n\n### `MenuPage.tsx`\nThis page component will be the entry point for displaying the menu. It will use the `Layout` component from `core-frontend` to ensure consistent navigation and footer. The page will have a hero section with a background image, the restaurant name \"Circuit House\", and a welcoming headline like \"Savor the Flavors of Circuit House\". Below the hero, it will render the `MenuCategoryFilter` and `MenuItemsGrid` components, passing them the necessary data and functions from the `useMenu` hook. Loading states and error states from `useMenu` should be handled gracefully, displaying a loading spinner or an error message respectively. The overall structure will follow the `Section container` design token for content sections.",
+    "depends_on_features" : [ "menu-management-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
