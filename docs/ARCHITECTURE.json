@@ -3406,14 +3406,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Layout for the admin section, including a sidebar for navigation.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminLayout",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin layout with a sidebar and content area, protecting routes with authentication."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides the overarching layout for all admin pages, including a sidebar for navigation and authentication protection.",
     "change_required" : null
   }, {
     "file_name" : "AdminDashboardPage.tsx",
@@ -3424,14 +3429,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "The main landing page for the admin portal, showing key stats and links.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminDashboardPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin dashboard with a welcome message and navigation links."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — the main landing page for the admin portal, displaying a welcome message and quick links.",
     "change_required" : null
   }, {
     "file_name" : "AdminMenuPage.tsx",
@@ -3442,14 +3452,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing the menu, composed of a data table and creation/edit forms.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminMenuPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the menu management page, allowing administrators to view, create, edit, and delete menu items."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts", "frontend/src/components/admin/menu/MenuTable.tsx", "frontend/src/components/admin/menu/MenuItemForm.tsx", "frontend/src/components/admin/menu/DeleteMenuItemDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates menu item management, integrating a table, creation/edit forms, and deletion dialogs.",
     "change_required" : null
   }, {
     "file_name" : "MenuTable.tsx",
@@ -3460,14 +3475,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table displaying all menu items with actions to edit or delete.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuTable",
+      "parameters" : [ "{ menuItems: MenuItemDto[], onEdit: (item: MenuItemDto) => void, onDelete: (id: Long, name: String) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of menu items with actions for editing and deleting."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table of menu items with edit and delete actions.",
     "change_required" : null
   }, {
     "file_name" : "MenuItemForm.tsx",
@@ -3478,14 +3498,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form, likely in a dialog, for creating or editing a menu item.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MenuItemForm",
+      "parameters" : [ "{ initialData?: MenuItemDto, onSubmit: (data: MenuItemDto) => void, onCancel: () => void, categories: MenuItemCategoryDto[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for creating or editing a menu item, including fields for name, description, price, image URL, and category."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating or editing menu items.",
     "change_required" : null
   }, {
     "file_name" : "DeleteMenuItemDialog.tsx",
@@ -3496,14 +3521,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A confirmation dialog for deleting a menu item.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "DeleteMenuItemDialog",
+      "parameters" : [ "{ isOpen: boolean, onClose: () => void, onConfirm: () => void, itemName: string }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a confirmation dialog for deleting a menu item."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — a confirmation dialog for deleting a menu item.",
     "change_required" : null
   }, {
     "file_name" : "AdminReservationsPage.tsx",
@@ -3514,14 +3544,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing reservations, with a data table and status update controls.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminReservationsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the reservation management page, allowing administrators to view and update reservation statuses."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useReservations.ts", "frontend/src/components/admin/reservations/ReservationsTable.tsx", "frontend/src/components/admin/reservations/UpdateReservationStatusForm.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates reservation management, integrating a table and status update forms.",
     "change_required" : null
   }, {
     "file_name" : "ReservationsTable.tsx",
@@ -3532,14 +3567,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table displaying all reservations with filtering and sorting.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ReservationsTable",
+      "parameters" : [ "{ reservations: ReservationDto[], onUpdateStatus: (id: UUID) => void, onDelete: (id: UUID) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of reservations with actions for updating status and deleting."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table of reservations with status update and delete actions.",
     "change_required" : null
   }, {
     "file_name" : "UpdateReservationStatusForm.tsx",
@@ -3550,14 +3590,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form component to update the status of a selected reservation.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "UpdateReservationStatusForm",
+      "parameters" : [ "{ reservationId: UUID, initialStatus: ReservationStatus, initialNotes?: string, onSubmit: (data: UpdateReservationStatusRequest) => void, onCancel: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form to update a reservation's status and notes."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/reservation.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form to update the status of a reservation.",
     "change_required" : null
   }, {
     "file_name" : "AdminOrdersPage.tsx",
@@ -3568,14 +3613,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing online orders, with a data table and status update controls.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminOrdersPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the online order management page, allowing administrators to view order details and update order statuses."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useOrders.ts", "frontend/src/components/admin/orders/OrdersTable.tsx", "frontend/src/components/admin/orders/OrderDetailModal.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates online order management, integrating a table and order detail modals.",
     "change_required" : null
   }, {
     "file_name" : "OrdersTable.tsx",
@@ -3586,14 +3636,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table displaying all online orders with filtering and sorting.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "OrdersTable",
+      "parameters" : [ "{ orders: OrderResponseDto[], onViewDetails: (order: OrderResponseDto) => void, onUpdateStatus: (id: UUID) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of online orders with actions for viewing details and updating status."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/order.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table of online orders with detail viewing and status update actions.",
     "change_required" : null
   }, {
     "file_name" : "OrderDetailModal.tsx",
@@ -3604,14 +3659,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A modal dialog showing the full details of a selected order and allowing status updates.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "OrderDetailModal",
+      "parameters" : [ "{ isOpen: boolean, onClose: () => void, order: OrderResponseDto | null, onUpdateStatus: (id: UUID, status: OrderStatus) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a modal displaying full order details and a form to update the order's status."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/order.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — a modal dialog showing full order details and allowing status updates.",
     "change_required" : null
   }, {
     "file_name" : "AdminEventsPage.tsx",
@@ -3622,14 +3682,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing events, composed of a data table and creation/edit forms.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminEventsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the event management page, allowing administrators to view, create, edit, and delete events."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useEvents.ts", "frontend/src/components/admin/events/EventsTable.tsx", "frontend/src/components/admin/events/EventForm.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates event management, integrating a table and creation/edit forms.",
     "change_required" : null
   }, {
     "file_name" : "EventsTable.tsx",
@@ -3640,14 +3705,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table displaying all events with actions to edit or delete.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventsTable",
+      "parameters" : [ "{ events: EventDto[], onEdit: (event: EventDto) => void, onDelete: (id: UUID) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of events with actions for editing and deleting."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table of events with edit and delete actions.",
     "change_required" : null
   }, {
     "file_name" : "EventForm.tsx",
@@ -3658,14 +3728,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form, likely in a dialog, for creating or editing an event.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventForm",
+      "parameters" : [ "{ initialData?: EventDto, onSubmit: (data: EventDto) => void, onCancel: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for creating or editing an event, including fields for name, description, date, image URL, and active status."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/event.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating or editing events.",
     "change_required" : null
   }, {
     "file_name" : "AdminTestimonialsPage.tsx",
@@ -3676,14 +3751,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing testimonials, composed of a data table and creation/edit forms.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminTestimonialsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the testimonial management page, allowing administrators to view, create, edit, and delete testimonials."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useTestimonials.ts", "frontend/src/components/admin/testimonials/TestimonialsTable.tsx", "frontend/src/components/admin/testimonials/TestimonialForm.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates testimonial management, integrating a table and creation/edit forms.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialsTable.tsx",
@@ -3694,14 +3774,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table displaying all testimonials with actions to edit or delete.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialsTable",
+      "parameters" : [ "{ testimonials: TestimonialDto[], onEdit: (testimonial: TestimonialDto) => void, onDelete: (id: UUID) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of testimonials with actions for editing and deleting."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/testimonial.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table of testimonials with edit and delete actions.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialForm.tsx",
@@ -3712,14 +3797,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form, likely in a dialog, for creating or editing a testimonial.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialForm",
+      "parameters" : [ "{ initialData?: TestimonialDto, onSubmit: (data: TestimonialDto) => void, onCancel: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for creating or editing a testimonial, including fields for author, content, rating, date, and approved status."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/testimonial.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating or editing testimonials.",
     "change_required" : null
   } ],
   "features" : [ {
@@ -3862,8 +3952,8 @@
     "feature_display_name" : "Admin Portal (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/components/admin/AdminLayout.tsx", "frontend/src/pages/admin/AdminDashboardPage.tsx", "frontend/src/pages/admin/AdminMenuPage.tsx", "frontend/src/components/admin/menu/MenuTable.tsx", "frontend/src/components/admin/menu/MenuItemForm.tsx", "frontend/src/components/admin/menu/DeleteMenuItemDialog.tsx", "frontend/src/pages/admin/AdminReservationsPage.tsx", "frontend/src/components/admin/reservations/ReservationsTable.tsx", "frontend/src/components/admin/reservations/UpdateReservationStatusForm.tsx", "frontend/src/pages/admin/AdminOrdersPage.tsx", "frontend/src/components/admin/orders/OrdersTable.tsx", "frontend/src/components/admin/orders/OrderDetailModal.tsx", "frontend/src/pages/admin/AdminEventsPage.tsx", "frontend/src/components/admin/events/EventsTable.tsx", "frontend/src/components/admin/events/EventForm.tsx", "frontend/src/pages/admin/AdminTestimonialsPage.tsx", "frontend/src/components/admin/testimonials/TestimonialsTable.tsx", "frontend/src/components/admin/testimonials/TestimonialForm.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Admin Portal (Frontend) feature provides a comprehensive web interface for managing various aspects of the Circuit House restaurant's operations, including menu items, reservations, online orders, events, and customer testimonials. This feature is built using React and TypeScript, leveraging `react-router-dom` for navigation and Tailwind CSS for styling, adhering to the elegant and modern visual direction with a sophisticated and warm color palette.\n\n## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Sidebar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B78B27] text-white font-semibold rounded-md px-4 py-2 transition-all duration-200\n- Secondary CTA: bg-gray-200 hover:bg-gray-300 text-[#2D3748] font-semibold rounded-md px-4 py-2 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC]\n- Card: bg-white rounded-lg shadow-sm border border-gray-100 p-6\n- Section container: <div className=\"max-w-7xl mx-auto py-6 sm:px-6 lg:px-8\">\n- Heading 1: text-3xl font-bold text-[#1A202C]\n- Body: text-[#2D3748] leading-relaxed\n- Table Header: bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider\n- Table Row: bg-white border-b border-gray-200 hover:bg-gray-50\n- Form Label: block text-sm font-medium text-gray-700\n- Form Input: mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#D69E2E] focus:ring-[#D69E2E] sm:text-sm\n\n### AdminLayout.tsx\nThis component provides the overall layout for all admin pages. It includes a fixed sidebar for navigation and a main content area. The sidebar contains links to 'Dashboard', 'Menu Management', 'Reservations', 'Orders', 'Events', and 'Testimonials'. It uses the `useAuth` hook from the `auth-frontend` feature to check if the user is authenticated and redirects to the login page if not. The layout ensures a consistent look and feel across the admin portal.\n\n### AdminDashboardPage.tsx\nThis page serves as the landing page for the admin portal. It will display a welcoming message and potentially summary statistics or quick links to other management sections. It uses the `AdminLayout` component for its structure.\n\n### AdminMenuPage.tsx\nThis page is responsible for managing menu items. It orchestrates the `MenuTable`, `MenuItemForm`, and `DeleteMenuItemDialog` components. It utilizes the `useMenu` hook from `menu-display-frontend` to fetch and manage menu data. The page will display a table of menu items, allow administrators to open a form to create new menu items or edit existing ones, and confirm deletions through a dialog. All interactions with the backend for menu management (create, update, delete) are handled via the `useMenu` hook, which in turn calls the `menu-management-backend` API endpoints.\n\n### MenuTable.tsx\nThis component displays a paginated and sortable table of `MenuItemDto` objects. It receives `menuItems`, `onEdit`, and `onDelete` as props. Each row will have action buttons for 'Edit' and 'Delete'. It should display `id`, `name`, `description`, `price`, `imageUrl`, and `categoryId` for each menu item.\n\n### MenuItemForm.tsx\nThis component provides a form for creating or editing a `MenuItemDto`. It receives `initialData` (for editing), `onSubmit`, and `onCancel` as props. The form fields include `name`, `description`, `price`, `imageUrl`, and `categoryId`. It should include validation for required fields and appropriate data types.\n\n### DeleteMenuItemDialog.tsx\nThis component is a confirmation dialog for deleting a menu item. It receives `isOpen`, `onClose`, `onConfirm`, and `itemName` as props. When `onConfirm` is called, it triggers the deletion of the specified menu item.\n\n### AdminReservationsPage.tsx\nThis page manages restaurant reservations. It integrates `ReservationsTable` and `UpdateReservationStatusForm`. It uses the `useReservations` hook (to be defined in this feature) to fetch and manage reservation data. The page will display a table of reservations, allow filtering by status, and provide a mechanism to update the status of a selected reservation using `UpdateReservationStatusForm`. All interactions with the backend for reservation management (get all, update status) are handled via the `useReservations` hook, which in turn calls the `reservation-system-backend` API endpoints.\n\n### ReservationsTable.tsx\nThis component displays a paginated and sortable table of `ReservationDto` objects. It receives `reservations`, `onUpdateStatus`, and `onDelete` as props. Each row will display `id`, `customerName`, `customerEmail`, `customerPhone`, `reservationTime`, `numberOfGuests`, `status`, and `notes`. It will include action buttons for 'Update Status' and 'Delete'.\n\n### UpdateReservationStatusForm.tsx\nThis component provides a form to update the status of a `ReservationDto`. It receives `reservationId`, `initialStatus`, `initialNotes`, `onSubmit`, and `onCancel` as props. The form will have a dropdown for `status` (PENDING, CONFIRMED, CANCELLED, COMPLETED, NO_SHOW) and a textarea for `notes`.\n\n### AdminOrdersPage.tsx\nThis page manages online orders. It integrates `OrdersTable` and `OrderDetailModal`. It uses the `useOrders` hook (to be defined in this feature) to fetch and manage order data. The page will display a table of orders, allow filtering by status, and provide a modal to view full order details and update the order status. All interactions with the backend for order management (get all, update status) are handled via the `useOrders` hook, which in turn calls the `order-api-backend` API endpoints.\n\n### OrdersTable.tsx\nThis component displays a paginated and sortable table of `OrderResponseDto` objects. It receives `orders`, `onViewDetails`, and `onUpdateStatus` as props. Each row will display `id`, `customerName`, `orderTime`, `totalAmount`, and `status`. It will include action buttons for 'View Details' and 'Update Status'.\n\n### OrderDetailModal.tsx\nThis component is a modal dialog that displays the full details of an `OrderResponseDto`. It receives `isOpen`, `onClose`, `order`, and `onUpdateStatus` as props. It will show all fields of the order, including `orderItems`, and provide a form to update the order's `status`.\n\n### AdminEventsPage.tsx\nThis page is responsible for managing events. It orchestrates the `EventsTable` and `EventForm` components. It utilizes the `useEvents` hook (to be defined in this feature) to fetch and manage event data. The page will display a table of events, allow administrators to open a form to create new events or edit existing ones, and confirm deletions. All interactions with the backend for event management (create, update, delete) are handled via the `useEvents` hook, which in turn calls the `event-management-backend` API endpoints.\n\n### EventsTable.tsx\nThis component displays a paginated and sortable table of `EventDto` objects. It receives `events`, `onEdit`, and `onDelete` as props. Each row will have action buttons for 'Edit' and 'Delete'. It should display `id`, `name`, `description`, `eventDate`, `imageUrl`, and `active` for each event.\n\n### EventForm.tsx\nThis component provides a form for creating or editing an `EventDto`. It receives `initialData` (for editing), `onSubmit`, and `onCancel` as props. The form fields include `name`, `description`, `eventDate`, `imageUrl`, and `active`. It should include validation for required fields and appropriate data types.\n\n### AdminTestimonialsPage.tsx\nThis page is responsible for managing testimonials. It orchestrates the `TestimonialsTable` and `TestimonialForm` components. It utilizes the `useTestimonials` hook (to be defined in this feature) to fetch and manage testimonial data. The page will display a table of testimonials, allow administrators to open a form to create new testimonials or edit existing ones, and confirm deletions. All interactions with the backend for testimonial management (create, update, delete) are handled via the `useTestimonials` hook, which in turn calls the `testimonial-management-backend` API endpoints.\n\n### TestimonialsTable.tsx\nThis component displays a paginated and sortable table of `TestimonialDto` objects. It receives `testimonials`, `onEdit`, and `onDelete` as props. Each row will have action buttons for 'Edit' and 'Delete'. It should display `id`, `author`, `content`, `rating`, `date`, and `approved` for each testimonial.\n\n### TestimonialForm.tsx\nThis component provides a form for creating or editing a `TestimonialDto`. It receives `initialData` (for editing), `onSubmit`, and `onCancel` as props. The form fields include `author`, `content`, `rating`, `date`, and `approved`. It should include validation for required fields and appropriate data types.",
+    "depends_on_features" : [ "menu-management-backend", "reservation-system-backend", "order-api-backend", "event-management-backend", "testimonial-management-backend", "auth-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
