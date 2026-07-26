@@ -2340,14 +2340,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Landing page with an elegant hero section, featured menu items, a testimonial carousel, and a prominent reservation CTA.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HomePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main landing page of the application."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/FeaturedMenuItems.tsx", "frontend/src/components/home/TestimonialsCarousel.tsx", "frontend/src/components/home/CallToActionSection.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates the display of the hero section, featured menu items, testimonials, and calls to action.",
     "change_required" : null
   }, {
     "file_name" : "HeroSection.tsx",
@@ -2358,14 +2363,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Full-bleed hero component for the homepage with a high-quality background image and enticing headline.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HeroSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the hero section for the homepage."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a full-bleed hero section with a background image, headline, and sub-headline.",
     "change_required" : null
   }, {
     "file_name" : "FeaturedMenuItems.tsx",
@@ -2376,14 +2386,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays a curated grid of popular menu items on the homepage.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "FeaturedMenuItems",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a grid of featured menu items."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a grid of featured menu items by consuming the `useMenu` hook.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialsCarousel.tsx",
@@ -2394,14 +2409,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "An interactive carousel showcasing positive customer reviews.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialsCarousel",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders an interactive carousel of customer testimonials."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useTestimonials.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays an interactive carousel of customer testimonials by consuming the `useTestimonials` hook.",
     "change_required" : null
   }, {
     "file_name" : "CallToActionSection.tsx",
@@ -2412,14 +2432,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A visually distinct section encouraging users to book a table or order online.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "CallToActionSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a section with calls to action for reservations and online ordering."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides prominent calls to action for reservations and online ordering.",
     "change_required" : null
   }, {
     "file_name" : "AboutPage.tsx",
@@ -2430,14 +2455,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Static page describing the restaurant's story, ambiance, and culinary philosophy.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AboutPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the About Us page."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays static content about the restaurant's story, ambiance, and culinary philosophy.",
     "change_required" : null
   }, {
     "file_name" : "ContactPage.tsx",
@@ -2448,14 +2478,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Page with contact details, business hours, an interactive Google Map, and contact buttons.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the Contact Us page."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/contact/ContactInfoCard.tsx", "frontend/src/components/contact/GoogleMapsEmbed.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays contact details, business hours, and an embedded Google Map.",
     "change_required" : null
   }, {
     "file_name" : "ContactInfoCard.tsx",
@@ -2466,14 +2501,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays address, phone (click-to-call), and WhatsApp contact information.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactInfoCard",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a card with contact information."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays the restaurant's address, phone number, and WhatsApp contact.",
     "change_required" : null
   }, {
     "file_name" : "GoogleMapsEmbed.tsx",
@@ -2484,14 +2524,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Embeds an interactive Google Map showing the restaurant's location.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "GoogleMapsEmbed",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders an embedded Google Map."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — embeds an interactive Google Map showing the restaurant's location.",
     "change_required" : null
   }, {
     "file_name" : "NotFoundPage.tsx",
@@ -2502,14 +2547,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A user-friendly 404 page to handle invalid routes.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "NotFoundPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the 404 Not Found page."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — handles invalid routes by displaying a user-friendly 404 message.",
     "change_required" : null
   }, {
     "file_name" : "MenuPage.tsx",
@@ -3462,8 +3512,8 @@
     "feature_display_name" : "Static Pages (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/FeaturedMenuItems.tsx", "frontend/src/components/home/TestimonialsCarousel.tsx", "frontend/src/components/home/CallToActionSection.tsx", "frontend/src/pages/AboutPage.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/components/contact/ContactInfoCard.tsx", "frontend/src/components/contact/GoogleMapsEmbed.tsx", "frontend/src/pages/NotFoundPage.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B7872A] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides the static public-facing pages for Circuit House, including the homepage, about us, contact, and a 404 not found page. It focuses on presenting an elegant and modern user experience with high-quality visuals and enticing copy, adhering strictly to the provided design tokens.\n\n### HomePage.tsx\nThis page serves as the main landing page. It orchestrates several components to create a rich, immersive experience:\n1.  **HeroSection**: Displays a full-bleed hero image with the restaurant's name and a compelling sub-headline. The image URL will be `https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1920&q=80` with a `bg-black bg-opacity-50` overlay.\n2.  **FeaturedMenuItems**: Fetches a curated list of menu items using the `useMenu` hook (from `menu-display-frontend`) and displays them in an appealing grid. It calls `useMenu().getAllMenuItems()`.\n3.  **TestimonialsCarousel**: Fetches approved testimonials using the `useTestimonials` hook (from `testimonials-display-frontend`) and presents them in an interactive carousel. It calls `useTestimonials().getAllApprovedTestimonials()`.\n4.  **CallToActionSection**: Provides prominent calls to action for reservations and online ordering.\n\nAll sections will use the `Section container` design token for consistent padding and max-width.\n\n### HeroSection.tsx\nThis component renders the hero section for the `HomePage.tsx`. It will display the business name \"Circuit House\" as the main headline and a sub-headline like \"Experience Culinary Excellence in Pune\". It uses the specified hero image URL and overlay, applying `Hero h1` design tokens for the headline.\n\n### FeaturedMenuItems.tsx\nThis component is responsible for displaying a grid of featured menu items. It will use the `useMenu` hook to fetch menu items. Each menu item will be rendered as a card, adhering to the `Card` design token. It will display the `name`, `description`, and `price` of each `MenuItemDto`.\n\n### TestimonialsCarousel.tsx\nThis component renders an interactive carousel of customer testimonials. It will use the `useTestimonials` hook to fetch approved testimonials. Each testimonial will display the `author` and `content` from the `TestimonialDto`, styled according to the `Card` design token.\n\n### CallToActionSection.tsx\nThis component presents two clear calls to action: one for making a reservation and another for ordering online. The buttons will use the `Primary CTA` design token. Placeholder text will be \"Reserve Your Table\" and \"Order Online\".\n\n### AboutPage.tsx\nThis page will detail the story, ambiance, and culinary philosophy of Circuit House. It will contain several sections, each using the `Section container` design token and alternating `Section bg` colors. Content will be descriptive and enticing, reflecting the confident and welcoming tone. Example sections include \"Our Story\", \"The Circuit House Experience\", and \"Our Culinary Philosophy\".\n\n### ContactPage.tsx\nThis page provides all necessary contact information for Circuit House. It will include:\n1.  **ContactInfoCard**: Displays the restaurant's address, phone number (click-to-call), and WhatsApp contact. It will use the business context details: Address: \"Laxman Nagar, Baner, Pune, Maharashtra 411045\", Phone: \"070587 56269\".\n2.  **GoogleMapsEmbed**: Embeds an interactive Google Map centered on the restaurant's coordinates: 18.570737, 73.776449. The map will be styled to fit the modern aesthetic.\n\n### ContactInfoCard.tsx\nThis component displays the contact details. It will show the address, phone number (with a `tel:` link), and a WhatsApp button (with a `https://wa.me/` link). It will use the `Card` design token for its container.\n\n### GoogleMapsEmbed.tsx\nThis component embeds an iframe for Google Maps, using the provided coordinates to center the map on Circuit House's location. The iframe will be responsive and styled to integrate seamlessly with the page.\n\n### NotFoundPage.tsx\nThis page provides a user-friendly experience for invalid routes. It will display a clear \"404 - Page Not Found\" message and a button to navigate back to the homepage, styled with the `Primary CTA` design token. The tone will be helpful and apologetic.",
+    "depends_on_features" : [ "menu-display-frontend", "testimonials-display-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
