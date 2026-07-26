@@ -770,14 +770,42 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Represents a customer's online food order, containing multiple order items.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "Long",
+      "description" : "Unique identifier for the order. Not null."
+    }, {
+      "name" : "userId",
+      "type" : "Long",
+      "description" : "ID of the customer who placed the order. Not null."
+    }, {
+      "name" : "orderItems",
+      "type" : "List<OrderItem>",
+      "description" : "List of items included in the order. Not null, cascade all operations."
+    }, {
+      "name" : "totalAmount",
+      "type" : "BigDecimal",
+      "description" : "Total amount of the order. Not null, precision 10, scale 2."
+    }, {
+      "name" : "orderStatus",
+      "type" : "OrderStatus",
+      "description" : "Current status of the order (e.g., PENDING_PAYMENT, RECEIVED). Not null."
+    }, {
+      "name" : "orderDate",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the order was placed. Not null."
+    }, {
+      "name" : "paymentOrderId",
+      "type" : "String",
+      "description" : "ID returned by the payment gateway for this order. Nullable."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/OrderItem.java", "backend/src/main/java/com/circuithouse/model/OrderStatus.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "MODEL layer — represents a customer's online food order, containing multiple order items and tracking its status and payment details.",
     "change_required" : null
   }, {
     "file_name" : "OrderItem.java",
@@ -788,14 +816,38 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Represents a single line item within an Order.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "Long",
+      "description" : "Unique identifier for the order item. Not null."
+    }, {
+      "name" : "order",
+      "type" : "Order",
+      "description" : "The order this item belongs to. Not null."
+    }, {
+      "name" : "menuItemId",
+      "type" : "Long",
+      "description" : "ID of the menu item ordered. Not null."
+    }, {
+      "name" : "menuItemName",
+      "type" : "String",
+      "description" : "Name of the menu item at the time of order. Not null, max 255."
+    }, {
+      "name" : "quantity",
+      "type" : "Integer",
+      "description" : "Quantity of the menu item ordered. Not null, min 1."
+    }, {
+      "name" : "price",
+      "type" : "BigDecimal",
+      "description" : "Price of the menu item at the time of order. Not null, precision 10, scale 2."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/model/MenuItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "MODEL layer — represents a single line item within an Order, linking to a MenuItem.",
     "change_required" : null
   }, {
     "file_name" : "OrderStatus.java",
@@ -806,14 +858,14 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Enum for the status of an online order (e.g., PENDING_PAYMENT, RECEIVED, PREPARING, OUT_FOR_DELIVERY, DELIVERED, CANCELLED).",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "MODEL layer — enum for the status of an online order.",
     "change_required" : null
   }, {
     "file_name" : "OrderRepository.java",
@@ -824,14 +876,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on Order entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findByUserId",
+      "parameters" : [ "Long userId" ],
+      "return_type" : "List<Order>",
+      "description" : "Retrieves all orders placed by a specific user."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides CRUD operations for Order entities and custom queries for fetching orders by user ID.",
     "change_required" : null
   }, {
     "file_name" : "OrderItemRepository.java",
@@ -842,14 +899,14 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on OrderItem entities.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/OrderItem.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides CRUD operations for OrderItem entities.",
     "change_required" : null
   }, {
     "file_name" : "OrderService.java",
@@ -860,14 +917,39 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Handles business logic for creating and managing online orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createOrder",
+      "parameters" : [ "CreateOrderRequest request", "Long userId" ],
+      "return_type" : "OrderDto",
+      "description" : "Creates a new order, validates menu items, initiates payment, and persists the order."
+    }, {
+      "name" : "getOrderById",
+      "parameters" : [ "Long orderId" ],
+      "return_type" : "OrderDto",
+      "description" : "Retrieves a specific order by its ID."
+    }, {
+      "name" : "getOrdersByUserId",
+      "parameters" : [ "Long userId" ],
+      "return_type" : "List<OrderDto>",
+      "description" : "Retrieves all orders for a given user ID."
+    }, {
+      "name" : "getAllOrders",
+      "parameters" : [ ],
+      "return_type" : "List<OrderDto>",
+      "description" : "Retrieves all orders in the system (admin access)."
+    }, {
+      "name" : "updateOrderStatus",
+      "parameters" : [ "Long orderId", "OrderStatus newStatus" ],
+      "return_type" : "OrderDto",
+      "description" : "Updates the status of an order and sends a notification."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/repository/OrderRepository.java", "backend/src/main/java/com/circuithouse/repository/MenuItemRepository.java", "backend/src/main/java/com/circuithouse/dto/CreateOrderRequest.java", "backend/src/main/java/com/circuithouse/dto/OrderDto.java", "backend/src/main/java/com/circuithouse/service/PaymentService.java", "backend/src/main/java/com/circuithouse/service/NotificationService.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements createOrder(CreateOrderRequest request, Long userId), getOrderById(Long orderId), getOrdersByUserId(Long userId), getAllOrders(), and updateOrderStatus(Long orderId, OrderStatus newStatus); delegates payment to PaymentService, notifications to NotificationService, menu item lookup to MenuService, and persistence to OrderRepository and OrderItemRepository.",
     "change_required" : null
   }, {
     "file_name" : "OrderController.java",
@@ -878,14 +960,38 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Public-facing REST controller for customers to place and track online orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createOrder",
+      "parameters" : [ "CreateOrderRequest request" ],
+      "return_type" : "ResponseEntity<OrderDto>",
+      "description" : "Endpoint for customers to create a new online order."
+    }, {
+      "name" : "getOrdersByUserId",
+      "parameters" : [ "Long userId" ],
+      "return_type" : "ResponseEntity<List<OrderDto>>",
+      "description" : "Endpoint for customers to retrieve their own orders."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/orders",
+      "request_body" : "CreateOrderRequest",
+      "response_body" : "OrderDto",
+      "description" : "Creates a new online food order for the authenticated user.",
+      "access" : "authenticated"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/orders/user/{userId}",
+      "request_body" : null,
+      "response_body" : "List<OrderDto>",
+      "description" : "Retrieves all orders for a specific user. The userId in the path must match the authenticated user's ID.",
+      "access" : "authenticated"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/OrderService.java", "backend/src/main/java/com/circuithouse/dto/CreateOrderRequest.java", "backend/src/main/java/com/circuithouse/dto/OrderDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — public-facing REST controller for customers to place and track online orders via createOrder(CreateOrderRequest request) and getOrdersByUserId(Long userId).",
     "change_required" : null
   }, {
     "file_name" : "AdminOrderController.java",
@@ -896,14 +1002,50 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Admin-only REST controller for viewing and managing all online orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllOrders",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<OrderDto>>",
+      "description" : "Endpoint for administrators to retrieve all online orders."
+    }, {
+      "name" : "getOrderById",
+      "parameters" : [ "Long orderId" ],
+      "return_type" : "ResponseEntity<OrderDto>",
+      "description" : "Endpoint for administrators to retrieve a specific order by ID."
+    }, {
+      "name" : "updateOrderStatus",
+      "parameters" : [ "Long orderId", "OrderStatus newStatus" ],
+      "return_type" : "ResponseEntity<OrderDto>",
+      "description" : "Endpoint for administrators to update the status of an order."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/orders",
+      "request_body" : null,
+      "response_body" : "List<OrderDto>",
+      "description" : "Retrieves all online orders for administrative purposes.",
+      "access" : "admin"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/orders/{orderId}",
+      "request_body" : null,
+      "response_body" : "OrderDto",
+      "description" : "Retrieves a specific online order by ID for administrative purposes.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/orders/{orderId}/status",
+      "request_body" : "OrderStatus",
+      "response_body" : "OrderDto",
+      "description" : "Updates the status of an online order for administrative purposes.",
+      "access" : "admin"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/OrderService.java", "backend/src/main/java/com/circuithouse/dto/OrderDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — admin-only REST controller for viewing and managing all online orders via getAllOrders(), getOrderById(Long orderId), and updateOrderStatus(Long orderId, OrderStatus newStatus).",
     "change_required" : null
   }, {
     "file_name" : "OrderDto.java",
@@ -914,14 +1056,42 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for representing order details in API responses.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "orderId",
+      "type" : "Long",
+      "description" : "Unique identifier for the order."
+    }, {
+      "name" : "userId",
+      "type" : "Long",
+      "description" : "ID of the customer who placed the order."
+    }, {
+      "name" : "orderItems",
+      "type" : "List<OrderItemDto>",
+      "description" : "List of items included in the order."
+    }, {
+      "name" : "totalAmount",
+      "type" : "BigDecimal",
+      "description" : "Total amount of the order."
+    }, {
+      "name" : "orderStatus",
+      "type" : "OrderStatus",
+      "description" : "Current status of the order."
+    }, {
+      "name" : "orderDate",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the order was placed."
+    }, {
+      "name" : "paymentOrderId",
+      "type" : "String",
+      "description" : "ID returned by the payment gateway for this order, used for payment initiation."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/dto/OrderItemDto.java", "backend/src/main/java/com/circuithouse/model/OrderStatus.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "DTO layer — Data Transfer Object for representing order details in API responses.",
     "change_required" : null
   }, {
     "file_name" : "OrderItemDto.java",
@@ -932,14 +1102,30 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for representing a single item within an order.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "menuItemId",
+      "type" : "Long",
+      "description" : "ID of the menu item ordered."
+    }, {
+      "name" : "menuItemName",
+      "type" : "String",
+      "description" : "Name of the menu item."
+    }, {
+      "name" : "quantity",
+      "type" : "Integer",
+      "description" : "Quantity of the menu item ordered."
+    }, {
+      "name" : "price",
+      "type" : "BigDecimal",
+      "description" : "Price of the menu item at the time of order."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "DTO layer — Data Transfer Object for representing a single item within an order.",
     "change_required" : null
   }, {
     "file_name" : "CreateOrderRequest.java",
@@ -950,14 +1136,22 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "DTO for capturing customer input when creating a new online order.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "userId",
+      "type" : "Long",
+      "description" : "ID of the customer placing the order. Not null."
+    }, {
+      "name" : "items",
+      "type" : "List<OrderItemRequest>",
+      "description" : "List of items to be included in the order. Not null, not empty."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/dto/OrderItemRequest.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "DTO layer — DTO for capturing customer input when creating a new online order.",
     "change_required" : null
   }, {
     "file_name" : "OrderItemRequest.java",
@@ -968,14 +1162,22 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "DTO representing a single item and its quantity in a new order request.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "menuItemId",
+      "type" : "Long",
+      "description" : "ID of the menu item. Not null."
+    }, {
+      "name" : "quantity",
+      "type" : "Integer",
+      "description" : "Quantity of the menu item. Not null, min 1."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-management",
-    "file_role" : null,
+    "file_role" : "DTO layer — DTO representing a single item and its quantity in a new order request.",
     "change_required" : null
   }, {
     "file_name" : "PaymentService.java",
@@ -2725,8 +2927,8 @@
     "feature_display_name" : "Order Management",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/model/OrderItem.java", "backend/src/main/java/com/circuithouse/model/OrderStatus.java", "backend/src/main/java/com/circuithouse/repository/OrderRepository.java", "backend/src/main/java/com/circuithouse/repository/OrderItemRepository.java", "backend/src/main/java/com/circuithouse/service/OrderService.java", "backend/src/main/java/com/circuithouse/controller/OrderController.java", "backend/src/main/java/com/circuithouse/controller/AdminOrderController.java", "backend/src/main/java/com/circuithouse/dto/OrderDto.java", "backend/src/main/java/com/circuithouse/dto/OrderItemDto.java", "backend/src/main/java/com/circuithouse/dto/CreateOrderRequest.java", "backend/src/main/java/com/circuithouse/dto/OrderItemRequest.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Order Management feature handles the complete lifecycle of a customer's online food order, from creation and payment initiation to status updates and retrieval for both customers and administrators. It integrates with the `menu-management` feature to fetch `MenuItem` details, the `payment-processing` feature to handle payment gateway interactions, and the `notification-service` feature to send order confirmations.\n\n## Order Creation Flow\n1.  **`OrderController.createOrder(CreateOrderRequest request)`** receives a `CreateOrderRequest` from the customer, containing a list of `OrderItemRequest` objects.\n2.  It delegates the request to **`OrderService.createOrder(CreateOrderRequest request, Long userId)`**.\n3.  `OrderService` first validates the `MenuItem` IDs and quantities by calling `menuService.getMenuItemById(Long id)` for each item in the request to ensure they exist and are available. If any item is not found or unavailable, a `ResourceNotFoundException` is thrown.\n4.  It constructs an `Order` entity and a list of `OrderItem` entities from the request and the fetched `MenuItem` data.\n5.  The initial `OrderStatus` is set to `PENDING_PAYMENT`.\n6.  `OrderService` then persists the `Order` and `OrderItem` entities using `orderRepository.save(Order order)` and `orderItemRepository.saveAll(List<OrderItem> orderItems)`.\n7.  It calls `paymentService.createPaymentOrder(PaymentOrderRequest request)` from the `payment-processing` feature, passing the `orderId` and `totalAmount`.\n8.  If the payment order creation is successful, `OrderService` returns an `OrderDto` which includes the payment gateway's order ID and other necessary details for the frontend to initiate payment.\n9.  If payment order creation fails, the `Order` status is updated to `CANCELLED` and a `PaymentGatewayException` is thrown.\n\n## Order Status Update Flow (from Payment Gateway Webhook)\n1.  The `PaymentController` (from `payment-processing` feature) receives a webhook notification from the payment gateway upon successful payment.\n2.  It calls **`OrderService.updateOrderStatus(Long orderId, OrderStatus newStatus)`**.\n3.  `OrderService` retrieves the `Order` by `orderId` using `orderRepository.findById(Long id)`. If not found, it throws a `ResourceNotFoundException`.\n4.  It updates the `OrderStatus` of the `Order` entity to the `newStatus` (e.g., `RECEIVED`).\n5.  It persists the updated `Order` using `orderRepository.save(Order order)`.\n6.  It then calls `notificationService.sendOrderConfirmation(OrderDto orderDto)` from the `notification-service` feature to inform the customer.\n\n## Customer Order Retrieval\n1.  **`OrderController.getOrdersByUserId(Long userId)`** retrieves all orders for a specific customer.\n2.  It calls **`OrderService.getOrdersByUserId(Long userId)`**.\n3.  `OrderService` fetches orders from `orderRepository.findByUserId(Long userId)`.\n4.  It converts the `Order` entities to `OrderDto` objects and returns them.\n\n## Admin Order Management\n1.  **`AdminOrderController`** provides endpoints for administrators to view and manage all orders.\n2.  **`AdminOrderController.getAllOrders()`** calls **`OrderService.getAllOrders()`** to fetch all orders, which in turn uses `orderRepository.findAll()`.\n3.  **`AdminOrderController.getOrderById(Long orderId)`** calls **`OrderService.getOrderById(Long orderId)`** to fetch a specific order, which uses `orderRepository.findById(Long id)`.\n4.  **`AdminOrderController.updateOrderStatus(Long orderId, OrderStatus newStatus)`** calls **`OrderService.updateOrderStatus(Long orderId, OrderStatus newStatus)`** to change an order's status (e.g., to `PREPARING`, `OUT_FOR_DELIVERY`, `DELIVERED`, `CANCELLED`). This method also triggers a notification via `notificationService.sendOrderStatusUpdate(OrderDto orderDto)`.\n\n## Data Transfer Objects (DTOs)\n-   **`CreateOrderRequest`**: Used for customer input when placing a new order. Contains `userId` and a list of `OrderItemRequest`.\n-   **`OrderItemRequest`**: Represents a single item in the `CreateOrderRequest`, with `menuItemId` and `quantity`.\n-   **`OrderDto`**: Represents the full details of an order for API responses, including `orderId`, `userId`, `orderItems` (list of `OrderItemDto`), `totalAmount`, `orderStatus`, `orderDate`, and `paymentOrderId`.\n-   **`OrderItemDto`**: Represents a single item within an `OrderDto`, including `menuItemId`, `menuItemName`, `quantity`, and `price`.\n\n## Error Handling\n-   `ResourceNotFoundException` (HTTP 404 Not Found) is thrown if an `Order` or `MenuItem` is not found.\n-   `PaymentGatewayException` (HTTP 500 Internal Server Error) is thrown if there's an issue communicating with the payment gateway.\n-   `IllegalArgumentException` (HTTP 400 Bad Request) is thrown for invalid input, such as negative quantities or invalid order statuses.",
+    "depends_on_features" : [ "menu-management", "payment-processing", "notification-service" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
