@@ -1222,14 +1222,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Public-facing REST controller for creating orders and checking order status.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createOrder",
+      "parameters" : [ "CreateOrderRequest request" ],
+      "return_type" : "ResponseEntity<OrderResponseDto>",
+      "description" : "Handles POST requests to create a new order."
+    }, {
+      "name" : "getOrderById",
+      "parameters" : [ "UUID orderId" ],
+      "return_type" : "ResponseEntity<OrderResponseDto>",
+      "description" : "Handles GET requests to retrieve a specific order by its ID."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/orders",
+      "request_body" : "CreateOrderRequest",
+      "response_body" : "OrderResponseDto",
+      "description" : "Creates a new order for the authenticated user.",
+      "access" : "authenticated"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/orders/{orderId}",
+      "request_body" : null,
+      "response_body" : "OrderResponseDto",
+      "description" : "Retrieves details of a specific order by its ID for the authenticated user.",
+      "access" : "authenticated"
+    } ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/OrderService.java", "backend/src/main/java/com/circuithouse/dto/CreateOrderRequest.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-api-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes public REST endpoints for creating new orders via `createOrder(CreateOrderRequest)` and retrieving order status via `getOrderById(UUID)`.",
     "change_required" : null
   }, {
     "file_name" : "AdminOrderController.java",
@@ -1240,14 +1264,50 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin-only REST controller for viewing and managing all online orders.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllOrders",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<OrderResponseDto>>",
+      "description" : "Handles GET requests to retrieve all orders."
+    }, {
+      "name" : "getOrdersByStatus",
+      "parameters" : [ "OrderStatus status" ],
+      "return_type" : "ResponseEntity<List<OrderResponseDto>>",
+      "description" : "Handles GET requests to retrieve orders filtered by status."
+    }, {
+      "name" : "updateOrderStatus",
+      "parameters" : [ "UUID id", "UpdateOrderStatusRequest request" ],
+      "return_type" : "ResponseEntity<OrderResponseDto>",
+      "description" : "Handles PUT requests to update the status of a specific order."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/orders",
+      "request_body" : null,
+      "response_body" : "List<OrderResponseDto>",
+      "description" : "Retrieves a list of all orders.",
+      "access" : "admin"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/orders/status/{status}",
+      "request_body" : null,
+      "response_body" : "List<OrderResponseDto>",
+      "description" : "Retrieves orders filtered by a specific status.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/orders/{id}/status",
+      "request_body" : "UpdateOrderStatusRequest",
+      "response_body" : "OrderResponseDto",
+      "description" : "Updates the status of a specific order.",
+      "access" : "admin"
+    } ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/OrderService.java", "backend/src/main/java/com/circuithouse/dto/UpdateOrderStatusRequest.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-api-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes admin-only REST endpoints for viewing all orders via `getAllOrders()`, filtering by status via `getOrdersByStatus(OrderStatus)`, and updating order status via `updateOrderStatus(UUID, UpdateOrderStatusRequest)`.",
     "change_required" : null
   }, {
     "file_name" : "CreateOrderRequest.java",
@@ -1259,13 +1319,33 @@
     "status" : "PLANNED",
     "description" : "DTO for capturing all data needed to create a new online order.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer. Not null, not blank."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer. Not null, valid email format."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer. Not null, not blank."
+    }, {
+      "name" : "deliveryAddress",
+      "type" : "String",
+      "description" : "Delivery address for the order. Not null, not blank."
+    }, {
+      "name" : "orderItems",
+      "type" : "List<OrderItemRequest>",
+      "description" : "List of items included in the order. Not null, not empty, each item must be valid."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/dto/OrderItemRequest.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-api-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — defines the structure for incoming requests to create a new order.",
     "change_required" : null
   }, {
     "file_name" : "OrderItemRequest.java",
@@ -1277,13 +1357,21 @@
     "status" : "PLANNED",
     "description" : "Represents a single item within a CreateOrderRequest.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "menuItemId",
+      "type" : "Long",
+      "description" : "ID of the menu item. Not null, must be positive."
+    }, {
+      "name" : "quantity",
+      "type" : "int",
+      "description" : "Quantity of the menu item. Not null, must be positive."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-api-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — defines the structure for a single item within a `CreateOrderRequest`.",
     "change_required" : null
   }, {
     "file_name" : "OrderResponseDto.java",
@@ -1295,13 +1383,49 @@
     "status" : "PLANNED",
     "description" : "DTO for exposing full order details in API responses.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier of the order."
+    }, {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer."
+    }, {
+      "name" : "customerEmail",
+      "type" : "String",
+      "description" : "Email of the customer."
+    }, {
+      "name" : "customerPhone",
+      "type" : "String",
+      "description" : "Phone number of the customer."
+    }, {
+      "name" : "deliveryAddress",
+      "type" : "String",
+      "description" : "Delivery address for the order."
+    }, {
+      "name" : "orderTime",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the order was placed."
+    }, {
+      "name" : "totalAmount",
+      "type" : "BigDecimal",
+      "description" : "Total amount of the order."
+    }, {
+      "name" : "status",
+      "type" : "OrderStatus",
+      "description" : "Current status of the order."
+    }, {
+      "name" : "orderItems",
+      "type" : "List<OrderItemDto>",
+      "description" : "List of items in the order."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/dto/OrderItemDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-api-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — defines the structure for order details returned in API responses.",
     "change_required" : null
   }, {
     "file_name" : "OrderItemDto.java",
@@ -1313,13 +1437,33 @@
     "status" : "PLANNED",
     "description" : "DTO for exposing order item details within an OrderResponseDto.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier of the order item."
+    }, {
+      "name" : "menuItemId",
+      "type" : "Long",
+      "description" : "ID of the menu item."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the menu item."
+    }, {
+      "name" : "quantity",
+      "type" : "int",
+      "description" : "Quantity of the menu item."
+    }, {
+      "name" : "price",
+      "type" : "BigDecimal",
+      "description" : "Price of the menu item at the time of order."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-api-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — defines the structure for a single item within an `OrderResponseDto`.",
     "change_required" : null
   }, {
     "file_name" : "UpdateOrderStatusRequest.java",
@@ -1331,13 +1475,17 @@
     "status" : "PLANNED",
     "description" : "DTO for updating the status of an existing order by an admin.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "status",
+      "type" : "OrderStatus",
+      "description" : "The new status for the order. Not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/OrderStatus.java" ],
     "depends_on" : [ ],
     "feature_name" : "order-api-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — defines the structure for incoming requests to update an order's status.",
     "change_required" : null
   }, {
     "file_name" : "Event.java",
@@ -2857,8 +3005,8 @@
     "feature_display_name" : "Order Management API (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/controller/OrderController.java", "backend/src/main/java/com/circuithouse/controller/admin/AdminOrderController.java", "backend/src/main/java/com/circuithouse/dto/CreateOrderRequest.java", "backend/src/main/java/com/circuithouse/dto/OrderItemRequest.java", "backend/src/main/java/com/circuithouse/dto/OrderResponseDto.java", "backend/src/main/java/com/circuithouse/dto/OrderItemDto.java", "backend/src/main/java/com/circuithouse/dto/UpdateOrderStatusRequest.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Order Management API (Backend) feature provides RESTful endpoints for customers to create and track their orders, and for administrators to view and manage all orders. This feature interacts with the `order-core-backend` feature for core order logic and persistence, and with the `menu-management-backend` feature to validate menu item IDs.\n\n## Public Order Endpoints\n`OrderController` exposes public endpoints for order creation and status lookup. The `createOrder` endpoint (`POST /api/v1/orders`) accepts a `CreateOrderRequest` DTO, which includes customer details, delivery address, and a list of `OrderItemRequest` objects. Each `OrderItemRequest` specifies a `menuItemId` and `quantity`. The controller delegates the order creation to `OrderService.createOrder(CreateOrderRequest request)`. Upon successful creation, it returns an `OrderResponseDto` with HTTP status 201 (Created). If the `menuItemId` is invalid or other business rules are violated, `OrderService` will throw an `IllegalArgumentException`, which `GlobalExceptionHandler` will catch and return a 400 Bad Request.\n\nThe `getOrderById` endpoint (`GET /api/v1/orders/{orderId}`) allows customers to retrieve the details of a specific order using its `UUID`. It calls `OrderService.getOrderById(UUID id)`. If the order is not found, `OrderService` throws a `ResourceNotFoundException`, resulting in a 404 Not Found response.\n\n## Admin Order Endpoints\n`AdminOrderController` provides administrative endpoints under `/api/v1/admin/orders` for managing all orders. These endpoints require administrator authentication.\n\n- `getAllOrders` (`GET /api/v1/admin/orders`): Retrieves a list of all orders. It calls `OrderService.getAllOrders()` and returns a `List<OrderResponseDto>`.\n- `getOrdersByStatus` (`GET /api/v1/admin/orders/status/{status}`): Retrieves orders filtered by `OrderStatus`. It calls `OrderService.getOrdersByStatus(OrderStatus status)`.\n- `updateOrderStatus` (`PUT /api/v1/admin/orders/{id}/status`): Updates the status of a specific order. It accepts an `UpdateOrderStatusRequest` containing the new `OrderStatus`. It calls `OrderService.updateOrderStatus(UUID id, UpdateOrderStatusRequest request)`. If the order is not found, it throws `ResourceNotFoundException` (404 Not Found). If the status transition is invalid, it throws `IllegalArgumentException` (400 Bad Request).\n\n## Data Transfer Objects (DTOs)\nThis feature defines several DTOs for request and response payloads:\n- `CreateOrderRequest`: Used for creating new orders. Contains `customerName`, `customerEmail`, `customerPhone`, `deliveryAddress`, and a list of `OrderItemRequest`.\n- `OrderItemRequest`: Represents a single item in an order request, with `menuItemId` and `quantity`.\n- `OrderResponseDto`: Used for returning order details in API responses. Includes `id`, `customerName`, `customerEmail`, `customerPhone`, `deliveryAddress`, `orderTime`, `totalAmount`, `status`, and a list of `OrderItemDto`.\n- `OrderItemDto`: Represents a single item within an `OrderResponseDto`, with `id`, `menuItemId`, `name`, `quantity`, and `price`.\n- `UpdateOrderStatusRequest`: Used by admins to update an order's status, containing the `status` field.\n\nAll DTOs use standard Java types and include appropriate Bean Validation annotations (e.g., `@NotNull`, `@NotBlank`, `@Min`, `@Valid`) to ensure data integrity at the API boundary.\n\n## Service Layer Interaction\nBoth `OrderController` and `AdminOrderController` inject `OrderService` from the `order-core-backend` feature. `OrderService` is responsible for the business logic of order creation, retrieval, and status updates. It will internally interact with `MenuItemRepository` from `menu-management-backend` to validate `menuItemId`s during order creation. The `OrderService` also handles the persistence of orders and order items through `OrderRepository` and `OrderItemRepository` (both from `order-core-backend`).",
+    "depends_on_features" : [ "order-core-backend", "menu-management-backend", "shared-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
