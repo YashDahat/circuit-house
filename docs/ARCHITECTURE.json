@@ -2001,14 +2001,14 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Configures the global Axios instance with base URL and JWT interceptors.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — configures the global Axios instance with base URL and JWT interceptors.",
     "change_required" : null
   }, {
     "file_name" : "App.tsx",
@@ -2019,14 +2019,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Root component that sets up the main application router.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "App",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main application with routing and global context providers."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — root component that sets up the main application router and global authentication context.",
     "change_required" : null
   }, {
     "file_name" : "Layout.tsx",
@@ -2037,14 +2042,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Main layout for public-facing pages, including the header, footer, and floating CTAs.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "Layout",
+      "parameters" : [ "React.PropsWithChildren<{}> props" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the public page layout with children content."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx", "frontend/src/components/shared/FloatingCta.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides the main layout for public-facing pages, integrating Header, Footer, and FloatingCta.",
     "change_required" : null
   }, {
     "file_name" : "Header.tsx",
@@ -2055,14 +2065,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Site-wide header with logo, navigation links, and order/reservation CTAs.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "Header",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main navigation header for the public site."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — site-wide header with logo, navigation links, and order/reservation CTAs.",
     "change_required" : null
   }, {
     "file_name" : "Footer.tsx",
@@ -2073,14 +2088,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Site-wide footer with contact information, social links, and quick navigation.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "Footer",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the site-wide footer with business details and navigation."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — site-wide footer with contact information, social links, and quick navigation.",
     "change_required" : null
   }, {
     "file_name" : "FloatingCta.tsx",
@@ -2091,14 +2111,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A persistent floating component with click-to-call and WhatsApp contact buttons.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "FloatingCta",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders floating call-to-action buttons for phone and WhatsApp."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — a persistent floating component with click-to-call and WhatsApp contact buttons.",
     "change_required" : null
   }, {
     "file_name" : "AdminLayout.tsx",
@@ -2109,14 +2134,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Layout for the admin section, featuring a sidebar for navigation and a main content area.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "AdminLayout",
+      "parameters" : [ "React.PropsWithChildren<{}> props" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin panel layout with a sidebar and children content."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — layout for the admin section, featuring a sidebar for navigation and a main content area.",
     "change_required" : null
   }, {
     "file_name" : "ProtectedRoute.tsx",
@@ -2235,14 +2265,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "The main landing page for the admin panel, showing summary stats and quick links.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "AdminDashboardPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin dashboard with quick links to management sections."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "PAGE layer — the main landing page for the admin panel, showing summary stats and quick links.",
     "change_required" : null
   }, {
     "file_name" : "HomePage.tsx",
@@ -2469,14 +2504,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A user-friendly 404 page to handle invalid routes.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "NotFoundPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a 404 error page for unmatched routes."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null,
+    "file_role" : "PAGE layer — a user-friendly 404 page to handle invalid routes.",
     "change_required" : null
   }, {
     "file_name" : "useMenu.ts",
@@ -3402,8 +3442,8 @@
     "feature_display_name" : "Core UI & Layout",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/api/client.ts", "frontend/src/App.tsx", "frontend/src/components/Layout.tsx", "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx", "frontend/src/components/shared/FloatingCta.tsx", "frontend/src/components/AdminLayout.tsx", "frontend/src/pages/AdminDashboardPage.tsx", "frontend/src/pages/NotFoundPage.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "This feature, Core UI & Layout, establishes the foundational user interface for the Circuit House restaurant's frontend application. It includes the global Axios configuration for API calls, the main React router setup, and common layout components for both public-facing pages and the admin panel. It also defines generic error and dashboard pages.\n\n## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B78824] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\n### `frontend/src/api/client.ts`\nThis file configures the global Axios instance. It sets the `baseURL` to `/api/v1` and includes an interceptor to attach the JWT token from `localStorage` to every outgoing request. The token is stored under the key 'token'.\n\n### `frontend/src/App.tsx`\nThis is the root component of the application. It sets up the `BrowserRouter` from `react-router-dom` and defines the main application routes. It includes routes for public pages (wrapped in `Layout`), admin pages (wrapped in `AdminLayout`), and a 404 `NotFoundPage` for unmatched routes. The `AuthContext` from the `authentication` feature will wrap the entire application to provide authentication state globally.\n\n### `frontend/src/components/Layout.tsx`\nThis component provides the main layout for all public-facing pages. It accepts `children` as props, which will be rendered within the layout. It integrates the `Header.tsx` at the top, `Footer.tsx` at the bottom, and `FloatingCta.tsx` for persistent contact buttons. The main content area should be a `div` with `max-w-7xl mx-auto px-4 py-8` for consistent spacing.\n\n### `frontend/src/components/Header.tsx`\nThis component renders the site-wide header. It includes the Circuit House logo (a text-based logo using the brand text accent color), navigation links to `Home`, `Menu`, `Events`, `Reservations`, `About`, `Gallery`, `Loyalty`, and `Contact`. It also features prominent CTAs for \"Order Online\" and \"Book a Table\". The header should be `bg-[#1A202C]` with `text-white` and use a sticky position for persistent navigation.\n\n### `frontend/src/components/Footer.tsx`\nThis component renders the site-wide footer. It displays the business name \"Circuit House\", address \"Laxman Nagar, Baner, Pune, Maharashtra 411045\", phone number \"070587 56269\", and opening hours. It also includes quick navigation links (Home, Menu, Reservations, About, Contact) and placeholder social media links. The footer should be `bg-[#1A202C]` with `text-white`.\n\n### `frontend/src/components/shared/FloatingCta.tsx`\nThis component provides persistent floating call-to-action buttons. It should include a \"Call Us\" button that dials \"070587 56269\" and a \"WhatsApp\" button that opens a WhatsApp chat for \"070587 56269\". These buttons should be positioned at the bottom right of the screen, using the primary CTA design tokens.\n\n### `frontend/src/components/AdminLayout.tsx`\nThis component provides the layout for all admin-facing pages. It includes a sidebar for admin navigation (e.g., Dashboard, Menu, Reservations, Orders, Events, Testimonials) and a main content area for `children`. The sidebar should be `bg-[#1A202C]` with `text-white` for navigation links. The main content area should have a `bg-[#F7FAFC]` background.\n\n### `frontend/src/pages/AdminDashboardPage.tsx`\nThis page serves as the main landing page for the admin panel. It should display a welcoming message like \"Welcome, Admin!\" and provide quick links to various admin sections (e.g., Manage Menu, View Reservations, Manage Orders, Manage Events, Manage Testimonials). It should be wrapped in `AdminLayout`.\n\n### `frontend/src/pages/NotFoundPage.tsx`\nThis page is displayed for any unmatched routes. It should feature a prominent \"404 - Page Not Found\" message, a user-friendly explanation like \"Oops! The page you're looking for doesn't exist.\", and a button to navigate back to the home page. The button should use the primary CTA design tokens.",
+    "depends_on_features" : [ "authentication" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
