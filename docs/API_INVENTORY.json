@@ -1,0 +1,486 @@
+{
+  "endpoints" : [ {
+    "method" : "POST",
+    "path" : "/api/v1/auth/login",
+    "handler" : "login",
+    "request" : "AuthRequest",
+    "response" : "AuthResponse"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/orders",
+    "handler" : "getAllOrders",
+    "request" : null,
+    "response" : "OrderResponseDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/orders/status/{status}",
+    "handler" : "getOrdersByStatus",
+    "request" : null,
+    "response" : "OrderResponseDto[]"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/orders/{id}/status",
+    "handler" : "updateOrderStatus",
+    "request" : "UpdateOrderStatusRequest",
+    "response" : "OrderResponseDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/events",
+    "handler" : "getAllEvents",
+    "request" : null,
+    "response" : "EventDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/events/{id}",
+    "handler" : "getEventById",
+    "request" : null,
+    "response" : "EventDto"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/admin/events",
+    "handler" : "createEvent",
+    "request" : "EventDto",
+    "response" : "EventDto"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/events/{id}",
+    "handler" : "updateEvent",
+    "request" : "EventDto",
+    "response" : "EventDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/events/{id}",
+    "handler" : "deleteEvent",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/reservations",
+    "handler" : "getAllReservations",
+    "request" : null,
+    "response" : "ReservationDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/reservations/{id}",
+    "handler" : "getReservationById",
+    "request" : null,
+    "response" : "ReservationDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/reservations/status/{status}",
+    "handler" : "getReservationsByStatus",
+    "request" : null,
+    "response" : "ReservationDto[]"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/reservations/{id}/status",
+    "handler" : "updateReservationStatus",
+    "request" : "UpdateReservationStatusRequest",
+    "response" : "ReservationDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/reservations/{id}",
+    "handler" : "deleteReservation",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/testimonials",
+    "handler" : "getAllTestimonials",
+    "request" : null,
+    "response" : "TestimonialDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/testimonials/{id}",
+    "handler" : "getTestimonialById",
+    "request" : null,
+    "response" : "TestimonialDto"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/admin/testimonials",
+    "handler" : "createTestimonial",
+    "request" : "TestimonialDto",
+    "response" : "TestimonialDto"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/testimonials/{id}",
+    "handler" : "updateTestimonial",
+    "request" : "TestimonialDto",
+    "response" : "TestimonialDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/testimonials/{id}",
+    "handler" : "deleteTestimonial",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/admin/menus/items",
+    "handler" : "createMenuItem",
+    "request" : "MenuItemDto",
+    "response" : "MenuItemDto"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/menus/items/{id}",
+    "handler" : "updateMenuItem",
+    "request" : "MenuItemDto",
+    "response" : "MenuItemDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/menus/items/{id}",
+    "handler" : "deleteMenuItem",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/admin/menus/categories",
+    "handler" : "createMenuItemCategory",
+    "request" : "MenuItemCategoryDto",
+    "response" : "MenuItemCategoryDto"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/menus/categories/{id}",
+    "handler" : "updateMenuItemCategory",
+    "request" : "MenuItemCategoryDto",
+    "response" : "MenuItemCategoryDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/menus/categories/{id}",
+    "handler" : "deleteMenuItemCategory",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/payments/create-order",
+    "handler" : "createOrder",
+    "request" : "CreatePaymentRequest",
+    "response" : "PaymentOrderResponse"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/payments/verify",
+    "handler" : "verify",
+    "request" : "VerifyPaymentRequest",
+    "response" : "PaymentVerificationResponse"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/payments/webhook",
+    "handler" : "webhook",
+    "request" : "String",
+    "response" : "String"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/orders",
+    "handler" : "createOrder",
+    "request" : "CreateOrderRequest",
+    "response" : "OrderResponseDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/orders/{orderId}",
+    "handler" : "getOrderById",
+    "request" : null,
+    "response" : "OrderResponseDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/menus/items",
+    "handler" : "getAllMenuItems",
+    "request" : null,
+    "response" : "MenuItemDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/menus/items/category/{categoryId}",
+    "handler" : "getMenuItemsByCategory",
+    "request" : null,
+    "response" : "MenuItemDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/menus/categories",
+    "handler" : "getAllMenuItemCategories",
+    "request" : null,
+    "response" : "MenuItemCategoryDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/testimonials",
+    "handler" : "getAllApprovedTestimonials",
+    "request" : null,
+    "response" : "TestimonialDto[]"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/reservations",
+    "handler" : "createReservation",
+    "request" : "CreateReservationRequest",
+    "response" : "ReservationDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/events",
+    "handler" : "getAllEvents",
+    "request" : null,
+    "response" : "EventDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/events/{id}",
+    "handler" : "getEventById",
+    "request" : null,
+    "response" : "EventDto"
+  } ],
+  "types" : {
+    "ReservationStatus" : {
+      "constants" : [ "PENDING", "CONFIRMED", "CANCELLED", "COMPLETED", "NO_SHOW" ]
+    },
+    "OrderItem" : {
+      "fields" : {
+        "id" : "UUID",
+        "order" : "Order?",
+        "menuItemId" : "Long?",
+        "name" : "String?",
+        "quantity" : "int?",
+        "price" : "BigDecimal?"
+      }
+    },
+    "MenuItemCategory" : {
+      "fields" : {
+        "id" : "Long",
+        "name" : "String?",
+        "description" : "String?"
+      }
+    },
+    "User" : {
+      "fields" : {
+        "id" : "Integer",
+        "firstName" : "String?",
+        "lastName" : "String?",
+        "email" : "String?",
+        "password" : "String?",
+        "role" : "Role?"
+      }
+    },
+    "Event" : {
+      "fields" : {
+        "id" : "UUID",
+        "name" : "String?",
+        "description" : "String?",
+        "eventDate" : "LocalDateTime?",
+        "imageUrl" : "String?"
+      }
+    },
+    "Testimonial" : {
+      "fields" : {
+        "id" : "UUID",
+        "author" : "String?",
+        "content" : "String?",
+        "rating" : "int?",
+        "date" : "LocalDateTime?",
+        "approved" : "boolean?"
+      }
+    },
+    "MenuItem" : {
+      "fields" : {
+        "id" : "Long",
+        "name" : "String?",
+        "description" : "String?",
+        "price" : "BigDecimal?",
+        "imageUrl" : "String?",
+        "category" : "MenuItemCategory?"
+      }
+    },
+    "Order" : {
+      "fields" : {
+        "id" : "UUID",
+        "customerId" : "UUID?",
+        "orderTime" : "LocalDateTime?",
+        "status" : "OrderStatus?",
+        "totalAmount" : "BigDecimal?",
+        "items" : "List<OrderItem>?"
+      }
+    },
+    "OrderStatus" : {
+      "constants" : [ "PENDING_PAYMENT", "RECEIVED", "PREPARING", "READY_FOR_DELIVERY", "OUT_FOR_DELIVERY", "DELIVERED", "CANCELLED" ]
+    },
+    "Reservation" : {
+      "fields" : {
+        "id" : "UUID",
+        "customerName" : "String?",
+        "customerEmail" : "String?",
+        "customerPhone" : "String?",
+        "reservationTime" : "LocalDateTime?",
+        "numberOfGuests" : "Integer?",
+        "status" : "ReservationStatus?",
+        "notes" : "String?"
+      }
+    },
+    "owned" : {
+      "fields" : {
+        "id" : "Long",
+        "referenceId" : "String?",
+        "gatewayOrderId" : "String?",
+        "gatewayPaymentId" : "String?",
+        "amount" : "BigDecimal?",
+        "currency" : "String?",
+        "status" : "PaymentStatus?",
+        "createdAt" : "Instant?"
+      }
+    },
+    "Role" : {
+      "constants" : [ "ADMIN", "USER" ]
+    },
+    "PaymentStatus" : {
+      "constants" : [ "CREATED", "CAPTURED", "FAILED" ]
+    },
+    "MenuItemDto" : {
+      "fields" : {
+        "id" : "Long?",
+        "name" : "String?",
+        "description" : "String?",
+        "price" : "java.math.BigDecimal?",
+        "imageUrl" : "String?",
+        "categoryId" : "Long?"
+      }
+    },
+    "EventDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "name" : "String?",
+        "description" : "String?",
+        "eventDate" : "LocalDateTime?",
+        "imageUrl" : "String?",
+        "active" : "Boolean?"
+      }
+    },
+    "MenuItemCategoryDto" : {
+      "fields" : {
+        "id" : "Long?",
+        "name" : "String?",
+        "description" : "String?"
+      }
+    },
+    "CreateReservationRequest" : {
+      "fields" : {
+        "customerName" : "String?",
+        "customerEmail" : "String?",
+        "customerPhone" : "String?",
+        "reservationTime" : "LocalDateTime?",
+        "numberOfGuests" : "Integer?",
+        "notes" : "String?"
+      }
+    },
+    "TestimonialDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "author" : "String?",
+        "content" : "String?",
+        "rating" : "Integer?",
+        "date" : "LocalDateTime?",
+        "approved" : "Boolean?"
+      }
+    },
+    "UpdateOrderStatusRequest" : {
+      "fields" : {
+        "status" : "OrderStatus?"
+      }
+    },
+    "AuthResponse" : {
+      "fields" : {
+        "token" : "String?"
+      }
+    },
+    "UpdateReservationStatusRequest" : {
+      "fields" : {
+        "status" : "ReservationStatus?",
+        "notes" : "String?"
+      }
+    },
+    "OrderItemRequest" : {
+      "fields" : {
+        "menuItemId" : "Long?",
+        "quantity" : "Integer?"
+      }
+    },
+    "CreatePaymentRequest" : {
+      "fields" : {
+        "amount" : "BigDecimal?",
+        "currency" : "String?",
+        "referenceId" : "String?"
+      }
+    },
+    "AuthRequest" : {
+      "fields" : {
+        "username" : "String?",
+        "password" : "String?"
+      }
+    },
+    "CreateOrderRequest" : {
+      "fields" : {
+        "customerName" : "String?",
+        "customerEmail" : "String?",
+        "customerPhone" : "String?",
+        "deliveryAddress" : "String?",
+        "orderItems" : "List<OrderItemRequest>?"
+      }
+    },
+    "PaymentVerificationResponse" : {
+      "fields" : {
+        "verified" : "boolean?",
+        "status" : "String?",
+        "referenceId" : "String?"
+      }
+    },
+    "ErrorResponse" : {
+      "fields" : {
+        "timestamp" : "LocalDateTime?",
+        "status" : "Integer?",
+        "error" : "String?",
+        "message" : "String?",
+        "path" : "String?"
+      }
+    },
+    "OrderResponseDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "customerName" : "String?",
+        "customerEmail" : "String?",
+        "customerPhone" : "String?",
+        "deliveryAddress" : "String?",
+        "orderTime" : "LocalDateTime?",
+        "totalAmount" : "java.math.BigDecimal?",
+        "status" : "OrderStatus?",
+        "orderItems" : "List<OrderItemDto>?"
+      }
+    },
+    "PaymentOrderResponse" : {
+      "fields" : {
+        "gatewayOrderId" : "String?",
+        "gatewayKeyId" : "String?",
+        "amount" : "int?",
+        "currency" : "String?",
+        "paymentRecordId" : "Long?"
+      }
+    },
+    "VerifyPaymentRequest" : {
+      "fields" : {
+        "gatewayOrderId" : "String?",
+        "gatewayPaymentId" : "String?",
+        "signature" : "String?"
+      }
+    },
+    "ReservationDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "customerName" : "String?",
+        "customerEmail" : "String?",
+        "customerPhone" : "String?",
+        "reservationTime" : "LocalDateTime?",
+        "numberOfGuests" : "Integer?",
+        "status" : "ReservationStatus?",
+        "notes" : "String?"
+      }
+    },
+    "OrderItemDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "menuItemId" : "Long?",
+        "name" : "String?",
+        "quantity" : "Integer?",
+        "price" : "java.math.BigDecimal?"
+      }
+    }
+  }
+}
