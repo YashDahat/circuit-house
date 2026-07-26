@@ -2855,14 +2855,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Multi-step checkout page including order summary, address form, and payment.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "OrderPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the multi-step checkout page, managing state for order details and navigating to confirmation upon successful order creation."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useOrders.ts", "frontend/src/context/CartContext.tsx", "frontend/src/components/order/OrderSummary.tsx", "frontend/src/components/order/DeliveryAddressForm.tsx", "frontend/src/components/order/PaymentComponent.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates the multi-step checkout process, consuming cart state, delivery address input, and payment component, then creating an order via `useCreateOrder`.",
     "change_required" : null
   }, {
     "file_name" : "OrderConfirmationPage.tsx",
@@ -2873,14 +2878,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays a summary of the successfully placed order.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "OrderConfirmationPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the order confirmation page, displaying details of the order fetched using the order ID from URL parameters."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useOrders.ts" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays the details of a successfully placed order by fetching order data using `useGetOrderById(orderId: string)`.",
     "change_required" : null
   }, {
     "file_name" : "OrderStatusPage.tsx",
@@ -2891,14 +2901,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Allows a user to look up the status of their order using an order ID.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "OrderStatusPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the order status lookup page, allowing users to input an order ID and view its status."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useOrders.ts" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — allows users to query the status of an order by its ID, using `useGetOrderById(orderId: string)`.",
     "change_required" : null
   }, {
     "file_name" : "useOrders.ts",
@@ -2909,14 +2924,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Custom hook to create and manage orders using React Query.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useCreateOrder",
+      "parameters" : [ ],
+      "return_type" : "{ mutate: (request: CreateOrderRequest) => void, isLoading: boolean, isSuccess: boolean, isError: boolean, error: Error | null }",
+      "description" : "Provides a mutation function to create a new order, along with loading, success, and error states."
+    }, {
+      "name" : "useGetOrderById",
+      "parameters" : [ "orderId: string" ],
+      "return_type" : "{ order: OrderResponseDto | undefined, isLoading: boolean, isError: boolean, error: Error | null }",
+      "description" : "Provides a query to fetch order details by ID, along with loading and error states."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/orderService.ts", "frontend/src/types/order.ts" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "HOOK layer — provides React Query hooks for `useCreateOrder` to create new orders and `useGetOrderById` to fetch order details.",
     "change_required" : null
   }, {
     "file_name" : "orderService.ts",
@@ -2927,14 +2952,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service for making API calls to order-related endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createOrder",
+      "parameters" : [ "request: CreateOrderRequest" ],
+      "return_type" : "Promise<OrderResponseDto>",
+      "description" : "Sends a POST request to create a new order."
+    }, {
+      "name" : "getOrderById",
+      "parameters" : [ "orderId: string" ],
+      "return_type" : "Promise<OrderResponseDto>",
+      "description" : "Sends a GET request to retrieve order details by ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/orders",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new order in the backend.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/orders/{orderId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Retrieves details for a specific order by its ID.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/order.ts" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — handles API communication for order-related operations, exposing `createOrder(request: CreateOrderRequest)` and `getOrderById(orderId: string)`.",
     "change_required" : null
   }, {
     "file_name" : "order.ts",
@@ -2946,13 +2995,41 @@
     "status" : "PLANNED",
     "description" : "TypeScript types for order data.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "MenuItem",
+      "type" : "{ id: number; name: string; description: string; price: number; imageUrl: string; category: MenuItemCategory; }",
+      "description" : "Represents a menu item."
+    }, {
+      "name" : "OrderItem",
+      "type" : "{ id: string; menuItemId: number; name: string; quantity: number; price: number; }",
+      "description" : "Represents an item within an order."
+    }, {
+      "name" : "CreateOrderRequest",
+      "type" : "{ customerName: string; customerEmail: string; customerPhone: string; deliveryAddress: string; orderItems: CreateOrderItemRequest[]; }",
+      "description" : "Request payload for creating a new order."
+    }, {
+      "name" : "CreateOrderItemRequest",
+      "type" : "{ menuItemId: number; quantity: number; }",
+      "description" : "Request payload for an item within a new order."
+    }, {
+      "name" : "OrderResponseDto",
+      "type" : "{ id: string; customerName: string; customerEmail: string; customerPhone: string; deliveryAddress: string; orderTime: string; totalAmount: number; status: OrderStatus; orderItems: OrderItem[]; }",
+      "description" : "Response DTO for an order."
+    }, {
+      "name" : "DeliveryAddress",
+      "type" : "{ street: string; city: string; state: string; zipCode: string; }",
+      "description" : "Represents a delivery address."
+    }, {
+      "name" : "OrderStatus",
+      "type" : "PENDING_PAYMENT | RECEIVED | PREPARING | READY_FOR_DELIVERY | OUT_FOR_DELIVERY | DELIVERED | CANCELLED",
+      "description" : "Enum for possible order statuses."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/menu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines TypeScript interfaces for order-related data transfer objects and entities.",
     "change_required" : null
   }, {
     "file_name" : "CartContext.tsx",
@@ -2963,14 +3040,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React context for managing the user's shopping cart state.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "CartProvider",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Provides the cart context to its children."
+    }, {
+      "name" : "useCart",
+      "parameters" : [ ],
+      "return_type" : "{ cartItems: OrderItem[], cartTotal: number, addItemToCart: (item: MenuItem, quantity: number) => void, removeItemFromCart: (menuItemId: number) => void, updateItemQuantity: (menuItemId: number, quantity: number) => void, clearCart: () => void }",
+      "description" : "Hook to access cart state and actions."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/local/cartService.ts" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "CONTEXT layer — provides `CartContext` with methods `addItemToCart`, `removeItemFromCart`, `updateItemQuantity`, `clearCart`, and exposes `cartItems` and `cartTotal`.",
     "change_required" : null
   }, {
     "file_name" : "cartService.ts",
@@ -2981,14 +3068,29 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Handles persistence of the shopping cart to localStorage.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getCartItems",
+      "parameters" : [ ],
+      "return_type" : "OrderItem[]",
+      "description" : "Retrieves cart items from localStorage."
+    }, {
+      "name" : "saveCartItems",
+      "parameters" : [ "items: OrderItem[]" ],
+      "return_type" : "void",
+      "description" : "Saves cart items to localStorage."
+    }, {
+      "name" : "clearCartItems",
+      "parameters" : [ ],
+      "return_type" : "void",
+      "description" : "Clears all cart items from localStorage."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/order.ts" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — handles client-side persistence of the shopping cart to `localStorage`, exposing `getCartItems`, `saveCartItems`, and `clearCartItems`.",
     "change_required" : null
   }, {
     "file_name" : "OrderSummary.tsx",
@@ -2999,14 +3101,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays the items in the cart, quantities, and total price.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "OrderSummary",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a summary of the current items in the shopping cart, including quantities and total price."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/context/CartContext.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a summary of items in the cart, their quantities, and the total price, consuming `cartItems` and `cartTotal` from `CartContext`.",
     "change_required" : null
   }, {
     "file_name" : "DeliveryAddressForm.tsx",
@@ -3017,14 +3124,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form for users to enter their delivery address and contact information.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "DeliveryAddressForm",
+      "parameters" : [ "{ onSubmit: (data: { customerName: string; customerEmail: string; customerPhone: string; deliveryAddress: string; }) => void, initialData?: { customerName: string; customerEmail: string; customerPhone: string; deliveryAddress: string; } }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for collecting customer name, email, phone, and delivery address."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for users to input their delivery address and contact information, emitting `DeliveryAddress` and contact details on submission.",
     "change_required" : null
   }, {
     "file_name" : "PaymentComponent.tsx",
@@ -3035,14 +3147,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Integrates with the payment gateway to handle the final payment step.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "PaymentComponent",
+      "parameters" : [ "{ onPaymentSuccess: () => void, totalAmount: number }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a payment interface with a button to simulate payment success."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "order-checkout-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — simulates a payment gateway integration, providing a 'Proceed to Payment' button that triggers a callback on click.",
     "change_required" : null
   }, {
     "file_name" : "EventsPage.tsx",
@@ -3626,8 +3743,8 @@
     "feature_display_name" : "Order & Checkout (Frontend)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/OrderPage.tsx", "frontend/src/pages/OrderConfirmationPage.tsx", "frontend/src/pages/OrderStatusPage.tsx", "frontend/src/hooks/useOrders.ts", "frontend/src/services/orderService.ts", "frontend/src/types/order.ts", "frontend/src/context/CartContext.tsx", "frontend/src/services/local/cartService.ts", "frontend/src/components/order/OrderSummary.tsx", "frontend/src/components/order/DeliveryAddressForm.tsx", "frontend/src/components/order/PaymentComponent.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B7872A] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides the frontend user interface and logic for managing the shopping cart, proceeding through a multi-step checkout process, and viewing order status. It integrates with the `order-api-backend` for creating and retrieving orders, and uses `localStorage` for cart persistence.\n\nThe `CartContext.tsx` file provides a React Context for managing the shopping cart state globally. It exposes `cartItems`, `addItemToCart`, `removeItemFromCart`, `updateItemQuantity`, `clearCart`, and `cartTotal`. This context is consumed by `OrderPage.tsx` and `OrderSummary.tsx`. The actual persistence to `localStorage` is handled by `cartService.ts`.\n\n`order.ts` defines the TypeScript interfaces for `MenuItem`, `OrderItem`, `CreateOrderRequest`, `OrderResponseDto`, `CreateOrderItemRequest`, `DeliveryAddress`, and `OrderStatus` which mirror the backend DTOs from `order-core-backend` and `menu-management-backend`. These types are used throughout the feature to ensure type safety and consistency.\n\n`orderService.ts` is responsible for making API calls to the `order-api-backend`. It exports asynchronous functions `createOrder(request: CreateOrderRequest): Promise<OrderResponseDto>` and `getOrderById(orderId: string): Promise<OrderResponseDto>`. These functions utilize the `api/client.ts` for HTTP requests.\n\n`useOrders.ts` is a custom React Query hook that wraps `orderService.ts`. It provides `useCreateOrder` for creating new orders and `useGetOrderById` for fetching order details. `useCreateOrder` returns a `mutate` function, `isLoading`, `isSuccess`, `isError`, and `error` for handling the order creation lifecycle. `useGetOrderById` returns `order`, `isLoading`, `isError`, and `error` for fetching order details. These hooks are consumed by `OrderPage.tsx`, `OrderConfirmationPage.tsx`, and `OrderStatusPage.tsx`.\n\n`OrderPage.tsx` renders the multi-step checkout flow. It uses `CartContext` to display the order summary via `OrderSummary.tsx`. It collects delivery address information using `DeliveryAddressForm.tsx` and integrates with `PaymentComponent.tsx` for the final payment step. Upon successful payment, it calls `useCreateOrder` from `useOrders.ts` with the collected order details and navigates to the `OrderConfirmationPage.tsx`.\n\n`OrderSummary.tsx` is a presentational component that receives `cartItems` and `cartTotal` from `CartContext` and displays them in a clear, concise manner, reflecting the elegant and modern visual style. It allows users to review their selected items and quantities before proceeding with the order.\n\n`DeliveryAddressForm.tsx` is a form component that captures the customer's `customerName`, `customerEmail`, `customerPhone`, and `deliveryAddress`. It validates the input fields and passes the collected data to `OrderPage.tsx`.\n\n`PaymentComponent.tsx` simulates a payment gateway integration. In a real-world scenario, this component would interact with a payment SDK. For this feature, it will simply provide a button to 'Proceed to Payment' which, when clicked, will trigger the `createOrder` mutation in `OrderPage.tsx`.\n\n`OrderConfirmationPage.tsx` displays a summary of the successfully placed order. It retrieves the `orderId` from the URL parameters and uses `useGetOrderById` from `useOrders.ts` to fetch and display the order details, including `orderItems`, `totalAmount`, `deliveryAddress`, and `status`.\n\n`OrderStatusPage.tsx` allows users to look up the status of their order. It provides an input field for the `orderId` and uses `useGetOrderById` from `useOrders.ts` to fetch and display the order status and details. It will show a loading state while fetching and an error message if the order is not found or an error occurs.",
+    "depends_on_features" : [ "order-api-backend", "menu-management-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
