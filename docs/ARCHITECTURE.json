@@ -1894,14 +1894,24 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Interface for sending notifications (e.g., email, WhatsApp) for order and reservation confirmations.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "sendOrderConfirmation",
+      "parameters" : [ "Order order" ],
+      "return_type" : "void",
+      "description" : "Sends a confirmation notification for a given order."
+    }, {
+      "name" : "sendReservationConfirmation",
+      "parameters" : [ "Reservation reservation" ],
+      "return_type" : "void",
+      "description" : "Sends a confirmation notification for a given reservation."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Order.java", "backend/src/main/java/com/circuithouse/model/Reservation.java" ],
     "depends_on" : [ ],
     "feature_name" : "notification-service",
-    "file_role" : null,
+    "file_role" : "SERVICE layer interface — defines the contract for sending notifications, including sendOrderConfirmation(Order order) and sendReservationConfirmation(Reservation reservation).",
     "change_required" : null
   }, {
     "file_name" : "EmailNotificationService.java",
@@ -1912,14 +1922,24 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Implementation of NotificationService for sending emails via Spring Mail.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "sendOrderConfirmation",
+      "parameters" : [ "Order order" ],
+      "return_type" : "void",
+      "description" : "Sends an email confirmation for the provided order."
+    }, {
+      "name" : "sendReservationConfirmation",
+      "parameters" : [ "Reservation reservation" ],
+      "return_type" : "void",
+      "description" : "Sends an email confirmation for the provided reservation."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/NotificationService.java" ],
     "depends_on" : [ ],
     "feature_name" : "notification-service",
-    "file_role" : null,
+    "file_role" : "SERVICE layer implementation — provides email-based notification sending for sendOrderConfirmation(Order order) and sendReservationConfirmation(Reservation reservation) using Spring Mail.",
     "change_required" : null
   }, {
     "file_name" : "WhatsAppNotificationService.java",
@@ -1930,14 +1950,24 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Stub implementation of NotificationService for sending WhatsApp messages via a third-party API.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "sendOrderConfirmation",
+      "parameters" : [ "Order order" ],
+      "return_type" : "void",
+      "description" : "Simulates sending a WhatsApp confirmation for the provided order."
+    }, {
+      "name" : "sendReservationConfirmation",
+      "parameters" : [ "Reservation reservation" ],
+      "return_type" : "void",
+      "description" : "Simulates sending a WhatsApp confirmation for the provided reservation."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/NotificationService.java" ],
     "depends_on" : [ ],
     "feature_name" : "notification-service",
-    "file_role" : null,
+    "file_role" : "SERVICE layer implementation — provides a stub for WhatsApp-based notification sending for sendOrderConfirmation(Order order) and sendReservationConfirmation(Reservation reservation).",
     "change_required" : null
   }, {
     "file_name" : "DataSeeder.java",
@@ -3363,8 +3393,8 @@
     "feature_display_name" : "Notification Service",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/service/NotificationService.java", "backend/src/main/java/com/circuithouse/service/EmailNotificationService.java", "backend/src/main/java/com/circuithouse/service/WhatsAppNotificationService.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Notification Service feature provides an abstraction for sending various types of notifications, such as email and WhatsApp messages, primarily for order and reservation confirmations. It defines a `NotificationService` interface that outlines the core notification capabilities. Concrete implementations, `EmailNotificationService` and `WhatsAppNotificationService`, handle the specifics of sending notifications via their respective channels.\n\n`NotificationService.java`:\nThis interface defines the contract for sending notifications. It includes methods to send notifications for both `Order` and `Reservation` entities. Other services (e.g., `OrderService` or `ReservationService` from their respective features) will inject an implementation of `NotificationService` to send notifications.\n\n`EmailNotificationService.java`:\nThis class implements the `NotificationService` interface and is responsible for sending email notifications. It uses Spring's `JavaMailSender` to construct and send emails. When `sendOrderConfirmation` is called, it should format an email with the order details (orderId, totalAmount, orderItems) and send it to the customer's email address. Similarly, for `sendReservationConfirmation`, it should format an email with reservation details (customerName, reservationTime, partySize) and send it to the customer's email.\n\n`WhatsAppNotificationService.java`:\nThis class also implements the `NotificationService` interface but is a stub for sending WhatsApp messages. In a real-world scenario, it would integrate with a third-party WhatsApp API. For now, its `sendOrderConfirmation` and `sendReservationConfirmation` methods will log the notification details to the console, simulating the sending of a WhatsApp message without actual external API calls.\n\n**Inter-file Wiring and Cross-Feature Interactions:**\n\n*   **NotificationService** is an interface that will be injected into other services (e.g., `OrderService` from `order-management` and `ReservationService` from `reservation-system`).\n*   `EmailNotificationService` and `WhatsAppNotificationService` are concrete implementations of `NotificationService`.\n*   When `OrderService.createOrder()` (from `order-management`) successfully creates an order, it will call `notificationService.sendOrderConfirmation(order)`.\n*   When `ReservationService.createReservation()` (from `reservation-system`) successfully creates a reservation, it will call `notificationService.sendReservationConfirmation(reservation)`.\n\n**Method Contracts:**\n\n`NotificationService.java`:\n*   `void sendOrderConfirmation(Order order)`:\n    1.  Receives an `Order` object.\n    2.  Delegates to the specific notification implementation to send an order confirmation.\n    3.  No return value.\n    4.  Throws `NotificationException` if there's an issue sending the notification.\n*   `void sendReservationConfirmation(Reservation reservation)`:\n    1.  Receives a `Reservation` object.\n    2.  Delegates to the specific notification implementation to send a reservation confirmation.\n    3.  No return value.\n    4.  Throws `NotificationException` if there's an issue sending the notification.\n\n`EmailNotificationService.java`:\n*   `void sendOrderConfirmation(Order order)`:\n    1.  Constructs an email message using `JavaMailSender`.\n    2.  Sets the recipient to `order.getUserId()` (assuming user email can be retrieved from user ID or passed in the Order object).\n    3.  Sets the subject to \"Circuit House - Order Confirmation #\" + `order.getId()`.\n    4.  Composes the email body with details like `order.getId()`, `order.getTotalAmount()`, and `order.getOrderItems()`.\n    5.  Sends the email using `javaMailSender.send()`.\n    6.  No return value.\n    7.  Throws `MailException` (Spring's mail exception) if email sending fails.\n*   `void sendReservationConfirmation(Reservation reservation)`:\n    1.  Constructs an email message using `JavaMailSender`.\n    2.  Sets the recipient to `reservation.getCustomerEmail()`.\n    3.  Sets the subject to \"Circuit House - Reservation Confirmation #\" + `reservation.getId()`.\n    4.  Composes the email body with details like `reservation.getCustomerName()`, `reservation.getReservationTime()`, and `reservation.getPartySize()`.\n    5.  Sends the email using `javaMailSender.send()`.\n    6.  No return value.\n    7.  Throws `MailException` if email sending fails.\n\n`WhatsAppNotificationService.java`:\n*   `void sendOrderConfirmation(Order order)`:\n    1.  Logs a message to the console indicating a WhatsApp order confirmation for `order.getId()`.\n    2.  Includes relevant order details in the log.\n    3.  No return value.\n    4.  No specific exceptions thrown for this stub.\n*   `void sendReservationConfirmation(Reservation reservation)`:\n    1.  Logs a message to the console indicating a WhatsApp reservation confirmation for `reservation.getId()`.\n    2.  Includes relevant reservation details in the log.\n    3.  No return value.\n    4.  No specific exceptions thrown for this stub.",
+    "depends_on_features" : [ ],
     "change_required" : true,
     "change_instruction" : null
   }, {
