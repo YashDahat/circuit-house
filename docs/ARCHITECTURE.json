@@ -3065,8 +3065,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "Handles persistence of the shopping cart to localStorage.",
     "public_functions" : [ {
       "name" : "getCartItems",
