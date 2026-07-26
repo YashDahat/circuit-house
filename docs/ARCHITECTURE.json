@@ -2288,14 +2288,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Landing page with a full-bleed hero image, featured menu items, testimonial carousel, and events CTA.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HomePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main landing page of the restaurant website."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/FeaturedMenuSection.tsx", "frontend/src/components/home/TestimonialCarousel.tsx", "frontend/src/components/home/EventsCtaSection.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "PAGE layer — serves as the main landing page, composed of various sections and components.",
     "change_required" : null
   }, {
     "file_name" : "HeroSection.tsx",
@@ -2306,14 +2311,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Displays the main hero section with a background image, headline, and primary CTAs.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HeroSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the hero section with a background image, headline, and calls to action."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays the main hero section of the homepage.",
     "change_required" : null
   }, {
     "file_name" : "FeaturedMenuSection.tsx",
@@ -2324,14 +2334,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A section to showcase a curated list of popular or special menu items.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "FeaturedMenuSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a section displaying featured menu items fetched via the useMenu hook."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMenu.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — showcases a curated list of popular menu items by consuming the `useMenu` hook.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialCarousel.tsx",
@@ -2342,14 +2357,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A rotating carousel displaying curated customer testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialCarousel",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a carousel of customer testimonials fetched via the useTestimonials hook."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useTestimonials.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a rotating carousel of customer testimonials by consuming the `useTestimonials` hook.",
     "change_required" : null
   }, {
     "file_name" : "EventsCtaSection.tsx",
@@ -2360,14 +2380,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A call-to-action section promoting upcoming events like live music nights.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "EventsCtaSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a call-to-action section that promotes upcoming events."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a call-to-action for upcoming events.",
     "change_required" : null
   }, {
     "file_name" : "AboutPage.tsx",
@@ -2378,14 +2403,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Static page describing the restaurant's story, mission, and ambiance.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AboutPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the About Us page with information about the restaurant."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays static content about the restaurant's story and mission.",
     "change_required" : null
   }, {
     "file_name" : "ContactPage.tsx",
@@ -2396,14 +2426,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Page with contact details, a contact form, and an embedded Google Map.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the Contact Us page with contact information, a form, and a map."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/contact/ContactInfo.tsx", "frontend/src/components/contact/ContactForm.tsx", "frontend/src/components/contact/GoogleMapEmbed.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays contact details, a contact form, and an embedded map.",
     "change_required" : null
   }, {
     "file_name" : "ContactInfo.tsx",
@@ -2414,14 +2449,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Displays address, phone number, email, and opening hours.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactInfo",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the restaurant's contact details."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays the restaurant's address, phone, email, and opening hours.",
     "change_required" : null
   }, {
     "file_name" : "ContactForm.tsx",
@@ -2432,14 +2472,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A form for users to send inquiries to the restaurant.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactForm",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for submitting inquiries."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for users to send inquiries.",
     "change_required" : null
   }, {
     "file_name" : "GoogleMapEmbed.tsx",
@@ -2450,14 +2495,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Component to embed an interactive Google Map showing the restaurant's location.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "GoogleMapEmbed",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders an embedded Google Map showing the restaurant's location."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — embeds an interactive Google Map showing the restaurant's location.",
     "change_required" : null
   }, {
     "file_name" : "GalleryPage.tsx",
@@ -2468,14 +2518,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A page showcasing high-quality photos of the food and restaurant interior in a grid.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "GalleryPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the photo gallery page."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays a grid of high-quality photos of the food and restaurant interior.",
     "change_required" : null
   }, {
     "file_name" : "LoyaltyPage.tsx",
@@ -2486,14 +2541,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A static page explaining the benefits and terms of the customer loyalty program.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "LoyaltyPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the loyalty program information page."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays static content explaining the customer loyalty program.",
     "change_required" : null
   }, {
     "file_name" : "NotFoundPage.tsx",
@@ -3247,14 +3307,39 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Custom hook for fetching and managing testimonial data using react-query.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useGetAllApprovedTestimonials",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<TestimonialDto[], Error>",
+      "description" : "Fetches all approved testimonials."
+    }, {
+      "name" : "useGetTestimonialById",
+      "parameters" : [ "Long id" ],
+      "return_type" : "UseQueryResult<TestimonialDto, Error>",
+      "description" : "Fetches a single testimonial by its ID."
+    }, {
+      "name" : "useCreateTestimonial",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<TestimonialDto, Error, TestimonialDto>",
+      "description" : "Provides a mutation function to create a new testimonial."
+    }, {
+      "name" : "useUpdateTestimonial",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<TestimonialDto, Error, { id: Long; testimonial: TestimonialDto }>",
+      "description" : "Provides a mutation function to update an existing testimonial."
+    }, {
+      "name" : "useDeleteTestimonial",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<void, Error, Long>",
+      "description" : "Provides a mutation function to delete a testimonial by its ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/testimonialService.ts", "frontend/src/types/testimonial.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "HOOK layer — provides custom hooks for fetching and managing testimonial data using `react-query`.",
     "change_required" : null
   }, {
     "file_name" : "testimonialService.ts",
@@ -3265,14 +3350,86 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Provides functions for making API calls to testimonial-related endpoints.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllApprovedTestimonials",
+      "parameters" : [ ],
+      "return_type" : "Promise<TestimonialDto[]>",
+      "description" : "Fetches all approved testimonials from the backend."
+    }, {
+      "name" : "getAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "Promise<TestimonialDto[]>",
+      "description" : "Fetches all testimonials (approved and unapproved) from the backend for admin use."
+    }, {
+      "name" : "getTestimonialById",
+      "parameters" : [ "Long id" ],
+      "return_type" : "Promise<TestimonialDto>",
+      "description" : "Fetches a single testimonial by ID from the backend."
+    }, {
+      "name" : "createTestimonial",
+      "parameters" : [ "TestimonialDto testimonial" ],
+      "return_type" : "Promise<TestimonialDto>",
+      "description" : "Creates a new testimonial in the backend."
+    }, {
+      "name" : "updateTestimonial",
+      "parameters" : [ "Long id", "TestimonialDto testimonial" ],
+      "return_type" : "Promise<TestimonialDto>",
+      "description" : "Updates an existing testimonial in the backend."
+    }, {
+      "name" : "deleteTestimonial",
+      "parameters" : [ "Long id" ],
+      "return_type" : "Promise<void>",
+      "description" : "Deletes a testimonial from the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/testimonials",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all approved testimonials.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/testimonials",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all testimonials for admin.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a testimonial by ID for admin.",
+      "access" : null
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/testimonials",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new testimonial.",
+      "access" : null
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Updates an existing testimonial.",
+      "access" : null
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Deletes a testimonial.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/testimonial.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — provides functions for making API calls to testimonial-related endpoints.",
     "change_required" : null
   }, {
     "file_name" : "testimonial.ts",
@@ -3284,13 +3441,17 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for customer testimonial data structures.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "TestimonialDto",
+      "type" : "{ id: Long; customerName: String; testimonialText: String; rating: Integer; approved: Boolean; }",
+      "description" : "DTO for customer testimonial data."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines TypeScript types for testimonial data.",
     "change_required" : null
   }, {
     "file_name" : "AdminTestimonialsPage.tsx",
@@ -3301,14 +3462,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Admin interface for managing customer testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminTestimonialsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin page for managing testimonials."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useTestimonials.ts", "frontend/src/components/admin/testimonials/TestimonialsTable.tsx", "frontend/src/components/admin/testimonials/TestimonialForm.tsx", "frontend/src/components/admin/testimonials/DeleteTestimonialDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "PAGE layer — provides the administrative interface for managing customer testimonials.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialsTable.tsx",
@@ -3319,14 +3485,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A data table listing all testimonials with actions to approve, edit, or delete.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialsTable",
+      "parameters" : [ "{ testimonials: TestimonialDto[]; onEdit: (testimonial: TestimonialDto) => void; onDelete: (id: Long) => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of testimonials with edit and delete actions."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/testimonial.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table of testimonials with actions for approval, editing, and deletion.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialForm.tsx",
@@ -3337,14 +3508,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A form for manually adding or editing a customer testimonial.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialForm",
+      "parameters" : [ "{ testimonial?: TestimonialDto; onClose: () => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for creating or editing a testimonial."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/testimonial.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating or editing a customer testimonial.",
     "change_required" : null
   }, {
     "file_name" : "DeleteTestimonialDialog.tsx",
@@ -3355,14 +3531,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "A confirmation dialog to prevent accidental deletion of a testimonial.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "DeleteTestimonialDialog",
+      "parameters" : [ "{ testimonialId: Long; onClose: () => void; }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a confirmation dialog for deleting a testimonial."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-content",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a confirmation dialog for deleting a testimonial.",
     "change_required" : null
   } ],
   "features" : [ {
@@ -3460,8 +3641,8 @@
     "feature_display_name" : "Static Content & Pages",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/FeaturedMenuSection.tsx", "frontend/src/components/home/TestimonialCarousel.tsx", "frontend/src/components/home/EventsCtaSection.tsx", "frontend/src/pages/AboutPage.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/components/contact/ContactInfo.tsx", "frontend/src/components/contact/ContactForm.tsx", "frontend/src/components/contact/GoogleMapEmbed.tsx", "frontend/src/pages/GalleryPage.tsx", "frontend/src/pages/LoyaltyPage.tsx", "frontend/src/hooks/useTestimonials.ts", "frontend/src/services/testimonialService.ts", "frontend/src/types/testimonial.ts", "frontend/src/pages/AdminTestimonialsPage.tsx", "frontend/src/components/admin/testimonials/TestimonialsTable.tsx", "frontend/src/components/admin/testimonials/TestimonialForm.tsx", "frontend/src/components/admin/testimonials/DeleteTestimonialDialog.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A202C] text-white\n- Primary CTA: bg-[#D69E2E] hover:bg-[#B7872A] text-white font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#D69E2E]\n- Section bg: bg-[#F7FAFC] (odd sections) / bg-white (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-[#2D3748] leading-relaxed\n\nThis feature provides all static content pages and related components for the Circuit House restaurant, including the homepage, about page, contact page, gallery, loyalty program information, and an admin interface for managing customer testimonials. It integrates with the `menu-management`, `event-management`, and `testimonial-management` backend features to display dynamic content.\n\nThe `HomePage.tsx` serves as the landing page, composed of several key sections:\n1.  `HeroSection.tsx`: Displays a full-bleed hero image with a compelling headline and calls to action. It uses a restaurant-themed Unsplash image and an overlay for readability. The headline should be \"Experience Culinary Excellence at Circuit House\" and the subheadline \"Where Every Dish is a Masterpiece. Reserve Your Table Today.\"\n2.  `FeaturedMenuSection.tsx`: Showcases popular menu items. This component will utilize the `useMenu` hook to fetch a curated list of `MenuItemDto` objects from the `/api/v1/menu` endpoint of the `menu-management` feature. It should display at least three featured items, including their `name`, `description`, `price`, and `imageUrl`.\n3.  `TestimonialCarousel.tsx`: Presents customer testimonials in a rotating carousel. It uses the `useTestimonials` hook to fetch `TestimonialDto` objects from the `/api/v1/testimonials` endpoint of the `testimonial-management` feature. Each testimonial should display the `customerName` and `testimonialText`.\n4.  `EventsCtaSection.tsx`: A call-to-action section promoting upcoming events. This section will link to the `/events` page.\n\n`AboutPage.tsx` provides static content about the restaurant's story, mission, and ambiance, using descriptive and enticing copy.\n\n`ContactPage.tsx` displays contact information and includes a form and an embedded map:\n1.  `ContactInfo.tsx`: Renders the restaurant's address, phone number, email (placeholder: info@circuithouse.com), and opening hours (Mon-Sun: 11:00 AM - 11:00 PM).\n2.  `ContactForm.tsx`: A form for users to submit inquiries. This form will have fields for `name`, `email`, `subject`, and `message`. Upon submission, it should display a success or error message. This form does not interact with a backend API in this feature.\n3.  `GoogleMapEmbed.tsx`: Embeds a Google Map centered at the restaurant's coordinates (18.570737, 73.769986).\n\n`GalleryPage.tsx` will display a grid of high-quality images of the food and restaurant interior. The images should be placeholder Unsplash URLs relevant to a restaurant.\n\n`LoyaltyPage.tsx` explains the benefits and terms of the Circuit House loyalty program with confident and welcoming copy.\n\n`testimonial.ts` defines the TypeScript interface for `TestimonialDto`.\n\n`testimonialService.ts` provides the `getAllApprovedTestimonials`, `createTestimonial`, `getTestimonialById`, `updateTestimonial`, and `deleteTestimonial` functions for interacting with the `testimonial-management` backend. These functions will call the `/api/v1/testimonials` and `/api/v1/admin/testimonials` endpoints.\n\n`useTestimonials.ts` is a custom React Query hook that wraps `testimonialService.ts` functions to provide data fetching, caching, and mutation capabilities for testimonials. It exports `useGetAllApprovedTestimonials`, `useGetTestimonialById`, `useCreateTestimonial`, `useUpdateTestimonial`, and `useDeleteTestimonial`.\n\n`AdminTestimonialsPage.tsx` provides the administrative interface for managing testimonials. It uses `useTestimonials` to fetch all testimonials and orchestrates the `TestimonialsTable.tsx`, `TestimonialForm.tsx`, and `DeleteTestimonialDialog.tsx` components.\n\n`TestimonialsTable.tsx` displays a sortable and filterable table of testimonials, showing `customerName`, `testimonialText`, `rating`, and `approved` status. It includes action buttons to edit or delete a testimonial.\n\n`TestimonialForm.tsx` is a modal form used for creating or editing a testimonial. It takes an optional `TestimonialDto` prop for editing and includes fields for `customerName`, `testimonialText`, `rating`, and `approved` status. It uses `useCreateTestimonial` or `useUpdateTestimonial` from `useTestimonials.ts`.\n\n`DeleteTestimonialDialog.tsx` is a confirmation dialog for deleting a testimonial. It uses `useDeleteTestimonial` from `useTestimonials.ts`.\n\nAll pages (`HomePage.tsx`, `AboutPage.tsx`, `ContactPage.tsx`, `GalleryPage.tsx`, `LoyaltyPage.tsx`) that are public-facing must be wrapped in the `<Layout>` component from `@/components/Layout`. The `AdminTestimonialsPage.tsx` must be wrapped in `<AdminLayout>` from `@/components/AdminLayout`.\n",
+    "depends_on_features" : [ "menu-management", "testimonial-management", "core-ui" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
