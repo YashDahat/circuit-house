@@ -17,7 +17,7 @@ public class OrderItem {
     private Order order;
 
     @Column(name = "menu_item_id", nullable = false)
-    private UUID menuItemId;
+    private Long menuItemId;
 
     @Column(nullable = false)
     private String name;
@@ -31,7 +31,7 @@ public class OrderItem {
     public OrderItem() {
     }
 
-    public OrderItem(Order order, UUID menuItemId, String name, int quantity, BigDecimal price) {
+    public OrderItem(Order order, Long menuItemId, String name, int quantity, BigDecimal price) {
         this.order = order;
         this.menuItemId = menuItemId;
         this.name = name;
@@ -55,11 +55,11 @@ public class OrderItem {
         this.order = order;
     }
 
-    public UUID getMenuItemId() {
+    public Long getMenuItemId() {
         return menuItemId;
     }
 
-    public void setMenuItemId(UUID menuItemId) {
+    public void setMenuItemId(Long menuItemId) {
         this.menuItemId = menuItemId;
     }
 

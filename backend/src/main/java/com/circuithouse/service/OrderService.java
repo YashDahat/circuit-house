@@ -65,7 +65,10 @@ public class OrderService {
             orderItemRepository.save(item);
         }
 
-        notificationService.sendOrderCreatedNotification(savedOrder.getId(), savedOrder.getCustomerId());
+        notificationService.sendNotification(
+                savedOrder.getCustomerId().toString(),
+                "Order Created",
+                "Your order " + savedOrder.getId() + " has been created.");
 
         return mapToOrderResponseDto(savedOrder);
     }
@@ -94,7 +97,10 @@ public class OrderService {
         order.setStatus(newStatus);
         Order updatedOrder = orderRepository.save(order);
 
-        notificationService.sendOrderStatusUpdateNotification(updatedOrder.getId(), updatedOrder.getCustomerId(), newStatus);
+        notificationService.sendNotification(
+                updatedOrder.getCustomerId().toString(),
+                "Order Status Updated",
+                "Your order " + updatedOrder.getId() + " status is now: " + newStatus + ".");
 
         return mapToOrderResponseDto(updatedOrder);
     }
