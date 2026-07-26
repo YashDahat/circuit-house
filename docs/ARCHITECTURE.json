@@ -1496,14 +1496,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Represents a special event, like a live music night.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the event, primary key."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the event, not null, max 255 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Detailed description of the event, not null."
+    }, {
+      "name" : "eventDate",
+      "type" : "LocalDateTime",
+      "description" : "Date and time of the event, not null."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL of the event's image, nullable, max 255 characters."
+    }, {
+      "name" : "active",
+      "type" : "boolean",
+      "description" : "Indicates if the event is currently active and visible, not null, default true."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "event-management-backend",
-    "file_role" : null,
+    "file_role" : "JPA Entity — represents a special event with fields for its details and status.",
     "change_required" : null
   }, {
     "file_name" : "EventRepository.java",
@@ -1514,14 +1538,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on Event entities.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "findByActiveTrueOrderByEventDateAsc",
+      "parameters" : [ ],
+      "return_type" : "List<Event>",
+      "description" : "Retrieves all active events, ordered by their event date in ascending order."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Event.java" ],
     "depends_on" : [ ],
     "feature_name" : "event-management-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides CRUD operations for Event entities and custom queries for active events.",
     "change_required" : null
   }, {
     "file_name" : "EventService.java",
@@ -1532,14 +1561,44 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Handles business logic for managing events.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "getAllActiveEvents",
+      "parameters" : [ ],
+      "return_type" : "List<EventDto>",
+      "description" : "Retrieves all active events, ordered by date."
+    }, {
+      "name" : "getEventById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "EventDto",
+      "description" : "Retrieves an event by its ID, throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "createEvent",
+      "parameters" : [ "EventDto eventDto" ],
+      "return_type" : "EventDto",
+      "description" : "Creates a new event from the provided DTO."
+    }, {
+      "name" : "updateEvent",
+      "parameters" : [ "UUID id", "EventDto eventDto" ],
+      "return_type" : "EventDto",
+      "description" : "Updates an existing event identified by ID with the provided DTO, throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "deleteEvent",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes an event by its ID, throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "getAllEvents",
+      "parameters" : [ ],
+      "return_type" : "List<EventDto>",
+      "description" : "Retrieves all events, regardless of active status."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/repository/EventRepository.java" ],
     "depends_on" : [ ],
     "feature_name" : "event-management-backend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements business logic for managing events, including createEvent(EventDto), getEventById(UUID), getAllActiveEvents(), updateEvent(UUID, EventDto), deleteEvent(UUID), and getAllEvents().",
     "change_required" : null
   }, {
     "file_name" : "EventController.java",
@@ -1550,14 +1609,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Public-facing REST controller for fetching upcoming events.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
+    "public_functions" : [ {
+      "name" : "getAllEvents",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<EventDto>>",
+      "description" : "Handles GET requests to retrieve all active events."
+    }, {
+      "name" : "getEventById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<EventDto>",
+      "description" : "Handles GET requests to retrieve a specific event by ID."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/events",
+      "request_body" : null,
+      "response_body" : "List<EventDto>",
+      "description" : "Retrieves a list of all active events.",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/events/{id}",
+      "request_body" : null,
+      "response_body" : "EventDto",
+      "description" : "Retrieves a specific event by its unique identifier.",
+      "access" : "public"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/EventService.java" ],
     "depends_on" : [ ],
     "feature_name" : "event-management-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes public REST endpoints for fetching event information.",
     "change_required" : null
   }, {
     "file_name" : "AdminEventController.java",
@@ -1568,14 +1651,74 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin-only REST controller for CRUD operations on events.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
+    "public_functions" : [ {
+      "name" : "getAllEvents",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<EventDto>>",
+      "description" : "Handles GET requests to retrieve all events (active and inactive) for admin view."
+    }, {
+      "name" : "getEventById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<EventDto>",
+      "description" : "Handles GET requests to retrieve a specific event by ID for admin view."
+    }, {
+      "name" : "createEvent",
+      "parameters" : [ "EventDto eventDto" ],
+      "return_type" : "ResponseEntity<EventDto>",
+      "description" : "Handles POST requests to create a new event."
+    }, {
+      "name" : "updateEvent",
+      "parameters" : [ "UUID id", "EventDto eventDto" ],
+      "return_type" : "ResponseEntity<EventDto>",
+      "description" : "Handles PUT requests to update an existing event."
+    }, {
+      "name" : "deleteEvent",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Handles DELETE requests to remove an event."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/events",
+      "request_body" : null,
+      "response_body" : "List<EventDto>",
+      "description" : "Retrieves a list of all events for administrative purposes.",
+      "access" : "admin"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/events/{id}",
+      "request_body" : null,
+      "response_body" : "EventDto",
+      "description" : "Retrieves a specific event by its unique identifier for administrative purposes.",
+      "access" : "admin"
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/events",
+      "request_body" : "EventDto",
+      "response_body" : "EventDto",
+      "description" : "Creates a new event.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/events/{id}",
+      "request_body" : "EventDto",
+      "response_body" : "EventDto",
+      "description" : "Updates an existing event identified by its ID.",
+      "access" : "admin"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/events/{id}",
+      "request_body" : null,
+      "response_body" : "Void",
+      "description" : "Deletes an event by its unique identifier.",
+      "access" : "admin"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/EventService.java" ],
     "depends_on" : [ ],
     "feature_name" : "event-management-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes admin-only REST endpoints for CRUD operations on events.",
     "change_required" : null
   }, {
     "file_name" : "EventDto.java",
@@ -1586,14 +1729,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for Event entities.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the event."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the event, not blank, max 255 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Detailed description of the event, not blank."
+    }, {
+      "name" : "eventDate",
+      "type" : "LocalDateTime",
+      "description" : "Date and time of the event, not null."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL of the event's image, max 255 characters."
+    }, {
+      "name" : "active",
+      "type" : "boolean",
+      "description" : "Indicates if the event is currently active."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "event-management-backend",
-    "file_role" : null,
+    "file_role" : "Data Transfer Object — used for transferring event data between layers, ensuring data validation.",
     "change_required" : null
   }, {
     "file_name" : "Testimonial.java",
@@ -3014,8 +3181,8 @@
     "feature_display_name" : "Event Management (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/model/Event.java", "backend/src/main/java/com/circuithouse/repository/EventRepository.java", "backend/src/main/java/com/circuithouse/service/EventService.java", "backend/src/main/java/com/circuithouse/controller/EventController.java", "backend/src/main/java/com/circuithouse/controller/admin/AdminEventController.java", "backend/src/main/java/com/circuithouse/dto/EventDto.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Event Management (Backend) feature provides a complete set of functionalities for managing special events at Circuit House. This includes defining the Event entity, persisting event data, implementing business logic for event operations, and exposing RESTful API endpoints for both public access (read-only) and authenticated administration (CRUD operations).\n\n**Event Entity (`Event.java`)**\nThis JPA entity represents a special event. It includes fields for `id` (UUID, primary key), `name` (String, not null, max 255), `description` (String, not null), `eventDate` (LocalDateTime, not null), `imageUrl` (String, nullable, max 255), and `active` (boolean, not null, default true).\n\n**Event Repository (`EventRepository.java`)**\nThis Spring Data JPA repository extends `JpaRepository<Event, UUID>` to provide standard CRUD operations for `Event` entities. It will also include a custom query method `findByActiveTrueOrderByEventDateAsc()` to fetch all active events, ordered by their date in ascending order.\n\n**Event DTO (`EventDto.java`)**\nThis DTO is used for transferring event data between the service layer and the controllers. It mirrors the `Event` entity fields: `id` (UUID), `name` (String, @NotBlank, @Size(max=255)), `description` (String, @NotBlank), `eventDate` (LocalDateTime, @NotNull), `imageUrl` (String, @Size(max=255)), and `active` (boolean).\n\n**Event Service (`EventService.java`)**\n`EventService` handles the core business logic for events. It injects `EventRepository`.\n\n- `getAllActiveEvents()`: Returns `List<EventDto>` of all active events, ordered by `eventDate`. It calls `eventRepository.findByActiveTrueOrderByEventDateAsc()` and maps the `Event` entities to `EventDto`.\n- `getEventById(UUID id)`: Returns `EventDto` for the given `id`. If the event is not found, it throws a `ResourceNotFoundException`.\n- `createEvent(EventDto eventDto)`: Creates a new event. It validates the `eventDto`, converts it to an `Event` entity, sets `active` to true, saves it using `eventRepository.save()`, and returns the saved entity as an `EventDto`.\n- `updateEvent(UUID id, EventDto eventDto)`: Updates an existing event. It first fetches the existing event using `eventRepository.findById(id)`. If not found, it throws a `ResourceNotFoundException`. It then updates the fields from `eventDto` (name, description, eventDate, imageUrl, active), saves the updated entity, and returns it as an `EventDto`.\n- `deleteEvent(UUID id)`: Deletes an event by `id`. It first checks if the event exists using `eventRepository.existsById(id)`. If not found, it throws a `ResourceNotFoundException`. It then calls `eventRepository.deleteById(id)`.\n\n**Event Controller (`EventController.java`)**\nThis controller exposes public, read-only API endpoints for events. It injects `EventService`.\n\n- `getAllEvents()`: `GET /api/v1/events`. Returns `ResponseEntity<List<EventDto>>` containing all active events. Calls `eventService.getAllActiveEvents()`.\n- `getEventById(UUID id)`: `GET /api/v1/events/{id}`. Returns `ResponseEntity<EventDto>` for a specific event. Calls `eventService.getEventById(id)`. Throws `ResourceNotFoundException` if the event is not found, which is handled by `GlobalExceptionHandler` to return a 404.\n\n**Admin Event Controller (`AdminEventController.java`)**\nThis controller exposes admin-only API endpoints for CRUD operations on events. It injects `EventService`.\n\n- `getAllEvents()`: `GET /api/v1/admin/events`. Returns `ResponseEntity<List<EventDto>>` containing all events (active or inactive). Calls `eventService.getAllEvents()` (a new method to be added to `EventService` that returns all events regardless of active status).\n- `getEventById(UUID id)`: `GET /api/v1/admin/events/{id}`. Returns `ResponseEntity<EventDto>` for a specific event. Calls `eventService.getEventById(id)`. Throws `ResourceNotFoundException` if the event is not found, which is handled by `GlobalExceptionHandler` to return a 404.\n- `createEvent(EventDto eventDto)`: `POST /api/v1/admin/events`. Creates a new event. Returns `ResponseEntity<EventDto>` with HTTP status 201 (Created). Calls `eventService.createEvent(eventDto)`.\n- `updateEvent(UUID id, EventDto eventDto)`: `PUT /api/v1/admin/events/{id}`. Updates an existing event. Returns `ResponseEntity<EventDto>`. Calls `eventService.updateEvent(id, eventDto)`. Throws `ResourceNotFoundException` if the event is not found, handled by `GlobalExceptionHandler` to return a 404.\n- `deleteEvent(UUID id)`: `DELETE /api/v1/admin/events/{id}`. Deletes an event. Returns `ResponseEntity<Void>` with HTTP status 204 (No Content). Calls `eventService.deleteEvent(id)`. Throws `ResourceNotFoundException` if the event is not found, handled by `GlobalExceptionHandler` to return a 404.\n\n**Error Handling**\nAll controllers rely on the `shared-backend`'s `GlobalExceptionHandler` to handle `ResourceNotFoundException` (returning 404 Not Found) and `IllegalArgumentException` (returning 400 Bad Request) and other generic exceptions (returning 500 Internal Server Error).",
+    "depends_on_features" : [ "shared-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
