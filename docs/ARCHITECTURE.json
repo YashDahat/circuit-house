@@ -2169,8 +2169,8 @@
     "file_type" : "FRONTEND",
     "layer" : "CONTEXT",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "React context for managing global authentication state and user information.",
     "public_functions" : [ {
       "name" : "AuthProvider",
@@ -3037,8 +3037,8 @@
     "file_type" : "FRONTEND",
     "layer" : "CONTEXT",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "React context for managing the user's shopping cart state.",
     "public_functions" : [ {
       "name" : "CartProvider",
