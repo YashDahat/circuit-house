@@ -1635,14 +1635,38 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Represents a customer testimonial or review.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "Long",
+      "description" : "Unique identifier for the testimonial. Primary key."
+    }, {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer providing the testimonial. Not null, max 100 characters."
+    }, {
+      "name" : "testimonialText",
+      "type" : "String",
+      "description" : "The actual text of the testimonial. Not null, max 1000 characters."
+    }, {
+      "name" : "rating",
+      "type" : "Integer",
+      "description" : "Rating given by the customer (1-5). Not null."
+    }, {
+      "name" : "approved",
+      "type" : "Boolean",
+      "description" : "Flag indicating if the testimonial has been approved for public display. Default false."
+    }, {
+      "name" : "createdAt",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the testimonial was created. Auto-generated."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "testimonial-management",
-    "file_role" : null,
+    "file_role" : "JPA Entity — represents a customer testimonial in the database.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialRepository.java",
@@ -1653,14 +1677,19 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on Testimonial entities.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "findByApprovedTrue",
+      "parameters" : [ ],
+      "return_type" : "List<Testimonial>",
+      "description" : "Retrieves all testimonials that have been approved."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/model/Testimonial.java" ],
     "depends_on" : [ ],
     "feature_name" : "testimonial-management",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides CRUD operations and custom queries for Testimonial entities, including findByApprovedTrue().",
     "change_required" : null
   }, {
     "file_name" : "TestimonialService.java",
@@ -1671,14 +1700,44 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Handles business logic for managing customer testimonials.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "createTestimonial",
+      "parameters" : [ "TestimonialDto testimonialDto" ],
+      "return_type" : "TestimonialDto",
+      "description" : "Creates a new testimonial with default unapproved status."
+    }, {
+      "name" : "getTestimonialById",
+      "parameters" : [ "Long id" ],
+      "return_type" : "TestimonialDto",
+      "description" : "Retrieves a testimonial by its ID."
+    }, {
+      "name" : "getAllApprovedTestimonials",
+      "parameters" : [ ],
+      "return_type" : "List<TestimonialDto>",
+      "description" : "Retrieves all testimonials that are approved for public display."
+    }, {
+      "name" : "getAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "List<TestimonialDto>",
+      "description" : "Retrieves all testimonials, regardless of approval status (for admin use)."
+    }, {
+      "name" : "updateTestimonial",
+      "parameters" : [ "Long id", "TestimonialDto testimonialDto" ],
+      "return_type" : "TestimonialDto",
+      "description" : "Updates an existing testimonial identified by ID."
+    }, {
+      "name" : "deleteTestimonial",
+      "parameters" : [ "Long id" ],
+      "return_type" : "void",
+      "description" : "Deletes a testimonial by its ID."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/repository/TestimonialRepository.java", "backend/src/main/java/com/circuithouse/dto/TestimonialDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "testimonial-management",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements createTestimonial(TestimonialDto), getTestimonialById(Long), getAllApprovedTestimonials(), getAllTestimonials(), updateTestimonial(Long, TestimonialDto), and deleteTestimonial(Long).",
     "change_required" : null
   }, {
     "file_name" : "TestimonialController.java",
@@ -1689,14 +1748,26 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Public-facing REST controller for fetching approved testimonials.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
+    "public_functions" : [ {
+      "name" : "getAllApprovedTestimonials",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<TestimonialDto>>",
+      "description" : "Handles GET requests to retrieve all approved testimonials."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/testimonials",
+      "request_body" : null,
+      "response_body" : "List<TestimonialDto>",
+      "description" : "Retrieves a list of all approved customer testimonials.",
+      "access" : "public"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/TestimonialService.java", "backend/src/main/java/com/circuithouse/dto/TestimonialDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "testimonial-management",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes public API endpoints for fetching approved testimonials.",
     "change_required" : null
   }, {
     "file_name" : "AdminTestimonialController.java",
@@ -1707,14 +1778,74 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Admin-only REST controller for CRUD operations on testimonials.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
+    "public_functions" : [ {
+      "name" : "createTestimonial",
+      "parameters" : [ "TestimonialDto testimonialDto" ],
+      "return_type" : "ResponseEntity<TestimonialDto>",
+      "description" : "Handles POST requests to create a new testimonial."
+    }, {
+      "name" : "getTestimonialById",
+      "parameters" : [ "Long id" ],
+      "return_type" : "ResponseEntity<TestimonialDto>",
+      "description" : "Handles GET requests to retrieve a testimonial by ID."
+    }, {
+      "name" : "getAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<TestimonialDto>>",
+      "description" : "Handles GET requests to retrieve all testimonials (approved and unapproved)."
+    }, {
+      "name" : "updateTestimonial",
+      "parameters" : [ "Long id", "TestimonialDto testimonialDto" ],
+      "return_type" : "ResponseEntity<TestimonialDto>",
+      "description" : "Handles PUT requests to update an existing testimonial."
+    }, {
+      "name" : "deleteTestimonial",
+      "parameters" : [ "Long id" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Handles DELETE requests to remove a testimonial by ID."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/admin/testimonials",
+      "request_body" : "TestimonialDto",
+      "response_body" : "TestimonialDto",
+      "description" : "Creates a new customer testimonial.",
+      "access" : "admin"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : "TestimonialDto",
+      "description" : "Retrieves a specific testimonial by its ID.",
+      "access" : "admin"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/testimonials",
+      "request_body" : null,
+      "response_body" : "List<TestimonialDto>",
+      "description" : "Retrieves all customer testimonials, including unapproved ones.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : "TestimonialDto",
+      "response_body" : "TestimonialDto",
+      "description" : "Updates an existing customer testimonial.",
+      "access" : "admin"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : "Void",
+      "description" : "Deletes a customer testimonial by its ID.",
+      "access" : "admin"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/circuithouse/service/TestimonialService.java", "backend/src/main/java/com/circuithouse/dto/TestimonialDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "testimonial-management",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes admin-only API endpoints for CRUD operations on testimonials.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialDto.java",
@@ -1725,14 +1856,34 @@
     "updated_date" : "2024-07-29",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for representing testimonial details.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "Long",
+      "description" : "Unique identifier for the testimonial."
+    }, {
+      "name" : "customerName",
+      "type" : "String",
+      "description" : "Name of the customer. Not blank, max 100 characters."
+    }, {
+      "name" : "testimonialText",
+      "type" : "String",
+      "description" : "The testimonial content. Not blank, max 1000 characters."
+    }, {
+      "name" : "rating",
+      "type" : "Integer",
+      "description" : "Rating (1-5). Not null, min 1, max 5."
+    }, {
+      "name" : "approved",
+      "type" : "Boolean",
+      "description" : "Approval status of the testimonial."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "testimonial-management",
-    "file_role" : null,
+    "file_role" : "DTO layer — Data Transfer Object for testimonial details, used for API requests and responses.",
     "change_required" : null
   }, {
     "file_name" : "NotificationService.java",
@@ -3203,8 +3354,8 @@
     "feature_display_name" : "Testimonial Management",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/circuithouse/model/Testimonial.java", "backend/src/main/java/com/circuithouse/repository/TestimonialRepository.java", "backend/src/main/java/com/circuithouse/service/TestimonialService.java", "backend/src/main/java/com/circuithouse/controller/TestimonialController.java", "backend/src/main/java/com/circuithouse/controller/AdminTestimonialController.java", "backend/src/main/java/com/circuithouse/dto/TestimonialDto.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "The Testimonial Management feature provides a complete backend solution for handling customer testimonials for Circuit House. It includes a `Testimonial` entity for persistence, a `TestimonialRepository` for database interactions, a `TestimonialService` for business logic, and two controllers: `TestimonialController` for public access to approved testimonials, and `AdminTestimonialController` for administrative CRUD operations. A `TestimonialDto` is used for data transfer between layers.\n\n### Testimonial.java\nThis JPA entity maps to the `testimonials` table in the database. It will have fields for `id` (Long, primary key), `customerName` (String, not null, max 100 chars), `testimonialText` (String, not null, max 1000 chars), `rating` (Integer, not null, between 1 and 5), `approved` (Boolean, default false), and `createdAt` (LocalDateTime, auto-generated).\n\n### TestimonialRepository.java\nThis interface extends `JpaRepository<Testimonial, Long>` and provides standard CRUD operations. It will also include a custom query method `findByApprovedTrue()` to retrieve only approved testimonials.\n\n### TestimonialDto.java\nThis DTO will mirror the `Testimonial` entity but will be used for data transfer. It will include `id` (Long), `customerName` (String, with `@NotBlank` and `@Size` annotations), `testimonialText` (String, with `@NotBlank` and `@Size` annotations), `rating` (Integer, with `@NotNull` and `@Min`/`@Max` annotations), and `approved` (Boolean).\n\n### TestimonialService.java\nThis service class will encapsulate the business logic for testimonials. It will be injected with `TestimonialRepository`.\n\n**Public Functions:**\n\n1.  `TestimonialDto createTestimonial(TestimonialDto testimonialDto)`:\n    *   **Logic:**\n        1.  Map the `testimonialDto` to a `Testimonial` entity.\n        2.  Set `approved` to `false` by default for new testimonials.\n        3.  Set `createdAt` to `LocalDateTime.now()`.\n        4.  Save the `Testimonial` entity using `testimonialRepository.save()`.\n        5.  Map the saved entity back to a `TestimonialDto` and return it.\n    *   **Error Cases:** Throws `IllegalArgumentException` if `testimonialDto` is invalid.\n\n2.  `TestimonialDto getTestimonialById(Long id)`:\n    *   **Logic:**\n        1.  Retrieve the `Testimonial` entity by `id` using `testimonialRepository.findById()`.\n        2.  If not found, throw `ResourceNotFoundException`.\n        3.  Map the entity to a `TestimonialDto` and return it.\n    *   **Error Cases:** Throws `ResourceNotFoundException` if no testimonial with the given ID is found.\n\n3.  `List<TestimonialDto> getAllApprovedTestimonials()`:\n    *   **Logic:**\n        1.  Retrieve all `Testimonial` entities where `approved` is `true` using `testimonialRepository.findByApprovedTrue()`.\n        2.  Map the list of entities to a list of `TestimonialDto` and return it.\n\n4.  `List<TestimonialDto> getAllTestimonials()`:\n    *   **Logic:**\n        1.  Retrieve all `Testimonial` entities using `testimonialRepository.findAll()`.\n        2.  Map the list of entities to a list of `TestimonialDto` and return it.\n\n5.  `TestimonialDto updateTestimonial(Long id, TestimonialDto testimonialDto)`:\n    *   **Logic:**\n        1.  Retrieve the existing `Testimonial` entity by `id` using `testimonialRepository.findById()`.\n        2.  If not found, throw `ResourceNotFoundException`.\n        3.  Update the fields of the existing entity with values from `testimonialDto` (customerName, testimonialText, rating, approved).\n        4.  Save the updated `Testimonial` entity using `testimonialRepository.save()`.\n        5.  Map the saved entity back to a `TestimonialDto` and return it.\n    *   **Error Cases:** Throws `ResourceNotFoundException` if no testimonial with the given ID is found. Throws `IllegalArgumentException` if `testimonialDto` is invalid.\n\n6.  `void deleteTestimonial(Long id)`:\n    *   **Logic:**\n        1.  Check if a `Testimonial` with the given `id` exists using `testimonialRepository.existsById()`.\n        2.  If not found, throw `ResourceNotFoundException`.\n        3.  Delete the `Testimonial` entity by `id` using `testimonialRepository.deleteById()`.\n    *   **Error Cases:** Throws `ResourceNotFoundException` if no testimonial with the given ID is found.\n\n### TestimonialController.java\nThis controller exposes public endpoints for fetching approved testimonials. It will be injected with `TestimonialService`.\n\n**Public Functions:**\n\n1.  `ResponseEntity<List<TestimonialDto>> getAllApprovedTestimonials()`:\n    *   **Logic:**\n        1.  Call `testimonialService.getAllApprovedTestimonials()`.\n        2.  Return the list of `TestimonialDto` with HTTP status 200 OK.\n\n### AdminTestimonialController.java\nThis controller exposes admin-only endpoints for CRUD operations on testimonials. It will be injected with `TestimonialService`.\n\n**Public Functions:**\n\n1.  `ResponseEntity<TestimonialDto> createTestimonial(@RequestBody TestimonialDto testimonialDto)`:\n    *   **Logic:**\n        1.  Call `testimonialService.createTestimonial(testimonialDto)`.\n        2.  Return the created `TestimonialDto` with HTTP status 201 Created.\n    *   **Error Cases:** Returns HTTP status 400 Bad Request if `testimonialDto` is invalid.\n\n2.  `ResponseEntity<TestimonialDto> getTestimonialById(@PathVariable Long id)`:\n    *   **Logic:**\n        1.  Call `testimonialService.getTestimonialById(id)`.\n        2.  Return the `TestimonialDto` with HTTP status 200 OK.\n    *   **Error Cases:** Returns HTTP status 404 Not Found if `ResourceNotFoundException` is thrown.\n\n3.  `ResponseEntity<List<TestimonialDto>> getAllTestimonials()`:\n    *   **Logic:**\n        1.  Call `testimonialService.getAllTestimonials()`.\n        2.  Return the list of `TestimonialDto` with HTTP status 200 OK.\n\n4.  `ResponseEntity<TestimonialDto> updateTestimonial(@PathVariable Long id, @RequestBody TestimonialDto testimonialDto)`:\n    *   **Logic:**\n        1.  Call `testimonialService.updateTestimonial(id, testimonialDto)`.\n        2.  Return the updated `TestimonialDto` with HTTP status 200 OK.\n    *   **Error Cases:** Returns HTTP status 404 Not Found if `ResourceNotFoundException` is thrown. Returns HTTP status 400 Bad Request if `testimonialDto` is invalid.\n\n5.  `ResponseEntity<Void> deleteTestimonial(@PathVariable Long id)`:\n    *   **Logic:**\n        1.  Call `testimonialService.deleteTestimonial(id)`.\n        2.  Return HTTP status 204 No Content.\n    *   **Error Cases:** Returns HTTP status 404 Not Found if `ResourceNotFoundException` is thrown.",
+    "depends_on_features" : [ ],
     "change_required" : true,
     "change_instruction" : null
   }, {
