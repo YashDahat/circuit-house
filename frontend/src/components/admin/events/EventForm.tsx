@@ -23,8 +23,10 @@ const formSchema = z.object({
   description: z.string().min(1, "Description is required"),
   eventDate: z.string().min(1, "Event date is required"),
   imageUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
-  active: z.boolean().default(false),
+  active: z.boolean(),
 });
+
+type FormValues = z.infer<typeof formSchema>;
 
 interface EventFormProps {
   initialData?: EventDto;
@@ -33,7 +35,7 @@ interface EventFormProps {
 }
 
 export function EventForm({ initialData, onSubmit, onCancel }: EventFormProps) {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: initialData?.name ?? "",
@@ -44,8 +46,15 @@ export function EventForm({ initialData, onSubmit, onCancel }: EventFormProps) {
     },
   });
 
-  function handleSubmit(values: z.infer<typeof formSchema>) {
-    onSubmit({ ...initialData, ...values });
+  function handleSubmit(values: FormValues) {
+    onSubmit({
+      id: initialData?.id ?? null,
+      name: values.name,
+      description: values.description,
+      eventDate: values.eventDate,
+      imageUrl: values.imageUrl ?? null,
+      active: values.active,
+    });
   }
 
   return (

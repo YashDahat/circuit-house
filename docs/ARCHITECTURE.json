@@ -2073,7 +2073,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Main layout for public pages, including the header, footer, and main content area.",
     "public_functions" : [ {
       "name" : "Layout",
@@ -2096,7 +2096,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Site-wide header with logo, navigation links, and call-to-action buttons.",
     "public_functions" : [ {
       "name" : "Header",
@@ -2119,7 +2119,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Site-wide footer with contact information, social links, and quick navigation.",
     "public_functions" : [ {
       "name" : "Footer",
@@ -2142,7 +2142,7 @@
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Utilities for generating and embedding JSON-LD schema markup for SEO.",
     "public_functions" : [ {
       "name" : "generateRestaurantSchema",
@@ -2170,7 +2170,7 @@
     "layer" : "CONTEXT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React context for managing global authentication state and user information.",
     "public_functions" : [ {
       "name" : "AuthProvider",
@@ -2197,7 +2197,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook for interacting with the authentication context and service.",
     "public_functions" : [ {
       "name" : "useAuth",
@@ -2292,7 +2292,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Page with a simple form for administrators to log in.",
     "public_functions" : [ {
       "name" : "LoginPage",
@@ -2315,7 +2315,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A wrapper component that restricts access to routes unless the user is authenticated.",
     "public_functions" : [ {
       "name" : "ProtectedRoute",
@@ -2338,7 +2338,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Landing page with an elegant hero section, featured menu items, a testimonial carousel, and a prominent reservation CTA.",
     "public_functions" : [ {
       "name" : "HomePage",
@@ -2361,7 +2361,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Full-bleed hero component for the homepage with a high-quality background image and enticing headline.",
     "public_functions" : [ {
       "name" : "HeroSection",
@@ -2384,7 +2384,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays a curated grid of popular menu items on the homepage.",
     "public_functions" : [ {
       "name" : "FeaturedMenuItems",
@@ -2407,7 +2407,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "An interactive carousel showcasing positive customer reviews.",
     "public_functions" : [ {
       "name" : "TestimonialsCarousel",
@@ -2430,7 +2430,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A visually distinct section encouraging users to book a table or order online.",
     "public_functions" : [ {
       "name" : "CallToActionSection",
@@ -2453,7 +2453,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Static page describing the restaurant's story, ambiance, and culinary philosophy.",
     "public_functions" : [ {
       "name" : "AboutPage",
@@ -2476,7 +2476,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Page with contact details, business hours, an interactive Google Map, and contact buttons.",
     "public_functions" : [ {
       "name" : "ContactPage",
@@ -2499,7 +2499,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays address, phone (click-to-call), and WhatsApp contact information.",
     "public_functions" : [ {
       "name" : "ContactInfoCard",
@@ -2522,7 +2522,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Embeds an interactive Google Map showing the restaurant's location.",
     "public_functions" : [ {
       "name" : "GoogleMapsEmbed",
@@ -2545,7 +2545,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A user-friendly 404 page to handle invalid routes.",
     "public_functions" : [ {
       "name" : "NotFoundPage",
@@ -2568,7 +2568,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays the full digital menu with category filters and a visual grid of items.",
     "public_functions" : [ {
       "name" : "MenuPage",
@@ -2591,7 +2591,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook to fetch and manage menu data using React Query.",
     "public_functions" : [ {
       "name" : "useMenu",
@@ -2682,7 +2682,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Allows users to filter the displayed menu items by category.",
     "public_functions" : [ {
       "name" : "MenuCategoryFilter",
@@ -2705,7 +2705,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Renders menu items in a responsive grid of cards with photos and descriptions.",
     "public_functions" : [ {
       "name" : "MenuItemsGrid",
@@ -2728,7 +2728,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Page containing an interactive form for booking a table.",
     "public_functions" : [ {
       "name" : "ReservationPage",
@@ -2751,7 +2751,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook to create and manage reservations using React Query.",
     "public_functions" : [ {
       "name" : "useCreateReservation",
@@ -2830,7 +2830,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form for users to select date, time, party size, and enter contact details.",
     "public_functions" : [ {
       "name" : "ReservationForm",
@@ -2853,7 +2853,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Multi-step checkout page including order summary, address form, and payment.",
     "public_functions" : [ {
       "name" : "OrderPage",
@@ -2876,7 +2876,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays a summary of the successfully placed order.",
     "public_functions" : [ {
       "name" : "OrderConfirmationPage",
@@ -2899,7 +2899,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Allows a user to look up the status of their order using an order ID.",
     "public_functions" : [ {
       "name" : "OrderStatusPage",
@@ -2922,7 +2922,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook to create and manage orders using React Query.",
     "public_functions" : [ {
       "name" : "useCreateOrder",
@@ -3038,7 +3038,7 @@
     "layer" : "CONTEXT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React context for managing the user's shopping cart state.",
     "public_functions" : [ {
       "name" : "CartProvider",
@@ -3066,7 +3066,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles persistence of the shopping cart to localStorage.",
     "public_functions" : [ {
       "name" : "getCartItems",
@@ -3099,7 +3099,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays the items in the cart, quantities, and total price.",
     "public_functions" : [ {
       "name" : "OrderSummary",
@@ -3122,7 +3122,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form for users to enter their delivery address and contact information.",
     "public_functions" : [ {
       "name" : "DeliveryAddressForm",
@@ -3145,7 +3145,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Integrates with the payment gateway to handle the final payment step.",
     "public_functions" : [ {
       "name" : "PaymentComponent",
@@ -3168,7 +3168,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays a calendar or list of upcoming events like live music nights.",
     "public_functions" : [ {
       "name" : "EventsPage",
@@ -3191,7 +3191,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook to fetch and manage event data using React Query.",
     "public_functions" : [ {
       "name" : "useEvents",
@@ -3286,7 +3286,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A card component to display details of a single event.",
     "public_functions" : [ {
       "name" : "EventCard",
@@ -3309,7 +3309,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook to fetch and manage testimonial data using React Query.",
     "public_functions" : [ {
       "name" : "useTestimonials",
@@ -3404,7 +3404,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Layout for the admin section, including a sidebar for navigation.",
     "public_functions" : [ {
       "name" : "AdminLayout",
@@ -3427,7 +3427,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "The main landing page for the admin portal, showing key stats and links.",
     "public_functions" : [ {
       "name" : "AdminDashboardPage",
@@ -3450,7 +3450,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing the menu, composed of a data table and creation/edit forms.",
     "public_functions" : [ {
       "name" : "AdminMenuPage",
@@ -3473,7 +3473,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table displaying all menu items with actions to edit or delete.",
     "public_functions" : [ {
       "name" : "MenuTable",
@@ -3496,7 +3496,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form, likely in a dialog, for creating or editing a menu item.",
     "public_functions" : [ {
       "name" : "MenuItemForm",
@@ -3519,7 +3519,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A confirmation dialog for deleting a menu item.",
     "public_functions" : [ {
       "name" : "DeleteMenuItemDialog",
@@ -3542,7 +3542,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing reservations, with a data table and status update controls.",
     "public_functions" : [ {
       "name" : "AdminReservationsPage",
@@ -3565,7 +3565,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table displaying all reservations with filtering and sorting.",
     "public_functions" : [ {
       "name" : "ReservationsTable",
@@ -3588,7 +3588,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form component to update the status of a selected reservation.",
     "public_functions" : [ {
       "name" : "UpdateReservationStatusForm",
@@ -3611,7 +3611,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing online orders, with a data table and status update controls.",
     "public_functions" : [ {
       "name" : "AdminOrdersPage",
@@ -3634,7 +3634,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table displaying all online orders with filtering and sorting.",
     "public_functions" : [ {
       "name" : "OrdersTable",
@@ -3657,7 +3657,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A modal dialog showing the full details of a selected order and allowing status updates.",
     "public_functions" : [ {
       "name" : "OrderDetailModal",
@@ -3680,7 +3680,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing events, composed of a data table and creation/edit forms.",
     "public_functions" : [ {
       "name" : "AdminEventsPage",
@@ -3703,7 +3703,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table displaying all events with actions to edit or delete.",
     "public_functions" : [ {
       "name" : "EventsTable",
@@ -3726,7 +3726,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form, likely in a dialog, for creating or editing an event.",
     "public_functions" : [ {
       "name" : "EventForm",
@@ -3749,7 +3749,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing testimonials, composed of a data table and creation/edit forms.",
     "public_functions" : [ {
       "name" : "AdminTestimonialsPage",
@@ -3772,7 +3772,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table displaying all testimonials with actions to edit or delete.",
     "public_functions" : [ {
       "name" : "TestimonialsTable",
@@ -3795,7 +3795,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form, likely in a dialog, for creating or editing a testimonial.",
     "public_functions" : [ {
       "name" : "TestimonialForm",
@@ -3817,7 +3817,7 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : null,
-    "updated_date" : null,
+    "updated_date" : "2026-07-26",
     "status" : "VALIDATED",
     "description" : "Derived route registry — regenerated every attempt, never LLM-written",
     "public_functions" : null,

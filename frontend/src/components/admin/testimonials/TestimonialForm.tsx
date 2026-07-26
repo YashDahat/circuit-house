@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -16,6 +17,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
+import { FormDescription } from '@/components/ui/form';
 
 interface TestimonialFormProps {
   initialData?: TestimonialDto;
@@ -28,15 +30,17 @@ const formSchema = z.object({
   content: z.string().min(1, 'Content is required'),
   rating: z.coerce.number().min(1, 'Rating must be at least 1').max(5, 'Rating cannot exceed 5'),
   date: z.string().min(1, 'Date is required'),
-  approved: z.boolean().default(false),
+  approved: z.boolean(),
 });
+
+type FormValues = z.infer<typeof formSchema>;
 
 const TestimonialForm: React.FC<TestimonialFormProps> = ({
   initialData,
   onSubmit,
   onCancel,
 }) => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       author: initialData?.author ?? '',
@@ -47,8 +51,15 @@ const TestimonialForm: React.FC<TestimonialFormProps> = ({
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    onSubmit({ ...initialData, ...values, id: initialData?.id ?? null });
+  const handleSubmit = (values: FormValues) => {
+    onSubmit({
+      id: initialData?.id ?? null,
+      author: values.author,
+      content: values.content,
+      rating: values.rating,
+      date: values.date,
+      approved: values.approved,
+    });
   };
 
   return (

@@ -64,7 +64,7 @@ export function ReservationForm() {
       customerPhone: values.customerPhone,
       reservationTime: values.reservationTime.toISOString(),
       numberOfGuests: values.numberOfGuests,
-      notes: values.notes,
+      notes: values.notes ?? null,
     };
     createReservation(reservationRequest, {
       onSuccess: () => {
@@ -146,7 +146,6 @@ export function ReservationForm() {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    initialFocus
                   />
                   {/* Simple time input, could be enhanced with a time picker component */}
                   <div className="p-3 border-t">

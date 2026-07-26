@@ -65,11 +65,11 @@ export function MenuItemForm({
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
     onSubmit({
-      ...initialData,
+      id: initialData?.id ?? null,
       name: values.name,
-      description: values.description,
+      description: values.description ?? null,
       price: values.price,
-      imageUrl: values.imageUrl,
+      imageUrl: values.imageUrl ?? null,
       categoryId: values.categoryId,
     });
   };

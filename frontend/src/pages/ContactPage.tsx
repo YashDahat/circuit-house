@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from '@/components/Layout';
+import Layout from '@/components/Layout';
 import { ContactInfoCard } from '@/components/contact/ContactInfoCard';
 import GoogleMapsEmbed from '@/components/contact/GoogleMapsEmbed';
 

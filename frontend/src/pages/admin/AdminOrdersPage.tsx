@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AdminLayout from '@/components/AdminLayout';
+import AdminLayout from '@/components/admin/AdminLayout';
 import OrdersTable from '@/components/admin/orders/OrdersTable';
 import OrderDetailModal from '@/components/admin/orders/OrderDetailModal';
 import { useGetAllOrders, useUpdateOrderStatus } from '@/hooks/useOrders';

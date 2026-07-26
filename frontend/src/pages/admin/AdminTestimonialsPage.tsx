@@ -10,7 +10,7 @@ import {
   deleteTestimonial,
 } from '@/services/testimonialService';
 import type { TestimonialDto } from '@/types/testimonial';
-import AdminLayout from '@/components/AdminLayout';
+import AdminLayout from '@/components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { TestimonialsTable } from '@/components/admin/testimonials/TestimonialsTable';
